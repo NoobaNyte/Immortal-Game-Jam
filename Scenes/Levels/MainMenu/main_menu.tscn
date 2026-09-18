@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b8wv43lofgnpk"]
+
+[node name="MainMenu" type="Node2D" unique_id=1632210355]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1830849706]
+
+[node name="Background" type="ColorRect" parent="UI" unique_id=22646456]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0.5714283, 1, 1)
+
+[node name="Title" type="MarginContainer" parent="UI" unique_id=3131177]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BoxContainer" type="BoxContainer" parent="UI/Title" unique_id=1573119887]
+layout_mode = 2
+alignment = 1
+vertical = true
+
+[node name="TitleLabel" type="RichTextLabel" parent="UI/Title/BoxContainer" unique_id=1693411855]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 200
+text = "Main Menu"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

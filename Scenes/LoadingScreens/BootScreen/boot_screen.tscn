@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dfkpyc52wnwyv"]
+
+[ext_resource type="Script" uid="uid://drb4ll8qllqgw" path="res://Scenes/LoadingScreens/BootScreen/boot_screen.gd" id="1_fe8am"]
+
+[node name="BootScreen" type="Control" unique_id=1639633984]
+editor_description = "This scene loads the main scene and swaps to it when it is done loading. It should be the default Main scene that runs when you hit play.
+
+Ensures everything loads properly without hesitations and is lightweight to not hesitate itself."
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_fe8am")
+main_scene_file_path = "res://Scenes/Main/main.tscn"
+
+[node name="Background" type="ColorRect" parent="." unique_id=1124882171]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1151138146]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 100
+text = "LOADING..."
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1

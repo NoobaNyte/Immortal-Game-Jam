@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8" />
+	<meta
+	  name="viewport"
+	  content="width=device-width, user-scalable=no, initial-scale=1.0"
+	/>
+	<title>$GODOT_PROJECT_NAME</title>
+
+	<!-- ===== EDIT THESE TWO LINES ===== -->
+	<!-- Point this at your thumbnail image (see instructions below for the two ways to do this) -->
+	<link rel="preload" as="image" href="BootThumbnail.png" />
+	<link
+	  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+	  rel="stylesheet"
+	/>
+	<!-- ================================= -->
+
+	<style>
+	  :root {
+		--thumbnail-url: url("BootThumbnail.png"); /* <-- EDIT: path to your thumbnail */
+		--accent-purple: #8b5cf6;
+	  }
+
+	  html,
+	  body,
+	  #canvas {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	  }
+
+	  body {
+		color: white;
+		background-color: black;
+		overflow: hidden;
+		touch-action: none;
+		font-family: "Roboto", sans-serif;
+	  }
+
+	  #canvas {
+		display: block;
+	  }
+
+	  #canvas:focus {
+		outline: none;
+	  }
+
+	  #status {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		visibility: hidden;
+		overflow: hidden;
+	  }
+
+	  /* ---- Blurred, darkened fullscreen background ---- */
+	  #status-bg {
+		position: absolute;
+		inset: 0;
+		background-image: var(--thumbnail-url);
+		background-size: cover;
+		background-position: center;
+		filter: brightness(0.55) blur(3px);
+		transform: scale(1.1); /* avoid blurred edge showing gaps */
+		z-index: 0;
+	  }
+
+	  /* ---- Centered content column ---- */
+	  #status-content {
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 22px;
+		padding: 0 24px;
+		box-sizing: border-box;
+	  }
+
+	  #status-thumbnail {
+		width: min(220px, 40vw);
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: 14px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	  }
+
+	  #status-title {
+		font-weight: 700;
+		font-size: clamp(20px, 4vw, 30px);
+		color: #ffffff;
+		letter-spacing: 0.5px;
+		text-align: center;
+		margin: 0;
+	  }
+
+	  #status-progress-track {
+		width: min(320px, 60vw);
+		height: 14px;
+		background-color: #000000;
+		border-radius: 9999px;
+		overflow: hidden;
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+	  }
+
+	  #status-progress-fill {
+		height: 100%;
+		width: 0%;
+		background-color: var(--accent-purple);
+		border-radius: 9999px;
+		transition: width 0.2s ease-out;
+	  }
+
+	  /* Indeterminate animation used when we don't have real byte totals yet */
+      #status-progress-fill.indeterminate {
+        width: 40% !important;
+        animation: indeterminate-slide 1.2s ease-in-out infinite;
+      }
+
+      @keyframes indeterminate-slide {
+        0% {
+          margin-left: -40%;
+        }
+        100% {
+          margin-left: 100%;
+        }
+      }
+
+      #status-message {
+        font-weight: 400;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.75);
+        text-align: center;
+        min-height: 18px;
+      }
+
+      #status-notice {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 8%;
+        background-color: #5b3943;
+        border-radius: 0.5rem;
+        border: 1px solid #9b3943;
+        color: #e0e0e0;
+        font-family: "Roboto", sans-serif;
+        line-height: 1.3;
+        margin: 0 2rem;
+        padding: 1rem;
+        text-align: center;
+        z-index: 2;
+        display: none;
+      }
+    </style>
+    $GODOT_HEAD_INCLUDE
+  </head>
+  <body>
+    <canvas id="canvas"> Your browser does not support the canvas tag. </canvas>
+
+    <noscript> Your browser does not support JavaScript. </noscript>
+
+    <div id="status">
+      <div id="status-bg"></div>
+      <div id="status-content">
+        <img id="status-thumbnail" src="BootThumbnail.png" alt="" />
+        <!-- EDIT: your game title -->
+        <div id="status-title">Elden Things</div>
+        <div id="status-progress-track">
+          <div id="status-progress-fill" class="indeterminate"></div>
+        </div>
+        <div id="status-message">Now loading</div>
+      </div>
+      <div id="status-notice"></div>
+    </div>
+
+    <script src="$GODOT_URL"></script>
+    <script>
+      const GODOT_CONFIG = $GODOT_CONFIG;
+      const GODOT_THREADS_ENABLED = $GODOT_THREADS_ENABLED;
+      const engine = new Engine(GODOT_CONFIG);
+
+      (function () {
+        const statusOverlay = document.getElementById("status");
+        const progressFill = document.getElementById("status-progress-fill");
+        const statusMessage = document.getElementById("status-message");
+        const statusNotice = document.getElementById("status-notice");
+
+        let initializing = true;
+
+        // Three message stages based on load progress
+        const MESSAGES = [
+          { upTo: 33, text: "Now loading" },
+          { upTo: 66, text: "Loading assets..." },
+          { upTo: 100, text: "Almost there..." },
+        ];
+
+        function messageForPercent(percent) {
+          for (const stage of MESSAGES) {
+            if (percent <= stage.upTo) return stage.text;
+          }
+          return MESSAGES[MESSAGES.length - 1].text;
+        }
+
+        function setStatusVisible(visible) {
+          if (!initializing) return;
+          if (!visible) {
+            statusOverlay.remove();
+            initializing = false;
+            return;
+          }
+          statusOverlay.style.visibility = "visible";
+        }
+
+        function setStatusNotice(text) {
+          while (statusNotice.lastChild) {
+            statusNotice.removeChild(statusNotice.lastChild);
+          }
+          const lines = text.split("\n");
+          lines.forEach((line) => {
+            statusNotice.appendChild(document.createTextNode(line));
+            statusNotice.appendChild(document.createElement("br"));
+          });
+        }
+
+        function displayFailureNotice(err) {
+          console.error(err);
+          if (err instanceof Error) {
+            setStatusNotice(err.message);
+          } else if (typeof err === "string") {
+            setStatusNotice(err);
+          } else {
+            setStatusNotice("An unknown error occurred.");
+          }
+          statusNotice.style.display = "block";
+          setStatusVisible(true);
+          initializing = false;
+        }
+
+        const missing = Engine.getMissingFeatures({
+          threads: GODOT_THREADS_ENABLED,
+        });
+
+        if (missing.length !== 0) {
+          if (
+            GODOT_CONFIG["serviceWorker"] &&
+            GODOT_CONFIG["ensureCrossOriginIsolationHeaders"] &&
+            "serviceWorker" in navigator
+          ) {
+            let serviceWorkerRegistrationPromise;
+            try {
+              serviceWorkerRegistrationPromise =
+                navigator.serviceWorker.getRegistration();
+            } catch (err) {
+              serviceWorkerRegistrationPromise = Promise.reject(
+                new Error("Service worker registration failed."),
+              );
+            }
+            Promise.race([
+              serviceWorkerRegistrationPromise
+                .then((registration) => {
+                  if (registration != null) {
+                    return Promise.reject(
+                      new Error("Service worker already exists."),
+                    );
+                  }
+                  return registration;
+                })
+                .then(() => engine.installServiceWorker()),
+              new Promise((resolve) => {
+                setTimeout(() => resolve(), 2000);
+              }),
+            ])
+              .then(() => {
+                window.location.reload();
+              })
+              .catch((err) => {
+                console.error("Error while registering service worker:", err);
+              });
+          } else {
+            const missingMsg =
+              "Error\nThe following features required to run Godot projects on the Web are missing:\n";
+            displayFailureNotice(missingMsg + missing.join("\n"));
+          }
+        } else {
+          setStatusVisible(true);
+          engine
+            .startGame({
+              onProgress: function (current, total) {
+                if (current > 0 && total > 0) {
+                  const percent = Math.min(
+                    100,
+                    Math.round((current / total) * 100),
+                  );
+                  progressFill.classList.remove("indeterminate");
+                  progressFill.style.width = percent + "%";
+                  statusMessage.textContent = messageForPercent(percent);
+                } else {
+                  // No byte totals yet, show indeterminate animation
+                  progressFill.classList.add("indeterminate");
+                }
+              },
+            })
+            .then(() => {
+              setStatusVisible(false);
+            }, displayFailureNotice);
+        }
+      })();
+    </script>
+  </body>
+</html>
