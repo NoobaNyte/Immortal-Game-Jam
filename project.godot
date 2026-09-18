@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*uid://ch6flf32t3un7"
-SaveManager="*uid://dijoyd5qk27h1"
 Global="*uid://duniejrwrdt36"
 
 [debug]
