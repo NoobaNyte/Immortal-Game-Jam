@@ -16,8 +16,7 @@ func _ready() -> void:
 	## this allows you to test levels (still able to use the level loading system) by just putting them inside the level container
 	if level_container.get_child(0) != null:
 		current_level_node = level_container.get_child(0)
-	
-	
+
 func load_level(next_level_path: String, loading_screen_fade_in_time: float = 0.0, loading_screen_fade_out_time: float = 0.0) -> void:
 	if is_loading:
 		return
