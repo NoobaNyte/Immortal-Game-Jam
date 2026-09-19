@@ -196,6 +196,10 @@ func throw_item(dropped: bool = false) -> void:
 	is_item_busy = true
 	var item_to_throw = held_item
 	held_item = null
+
+	## tell the tomato script that it is being thrown so it can know that it is ready to splat
+	if "being_thrown" in item_to_throw:
+		item_to_throw.being_thrown = true
 	
 	# Maintain global position during reparenting
 	var throw_start_pos = item_to_throw.global_position

@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="16_pqqt0"]
 [ext_resource type="Texture2D" uid="uid://dnyfw26w0gyd3" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Rpng.png" id="24_8sp0k"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="25_s2mfx"]
-[ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="26_whc0m"]
+[ext_resource type="PackedScene" uid="uid://d3glw13115soc" path="res://Scenes/Prefabs/Tomato/tomato_spawner.tscn" id="27_8sp0k"]
 
 [sub_resource type="Gradient" id="Gradient_sd6i1"]
 offsets = PackedFloat32Array(0.0034013605, 1)
@@ -370,15 +370,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 
-[sub_resource type="Gradient" id="Gradient_ahkww"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_whc0m"]
-gradient = SubResource("Gradient_ahkww")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 1)
-
 [node name="TutorialArea1" type="Node2D" unique_id=1921716596]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1598792524]
@@ -410,35 +401,11 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_8sp0k")
 texture_scale = 3.18
 
-[node name="Tomato" parent="." unique_id=86655563 instance=ExtResource("26_whc0m")]
+[node name="TomatoSpawner" parent="." unique_id=665116026 instance=ExtResource("27_8sp0k")]
 position = Vector2(182, 1004)
-base_color = Color(1, 0, 0.20089293, 1)
 
-[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato" unique_id=57338922]
-position = Vector2(6.1035156e-05, -4.7683716e-07)
-color = Color(1, 0.79910713, 0.79910713, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_whc0m")
-texture_scale = 16.71
+[node name="TomatoSpawner2" parent="." unique_id=1550552551 instance=ExtResource("27_8sp0k")]
+position = Vector2(1029, 1004)
 
-[node name="Tomato2" parent="." unique_id=1072452538 instance=ExtResource("26_whc0m")]
-position = Vector2(957, 1004)
-base_color = Color(1, 0, 0.20089293, 1)
-
-[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato2" unique_id=1113705391]
-position = Vector2(6.1035156e-05, -4.7683716e-07)
-color = Color(1, 0.79910713, 0.79910713, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_whc0m")
-texture_scale = 16.71
-
-[node name="Tomato3" parent="." unique_id=1204876119 instance=ExtResource("26_whc0m")]
-position = Vector2(1615, 1004)
-base_color = Color(1, 0, 0.20089293, 1)
-
-[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato3" unique_id=1838674323]
-position = Vector2(6.1035156e-05, -4.7683716e-07)
-color = Color(1, 0.79910713, 0.79910713, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_whc0m")
-texture_scale = 16.71
+[node name="TomatoSpawner3" parent="." unique_id=340056387 instance=ExtResource("27_8sp0k")]
+position = Vector2(1643, 1004)
