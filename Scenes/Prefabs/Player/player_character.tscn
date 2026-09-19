@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bbkp8p5wbiky7" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_4.png" id="9_rfstk"]
 [ext_resource type="Texture2D" uid="uid://bblr1gx464r0g" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_5.png" id="10_1jons"]
 [ext_resource type="Texture2D" uid="uid://do40msvhjkv67" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_1.png" id="11_1jons"]
+[ext_resource type="Texture2D" uid="uid://opvg1vl4tvqa" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_2.png" id="12_omjq4"]
+[ext_resource type="Texture2D" uid="uid://ds5bb5nan64o8" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_3.png" id="13_bwf0q"]
 [ext_resource type="Texture2D" uid="uid://djei1vu1al7td" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_4.png" id="14_sd3qq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
@@ -72,8 +74,14 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.4,
 "texture": ExtResource("11_1jons")
+}, {
+"duration": 0.4,
+"texture": ExtResource("12_omjq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bwf0q")
 }, {
 "duration": 1.0,
 "texture": ExtResource("14_sd3qq")
@@ -124,7 +132,7 @@ debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
 animation = &"PlayerJump"
-frame_progress = 0.17971341
+frame_progress = 0.26908457
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 position = Vector2(0, -100)
