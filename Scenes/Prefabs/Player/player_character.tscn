@@ -6,6 +6,10 @@
 [ext_resource type="Shape2D" uid="uid://de20x8lknl7rx" path="res://Scenes/Prefabs/Player/PlayerCollisionShape.tres" id="4_2bhw3"]
 [ext_resource type="Shape2D" uid="uid://chba5gi7fbafp" path="res://Scenes/Prefabs/Player/BatCollisionShape.tres" id="5_pe1i5"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
+radius = 42.0
+height = 132.0
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_aylpn"]
 animations = [{
 "frames": [{
@@ -65,18 +69,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
-radius = 42.0
-height = 132.0
+[sub_resource type="Gradient" id="Gradient_ahkww"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pe1i5"]
+gradient = SubResource("Gradient_ahkww")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=2099930869]
 script = ExtResource("1_aylpn")
 player_collision_shape = ExtResource("4_2bhw3")
 bat_collision_shape = ExtResource("5_pe1i5")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
-sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerRun"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=747167888]
 shape = ExtResource("4_2bhw3")
@@ -87,3 +92,20 @@ debug_color = Color(0, 0.5950001, 0.7, 0.6156863)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=827654607]
 shape = SubResource("CapsuleShape2D_aylpn")
 debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
+sprite_frames = SubResource("SpriteFrames_aylpn")
+animation = &"PlayerRun"
+
+[node name="PlayerPointLight2D" type="PointLight2D" parent="." unique_id=1107260742]
+position = Vector2(6.1035156e-05, -6)
+scale = Vector2(9.117188, 6.9179688)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_pe1i5")
+texture_scale = 0.6
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
+offset = Vector2(0, -100)
+zoom = Vector2(1.4, 1.4)
+position_smoothing_speed = 50.0

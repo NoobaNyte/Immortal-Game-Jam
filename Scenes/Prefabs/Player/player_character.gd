@@ -39,6 +39,10 @@ var throw_force := Vector2(400, -300)
 @export var player_collision_shape: CapsuleShape2D
 @export var bat_collision_shape: CapsuleShape2D
 
+## player light so when you swap to bat the light energy gets updated
+@onready var player_point_light: PointLight2D = $PlayerPointLight2D
+@onready var original_player_point_light_energy: float = player_point_light.energy
+
 func _ready():
 	anim_sprite.play("PlayerIdle")
 
@@ -134,16 +138,23 @@ func toggle_bat_mode() -> void:
 		## change sprite
 		anim_sprite.play("BatIdle")
 
+		## update light
+		player_point_light.energy = 0.1
+
 		# Shrink/change collision box for bat mode
 		collision_shape.shape = bat_collision_shape
 		# Optional: give a tiny boost when transforming
 		velocity.y = bat_flap_velocity / 2.0
+
 		# Drop held items when turning into a bat
 		if held_item:
 			throw_item(true)
 	else:
 		## change sprite
 		anim_sprite.play("PlayerIdle")
+
+		## update light
+		player_point_light.energy = original_player_point_light_energy
 
 		# Revert to mortal collision box
 		collision_shape.shape = player_collision_shape

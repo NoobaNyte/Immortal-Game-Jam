@@ -24,12 +24,13 @@
 [ext_resource type="Texture2D" uid="uid://cx7hiroeo21hj" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner4.png" id="15_jm2c0"]
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="16_pqqt0"]
 [ext_resource type="Texture2D" uid="uid://dnyfw26w0gyd3" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Rpng.png" id="24_8sp0k"]
+[ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="25_s2mfx"]
 
-[sub_resource type="Gradient" id="Gradient_ahkww"]
+[sub_resource type="Gradient" id="Gradient_s2mfx"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ahkww"]
-gradient = SubResource("Gradient_ahkww")
+gradient = SubResource("Gradient_s2mfx")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
@@ -380,6 +381,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_ahkww")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=955620435]
+visible = false
 position = Vector2(1803, -49)
 scale = Vector2(58.03906, 42.39063)
 texture = SubResource("GradientTexture2D_5tw4x")
@@ -393,3 +395,6 @@ tile_map_data = PackedByteArray("AAD9/wEAHgADAAAAAAD+/wEAHgADAAAAAAD//wEAHgADAAA
 tile_set = SubResource("TileSet_1852f")
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" unique_id=915036263]
+
+[node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("25_s2mfx")]
+position = Vector2(377, 920)
