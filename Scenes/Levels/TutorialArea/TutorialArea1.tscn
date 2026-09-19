@@ -1,7 +1,14 @@
-[gd_scene format=3 uid="uid://ub3w0hrri02e"]
+[gd_scene format=4 uid="uid://ub3w0hrri02e"]
+
+[ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="1_sd6i1"]
+[ext_resource type="Texture2D" uid="uid://bvgjyfvlirowf" path="res://Assets/Sprites/Walls/Area1/Wall2.png" id="2_uqjft"]
+[ext_resource type="Texture2D" uid="uid://bcusjnkr00pjg" path="res://Assets/Sprites/Walls/Area1/Wall3.png" id="3_6up4h"]
+[ext_resource type="Texture2D" uid="uid://c0iatojja87sn" path="res://Assets/Sprites/Walls/Area1/Area1Wall7.png" id="4_ckktv"]
+[ext_resource type="Texture2D" uid="uid://dv4fef77sc3un" path="res://Assets/Sprites/Walls/Area1/Area1Wall6.png" id="5_fa0o1"]
+[ext_resource type="Texture2D" uid="uid://bsusjvq22kr5l" path="res://Assets/Sprites/Walls/Area1/Area1Wall5.png" id="6_rcdaa"]
+[ext_resource type="Texture2D" uid="uid://dkl6q4ipvp62l" path="res://Assets/Sprites/Walls/Area1/Area1Wal4.png" id="7_xs4bm"]
 
 [sub_resource type="Gradient" id="Gradient_ahkww"]
-offsets = PackedFloat32Array(0.08163265, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ahkww"]
@@ -15,18 +22,105 @@ fill_to = Vector2(0.5, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5tw4x"]
 gradient = SubResource("Gradient_sd6i1")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5tw4x"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ckktv"]
+texture = ExtResource("1_sd6i1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_5tw4x")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o0kw"]
+polygon = PackedVector2Array(-32, 19.756584, 32, 19.756584, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fa0o1"]
+texture = ExtResource("2_uqjft")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2o0kw")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ui72o"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcdaa"]
+texture = ExtResource("3_6up4h")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ui72o")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8pmob"]
+polygon = PackedVector2Array(-32, 19.756584, 32, 19.756584, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xs4bm"]
+texture = ExtResource("4_ckktv")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8pmob")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kcw0k"]
+polygon = PackedVector2Array(-32, 32, -32, -32, -20.321056, -32, -19.756584, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02cti"]
+texture = ExtResource("5_fa0o1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_kcw0k")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mg4k7"]
+polygon = PackedVector2Array(19.192116, 32, 20.32106, -32, 32, -32, 32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tja3g"]
+texture = ExtResource("6_rcdaa")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mg4k7")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3o1e8"]
+polygon = PackedVector2Array(-32, -19.756588, -32, -32, 32, -32, 32, -19.192112)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcvdl"]
+texture = ExtResource("7_xs4bm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_3o1e8")
+
+[sub_resource type="TileSet" id="TileSet_8y3lh"]
+resource_local_to_scene = true
+tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
+sources/0 = SubResource("TileSetAtlasSource_ckktv")
+sources/1 = SubResource("TileSetAtlasSource_fa0o1")
+sources/2 = SubResource("TileSetAtlasSource_rcdaa")
+sources/3 = SubResource("TileSetAtlasSource_xs4bm")
+sources/4 = SubResource("TileSetAtlasSource_02cti")
+sources/5 = SubResource("TileSetAtlasSource_tja3g")
+sources/6 = SubResource("TileSetAtlasSource_rcvdl")
+
 [node name="TutorialArea1" type="Node2D" unique_id=1921716596]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1598792524]
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1839910098]
-position = Vector2(939, 688.00006)
-scale = Vector2(3.46875, 2.9375)
+position = Vector2(781, 903.99994)
+scale = Vector2(5.390626, 4.523436)
+energy = 2.87
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_ahkww")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=955620435]
 visible = false
-position = Vector2(935, 629)
+position = Vector2(995, 718.00006)
 scale = Vector2(32.359375, 18.21875)
 texture = SubResource("GradientTexture2D_5tw4x")
+
+[node name="TileMap" type="Node2D" parent="." unique_id=756145371]
+position = Vector2(702, 923)
+
+[node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap" unique_id=885590253]
+tile_map_data = PackedByteArray("AAD3/wIAAwAAAAAAAAD4/wIAAwAAAAAAAAD5/wIAAwAAAAAAAAD6/wIAAwAAAAAAAAD7/wIAAwAAAAAAAAD8/wIAAwAAAAAAAAD9/wIAAwAAAAAAAAD9/wEAAwAAAAAAAAD+/wEAAwAAAAAAAAD//wEAAwAAAAAAAAAAAAEAAwAAAAAAAAABAAEAAwAAAAAAAAACAAEAAwAAAAAAAAACAAIAAwAAAAAAAAADAAIAAwAAAAAAAAAEAAIAAwAAAAAAAAAFAAIAAwAAAAAAAAAGAAIAAwAAAAAAAAAHAAIAAwAAAAAAAAAIAAIAAwAAAAAAAAAJAAIAAwAAAAAAAAAKAAIAAwAAAAAAAAALAAEAAwAAAAAAAAAMAAEAAwAAAAAAAAANAAEAAwAAAAAAAAAOAAEAAwAAAAAAAAAPAAEAAwAAAAAAAAAQAAEAAwAAAAAAAAARAAEAAwAAAAAAAAASAAEAAwAAAAAAAAATAAEAAwAAAAAAAAAKAAEAAwAAAAAAAAAJAAEAAwAAAAAAAAAIAAEAAwAAAAAAAAAHAAEAAwAAAAAAAAAGAAEAAwAAAAAAAAAFAAEAAwAAAAAAAAAEAAEAAwAAAAAAAAADAAEAAwAAAAAAAAABAAIAAwAAAAAAAAAAAAIAAwAAAAAAAAD//wIAAwAAAAAAAAD+/wIAAwAAAAAAAAD8/wEAAwAAAAAAAAD7/wEAAwAAAAAAAAD6/wEAAwAAAAAAAAD8/wAABAAAAAAAAAD9/wAABAAAAAAAAAD9////BAAAAAAAAAD9//7/BAAAAAAAAAD9//3/BAAAAAAAAAD8//3/BAAAAAAAAAD8//7/BAAAAAAAAAD8////BAAAAAAAAAAIAAAABQAAAAAAAAAIAP//BQAAAAAAAAAIAP7/BQAAAAAAAAAIAP3/BQAAAAAAAAAIAPz/BQAAAAAAAAAIAPv/BQAAAAAAAAAJAPv/BQAAAAAAAAAJAPz/BQAAAAAAAAAJAP3/BQAAAAAAAAAJAP7/BQAAAAAAAAAJAP//BQAAAAAAAAAJAAAABQAAAAAAAAA=")
+tile_set = SubResource("TileSet_8y3lh")
+
+[node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" unique_id=915036263]
