@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cu5ggdj5seqik"]
 
 [ext_resource type="Script" uid="uid://dbqky8yun6u1r" path="res://Scenes/Prefabs/Player/player_character.gd" id="1_aylpn"]
-[ext_resource type="Texture2D" uid="uid://grmvk0556q1n" path="res://Assets/Sprites/PlayerSprites/PlayerIdle.png" id="1_vvx6r"]
 [ext_resource type="Texture2D" uid="uid://biffbqud56k7f" path="res://Assets/Sprites/PlayerSprites/BatWingsOut.png" id="2_deqfm"]
 [ext_resource type="Shape2D" uid="uid://de20x8lknl7rx" path="res://Scenes/Prefabs/Player/PlayerCollisionShape.tres" id="4_2bhw3"]
 [ext_resource type="Shape2D" uid="uid://chba5gi7fbafp" path="res://Scenes/Prefabs/Player/BatCollisionShape.tres" id="5_pe1i5"]
@@ -11,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cc84saj41sokk" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_3.png" id="8_rwurm"]
 [ext_resource type="Texture2D" uid="uid://bbkp8p5wbiky7" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_4.png" id="9_rfstk"]
 [ext_resource type="Texture2D" uid="uid://bblr1gx464r0g" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_5.png" id="10_1jons"]
+[ext_resource type="Texture2D" uid="uid://do40msvhjkv67" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_1.png" id="11_1jons"]
+[ext_resource type="Texture2D" uid="uid://djei1vu1al7td" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Jump_4.png" id="14_sd3qq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
 radius = 42.0
@@ -44,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vvx6r")
+"texture": ExtResource("6_7g00y")
 }],
 "loop": 1,
 "name": &"PlayerFall",
@@ -72,7 +73,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vvx6r")
+"texture": ExtResource("11_1jons")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sd3qq")
 }],
 "loop": 1,
 "name": &"PlayerJump",
@@ -80,7 +84,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_vvx6r")
+"texture": ExtResource("6_7g00y")
 }],
 "loop": 1,
 "name": &"PlayerRun",
@@ -119,8 +123,8 @@ debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerIdle"
-frame_progress = 0.72618055
+animation = &"PlayerJump"
+frame_progress = 0.17971341
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 position = Vector2(0, -100)
