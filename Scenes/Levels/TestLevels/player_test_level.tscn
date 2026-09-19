@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://bdrebmtm6d7ff"]
 
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d3ym1"]
+[ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="1_iqiew"]
 [ext_resource type="Texture2D" uid="uid://c0iatojja87sn" path="res://Assets/Sprites/Walls/Area1/Area1Wall7.png" id="2_udx7n"]
 
 [node name="PlayerTestLevel" type="Node2D" unique_id=462510868]
 
+[node name="Tomato" parent="." unique_id=86655563 instance=ExtResource("1_iqiew")]
+position = Vector2(1038, 471)
+base_color = Color(0.74553573, 0, 0, 1)
+
 [node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("1_d3ym1")]
-position = Vector2(906, 424)
+position = Vector2(906, 431)
 
 [node name="Area1Wall7" type="Sprite2D" parent="." unique_id=1656804673]
 position = Vector2(906.00006, 698)
