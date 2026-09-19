@@ -70,7 +70,8 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_ahkww"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.50886524, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.12056738, 0.12056738, 0.12056738, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pe1i5"]
 gradient = SubResource("Gradient_ahkww")
@@ -98,12 +99,12 @@ sprite_frames = SubResource("SpriteFrames_aylpn")
 animation = &"PlayerRun"
 
 [node name="PlayerPointLight2D" type="PointLight2D" parent="." unique_id=1107260742]
-position = Vector2(6.1035156e-05, -6)
-scale = Vector2(9.117188, 6.9179688)
-energy = 1.49
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+scale = Vector2(18.4, 26.875)
+energy = 0.5
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_pe1i5")
-texture_scale = 0.6
+texture_scale = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 offset = Vector2(0, -100)

@@ -381,7 +381,6 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_ahkww")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=955620435]
-visible = false
 position = Vector2(1803, -49)
 scale = Vector2(58.03906, 42.39063)
 texture = SubResource("GradientTexture2D_5tw4x")
@@ -397,4 +396,4 @@ tile_set = SubResource("TileSet_1852f")
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" unique_id=915036263]
 
 [node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("25_s2mfx")]
-position = Vector2(377, 920)
+position = Vector2(377, 968)
