@@ -68,6 +68,6 @@ debug_color = Color(0.99776787, 0, 0, 0.41960785)
 [node name="TomatoPointLight2D" type="PointLight2D" parent="." unique_id=988521981]
 position = Vector2(6.1035156e-05, -4.7683716e-07)
 color = Color(1, 0.79910713, 0.79910713, 1)
-shadow_enabled = true
+shadow_filter = 1
 texture = SubResource("GradientTexture2D_8ahql")
 texture_scale = 16.71

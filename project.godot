@@ -285,9 +285,12 @@ spin={
 
 [layer_names]
 
+2d_render/layer_1="Visuals"
+2d_render/layer_2="Shadows"
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Objects"
+3d_render/use_occlusion_culling=true
 
 [physics]
 
