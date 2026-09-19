@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="16_pqqt0"]
 [ext_resource type="Texture2D" uid="uid://dnyfw26w0gyd3" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Rpng.png" id="24_8sp0k"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="25_s2mfx"]
+[ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="26_whc0m"]
 
 [sub_resource type="Gradient" id="Gradient_s2mfx"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -368,6 +369,25 @@ sources/11 = SubResource("TileSetAtlasSource_xnpst")
 sources/12 = SubResource("TileSetAtlasSource_qup11")
 tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Vector2i(1, 0)], [23, Vector2i(1, 0)], [22, Vector2i(2, 0)], [23, Vector2i(2, 0)], [22, Vector2i(3, 0)], [23, Vector2i(3, 0)], [22, Vector2i(4, 0)], [23, Vector2i(4, 0)], [22, Vector2i(5, 0)], [23, Vector2i(5, 0)], [22, Vector2i(6, 0)], [23, Vector2i(6, 0)], [22, Vector2i(7, 0)], [23, Vector2i(7, 0)], [22, Vector2i(8, 0)], [23, Vector2i(8, 0)], [22, Vector2i(9, 0)], [23, Vector2i(9, 0)], [22, Vector2i(10, 0)], [23, Vector2i(10, 0)], [22, Vector2i(11, 0)], [23, Vector2i(11, 0)], [22, Vector2i(12, 0)], [23, Vector2i(12, 0)], [22, Vector2i(13, 0)], [23, Vector2i(13, 0)]]
 
+[sub_resource type="Gradient" id="Gradient_pe1i5"]
+offsets = PackedFloat32Array(0, 0.50886524, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.12056738, 0.12056738, 0.12056738, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sp0k"]
+gradient = SubResource("Gradient_pe1i5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_ahkww"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whc0m"]
+gradient = SubResource("Gradient_ahkww")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
 [node name="TutorialArea1" type="Node2D" unique_id=1921716596]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1598792524]
@@ -397,3 +417,22 @@ tile_set = SubResource("TileSet_1852f")
 
 [node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("25_s2mfx")]
 position = Vector2(377, 968)
+
+[node name="PlayerPointLight2D" type="PointLight2D" parent="PlayerCharacter" unique_id=1166592286]
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+scale = Vector2(1, 1.461)
+energy = 0.2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_8sp0k")
+texture_scale = 3.18
+
+[node name="Tomato" parent="." unique_id=86655563 instance=ExtResource("26_whc0m")]
+position = Vector2(182, 1004)
+base_color = Color(1, 0, 0.20089293, 1)
+
+[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato" unique_id=57338922]
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+color = Color(1, 0.79910713, 0.79910713, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_whc0m")
+texture_scale = 16.71

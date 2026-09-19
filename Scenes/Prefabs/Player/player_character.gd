@@ -21,17 +21,21 @@ var is_bat_mode: bool = false
 @export var bat_flap_velocity: float = -350.0
 @export var bat_fall_speed: float = 200.0
 
-# --- HITBOX SETTINGS ---
-@export var mortal_extents := Vector2(10, 20)
-@export var bat_extents := Vector2(12, 8)
-
-# --- THROW / PICKUP ---
+# --- THROW / PICKUP SETTINGS ---
 var held_item: Node2D = null
-var throw_force := Vector2(400, -300)
+var is_item_busy: bool = false # Prevents spamming pickup/throw buttons
+@export var throw_speed: float = 600.0 # Replaces the hardcoded vector for omnidirectional throws
+@export var drop_velocity: float = -100.0 # A gentle upwards toss for a nice drop
+
+# --- CAMERA LOOK SETTINGS ---
+@export var camera_look_offset: float = 120.0
+@export var camera_look_delay: float = 0.6
+@export var camera_pan_speed: float = 6.0
+var look_timer: float = 0.0
+var target_camera_y: float = 0.0
 
 # --- NODES ---
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
-# Assuming you have an Area2D to detect items to pick up
 @onready var pickup_area: Area2D = $PickupArea
 
 ## collision shapes
@@ -39,17 +43,25 @@ var throw_force := Vector2(400, -300)
 @export var player_collision_shape: CapsuleShape2D
 @export var bat_collision_shape: CapsuleShape2D
 
-## player light so when you swap to bat the light energy gets updated
+## player light
 @onready var player_point_light: PointLight2D = $PlayerPointLight2D
 @onready var original_player_point_light_energy: float = player_point_light.energy
 
+## hold point & camera
+@onready var tomato_hold_point: Marker2D = $TomatoHoldPoint
+@onready var camera: Camera2D = $Camera2D
+
 func _ready():
 	anim_sprite.play("PlayerIdle")
+	
+	if tomato_hold_point.get_child_count() > 0:
+		tomato_hold_point.get_child(0).queue_free()
 
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
 	handle_jump(delta)
 	handle_movement(delta)
+	handle_camera_look(delta)
 	
 	move_and_slide()
 	update_animations()
@@ -58,52 +70,60 @@ func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
 		var current_gravity = gravity
 		
-		# Make the character fall faster for weightier movement (Silksong style)
 		if velocity.y > 0 and not is_bat_mode:
 			current_gravity *= fall_gravity_multiplier
 			
 		velocity.y += current_gravity * delta
 		
-		# Terminal velocity limits
 		var terminal_velocity = bat_fall_speed if is_bat_mode else max_fall_speed
 		if velocity.y > terminal_velocity:
 			velocity.y = terminal_velocity
 
 func handle_jump(delta: float) -> void:
-	# Coyote Time logic
 	if is_on_floor():
 		coyote_timer = coyote_time
 	else:
 		coyote_timer -= delta
 
-	# Variable Jump Height (If jump button is released early, cut the velocity)
 	if Input.is_action_just_released("jump") and velocity.y < min_jump_velocity and not is_bat_mode:
 		velocity.y = min_jump_velocity
 
-	# Handle the Jump Input
 	if Input.is_action_just_pressed("jump"):
 		if is_bat_mode:
-			# Infinite jumps / flaps in bat mode
 			velocity.y = bat_flap_velocity
 		elif coyote_timer > 0.0:
-			# Mortal jump
 			velocity.y = max_jump_velocity
-			coyote_timer = 0.0 # Consume coyote time
+			coyote_timer = 0.0
 
 func handle_movement(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	
 	if direction != 0:
-		# Snappy acceleration
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
-		# Flip sprite
 		anim_sprite.flip_h = direction < 0
 	else:
-		# Snappy deceleration (friction)
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
+func handle_camera_look(delta: float) -> void:
+	# Only allow camera panning if standing entirely still on the ground
+	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
+		var look_dir = Input.get_axis("look_up", "look_down")
+		
+		if look_dir != 0:
+			look_timer += delta
+			if look_timer >= camera_look_delay:
+				target_camera_y = look_dir * camera_look_offset
+		else:
+			look_timer = 0.0
+			target_camera_y = 0.0
+	else:
+		look_timer = 0.0
+		target_camera_y = 0.0
+
+	# Smoothly interpolate the camera's position
+	camera.position.y = lerp(camera.position.y, target_camera_y, camera_pan_speed * delta)
+
 func update_animations() -> void:
-	# Basic animation state machine
 	if is_bat_mode:
 		if velocity.y < 0:
 			anim_sprite.play("BatFlap")
@@ -133,65 +153,78 @@ func _input(event: InputEvent) -> void:
 func toggle_bat_mode() -> void:
 	is_bat_mode = !is_bat_mode
 
-		
 	if is_bat_mode:
-		## change sprite
 		anim_sprite.play("BatIdle")
-
-		## update light
 		player_point_light.energy = 0.1
-
-		# Shrink/change collision box for bat mode
 		collision_shape.shape = bat_collision_shape
-		# Optional: give a tiny boost when transforming
 		velocity.y = bat_flap_velocity / 2.0
 
-		# Drop held items when turning into a bat
 		if held_item:
 			throw_item(true)
 	else:
-		## change sprite
 		anim_sprite.play("PlayerIdle")
-
-		## update light
 		player_point_light.energy = original_player_point_light_energy
-
-		# Revert to mortal collision box
 		collision_shape.shape = player_collision_shape
 
 func try_pickup() -> void:
-	# Can't pick up things in bat mode
-	if is_bat_mode or not pickup_area: return
+	if is_bat_mode or not pickup_area or held_item or is_item_busy: return
 	
 	var bodies = pickup_area.get_overlapping_bodies()
 	for body in bodies:
-		if body.is_in_group("pickable"):
+		if body.is_in_group("Grabbable"):
 			held_item = body
-			# Logic to attach the item to the player
-			held_item.get_parent().remove_child(held_item)
-			add_child(held_item)
-			held_item.position = Vector2(0, -20) # Hold above head
+			is_item_busy = true
 			
-			# Disable item physics while holding
 			if held_item is RigidBody2D:
 				held_item.freeze = true
+			
+			# Smooth Pickup: Reparent while maintaining global position to avoid snapping
+			var start_global = held_item.global_position
+			held_item.get_parent().remove_child(held_item)
+			tomato_hold_point.add_child(held_item)
+			held_item.global_position = start_global
+			
+			# Tween it smoothly into the hold point
+			var tween = create_tween()
+			tween.tween_property(held_item, "position", Vector2.ZERO, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tween.tween_callback(func(): is_item_busy = false)
 			break
 
 func throw_item(dropped: bool = false) -> void:
-	if not held_item: return
+	if not held_item or is_item_busy: return
 	
+	is_item_busy = true
 	var item_to_throw = held_item
 	held_item = null
 	
-	remove_child(item_to_throw)
+	# Maintain global position during reparenting
+	var throw_start_pos = item_to_throw.global_position
+	item_to_throw.get_parent().remove_child(item_to_throw)
 	get_tree().current_scene.add_child(item_to_throw)
-	
-	item_to_throw.global_position = global_position + Vector2(0, -20)
+	item_to_throw.global_position = throw_start_pos
 	
 	if item_to_throw is RigidBody2D:
 		item_to_throw.freeze = false
 		
-		if not dropped:
-			# Determine throw direction based on sprite facing
-			var dir_x = -1 if anim_sprite.flip_h else 1
-			item_to_throw.linear_velocity = Vector2(throw_force.x * dir_x, throw_force.y)
+		if dropped:
+			# Gently toss it up so it drops naturally and doesn't instantly snap downward
+			item_to_throw.linear_velocity = Vector2(0, drop_velocity)
+		else:
+			# Directional throwing utilizing input map axes
+			var throw_dir = Input.get_vector("move_left", "move_right", "look_up", "look_down")
+			
+			if throw_dir == Vector2.ZERO:
+				# Default throw arc if standing still
+				var dir_x = -1 if anim_sprite.flip_h else 1
+				throw_dir = Vector2(dir_x, -0.5).normalized()
+			else:
+				# Ensure diagonals aren't faster than cardinal directions
+				throw_dir = throw_dir.normalized()
+			
+			item_to_throw.linear_velocity = throw_dir * throw_speed
+
+	is_item_busy = false
+
+func _on_pickup_area_area_entered(area: Area2D) -> void:
+	if area.name == "TomatoGrabArea":
+		try_pickup()

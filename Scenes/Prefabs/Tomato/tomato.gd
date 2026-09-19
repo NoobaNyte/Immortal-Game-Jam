@@ -11,9 +11,10 @@ extends Node2D
 		stem_color = value
 		_update_colors()
 
-@onready var tomato_base_fill: Polygon2D = $TomatoBaseFill
-@onready var tomato_stem_bottom_fill: Polygon2D = $TomatoStemBottomFill
-@onready var tomato_stem_top_fill: Polygon2D = $TomatoStemTopFill
+@onready var tomato_base_fill: Polygon2D = $Mesh/TomatoBaseFill
+@onready var tomato_stem_bottom_fill: Polygon2D = $Mesh/TomatoStemBottomFill
+@onready var tomato_stem_top_fill: Polygon2D = $Mesh/TomatoStemTopFill
+
 
 func _ready() -> void:
 	_update_colors()
