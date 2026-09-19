@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://cu5ggdj5seqik"]
 
 [ext_resource type="Script" uid="uid://dbqky8yun6u1r" path="res://Scenes/Prefabs/Player/player_character.gd" id="1_aylpn"]
-[ext_resource type="Texture2D" uid="uid://biffbqud56k7f" path="res://Assets/Sprites/PlayerSprites/BatWingsOut.png" id="2_deqfm"]
 [ext_resource type="Shape2D" uid="uid://de20x8lknl7rx" path="res://Scenes/Prefabs/Player/PlayerCollisionShape.tres" id="4_2bhw3"]
+[ext_resource type="Texture2D" uid="uid://ck7wa1mg40km8" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Bat_Wing_Down.png" id="4_kcgfi"]
 [ext_resource type="Texture2D" uid="uid://deh3c7bqlkq20" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Fall_1.png" id="5_bwf0q"]
+[ext_resource type="Texture2D" uid="uid://b4lpkjf5yyvm" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Bat_Wing_Middle.png" id="5_gyfhl"]
 [ext_resource type="Shape2D" uid="uid://chba5gi7fbafp" path="res://Scenes/Prefabs/Player/BatCollisionShape.tres" id="5_pe1i5"]
 [ext_resource type="Texture2D" uid="uid://cq4tqk8rxtde" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_1.png" id="6_7g00y"]
+[ext_resource type="Texture2D" uid="uid://b48n1oqvwjegg" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Bat_Wing_Up_1.png" id="6_08f4y"]
 [ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="6_i7hv3"]
 [ext_resource type="Texture2D" uid="uid://3fgwsk8d3fva" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Fall_2.png" id="6_sd3qq"]
 [ext_resource type="Texture2D" uid="uid://ddhxgprv5mmct" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_2.png" id="7_cpl7w"]
+[ext_resource type="Texture2D" uid="uid://bf7e7qj0q4n6n" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Bat_Wing_Up_2.png" id="7_dm1k8"]
 [ext_resource type="Texture2D" uid="uid://c0vdq0foln4do" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Fall_3.png" id="7_moeo6"]
 [ext_resource type="Texture2D" uid="uid://cc84saj41sokk" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_3.png" id="8_rwurm"]
 [ext_resource type="Texture2D" uid="uid://bbkp8p5wbiky7" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_Idle_4.png" id="9_rfstk"]
@@ -32,7 +35,10 @@ height = 132.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_deqfm")
+"texture": ExtResource("6_08f4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dm1k8")
 }],
 "loop": 1,
 "name": &"BatFall",
@@ -40,15 +46,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_deqfm")
+"texture": ExtResource("4_kcgfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gyfhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_08f4y")
 }],
 "loop": 1,
 "name": &"BatFlap",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_deqfm")
+"duration": 1.88,
+"texture": ExtResource("4_kcgfi")
+}, {
+"duration": 1.13,
+"texture": ExtResource("5_gyfhl")
 }],
 "loop": 1,
 "name": &"BatIdle",
@@ -131,13 +146,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.3,
+"duration": 0.4,
 "texture": ExtResource("19_ggv0y")
 }, {
-"duration": 0.2,
+"duration": 0.3,
 "texture": ExtResource("20_sxo0n")
 }, {
-"duration": 0.7,
+"duration": 0.8,
 "texture": ExtResource("21_v8s1r")
 }, {
 "duration": 0.3,
@@ -185,8 +200,9 @@ debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerThrowSide"
+animation = &"BatIdle"
 autoplay = "PlayerIdle"
+frame_progress = 0.7231166
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 position = Vector2(0, -100)

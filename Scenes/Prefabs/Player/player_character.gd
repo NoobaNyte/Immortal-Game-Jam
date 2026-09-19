@@ -198,7 +198,10 @@ func update_animations() -> void:
 			return # Let the action animation finish
 			
 	if is_bat_mode:
-		if velocity.y < 0:
+		# Check if the bat is on the ground first
+		if is_on_floor():
+			anim_sprite.play("BatIdle")
+		elif velocity.y < 0:
 			anim_sprite.play("BatFlap")
 		else:
 			anim_sprite.play("BatFall")
