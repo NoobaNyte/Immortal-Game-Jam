@@ -1,16 +1,88 @@
 [gd_scene format=3 uid="uid://bucawpa2mylgr"]
 
 [ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="1_wgcsi"]
+[ext_resource type="Texture2D" uid="uid://bvgjyfvlirowf" path="res://Assets/Sprites/Walls/Area1/Wall2.png" id="2_nfqmq"]
+[ext_resource type="Texture2D" uid="uid://bcusjnkr00pjg" path="res://Assets/Sprites/Walls/Area1/Wall3.png" id="3_i5bqu"]
+[ext_resource type="Texture2D" uid="uid://c0iatojja87sn" path="res://Assets/Sprites/Walls/Area1/Area1Wall7.png" id="4_xh1o7"]
+[ext_resource type="Texture2D" uid="uid://dv4fef77sc3un" path="res://Assets/Sprites/Walls/Area1/Area1Wall6.png" id="5_lqgnx"]
+[ext_resource type="Texture2D" uid="uid://bsusjvq22kr5l" path="res://Assets/Sprites/Walls/Area1/Area1Wall5.png" id="6_lqgnx"]
+[ext_resource type="Texture2D" uid="uid://dkl6q4ipvp62l" path="res://Assets/Sprites/Walls/Area1/Area1Wal4.png" id="7_ui72o"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5tw4x"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1tf7"]
 texture = ExtResource("1_wgcsi")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_5tw4x")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xh1o7"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lqgnx"]
+texture = ExtResource("2_nfqmq")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_xh1o7")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ui72o"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2o0kw"]
+texture = ExtResource("3_i5bqu")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ui72o")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2o0kw"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pmob"]
+texture = ExtResource("4_xh1o7")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2o0kw")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kcw0k"]
+polygon = PackedVector2Array(-32, -32, -20.321056, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mg4k7"]
+texture = ExtResource("5_lqgnx")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_kcw0k")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8pmob"]
+polygon = PackedVector2Array(-32, -32, -20.321056, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcw0k"]
+texture = ExtResource("6_lqgnx")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8pmob")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mg4k7"]
+polygon = PackedVector2Array(-32, -32, -20.321056, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3o1e8"]
+texture = ExtResource("7_ui72o")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mg4k7")
 
 [sub_resource type="TileSet" id="TileSet_5tw4x"]
 resource_local_to_scene = true
 tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 sources/0 = SubResource("TileSetAtlasSource_i1tf7")
+sources/1 = SubResource("TileSetAtlasSource_lqgnx")
+sources/2 = SubResource("TileSetAtlasSource_2o0kw")
+sources/3 = SubResource("TileSetAtlasSource_8pmob")
+sources/4 = SubResource("TileSetAtlasSource_mg4k7")
+sources/5 = SubResource("TileSetAtlasSource_kcw0k")
+sources/6 = SubResource("TileSetAtlasSource_3o1e8")
 
 [node name="TileMap" type="Node2D" unique_id=756145371]
 
