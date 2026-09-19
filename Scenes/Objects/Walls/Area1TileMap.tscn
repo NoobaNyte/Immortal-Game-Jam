@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bucawpa2mylgr"]
+
+[ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="1_wgcsi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1tf7"]
+texture = ExtResource("1_wgcsi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5tw4x"]
+resource_local_to_scene = true
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_i1tf7")
+
+[node name="TileMap" type="Node2D" unique_id=756145371]
+
+[node name="TileMapLayerMain" type="TileMapLayer" parent="." unique_id=885590253]
+tile_set = SubResource("TileSet_5tw4x")
+
+[node name="TileMapLayerBackground" type="TileMapLayer" parent="." unique_id=915036263]

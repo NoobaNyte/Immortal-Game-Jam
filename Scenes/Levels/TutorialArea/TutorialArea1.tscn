@@ -1,0 +1,57 @@
+[gd_scene format=4 uid="uid://ub3w0hrri02e"]
+
+[ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="1_sd6i1"]
+
+[sub_resource type="Gradient" id="Gradient_ahkww"]
+offsets = PackedFloat32Array(0.08163265, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ahkww"]
+gradient = SubResource("Gradient_ahkww")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="Gradient" id="Gradient_sd6i1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5tw4x"]
+gradient = SubResource("Gradient_sd6i1")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sd6i1"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqjft"]
+texture = ExtResource("1_sd6i1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_sd6i1")
+
+[sub_resource type="TileSet" id="TileSet_6up4h"]
+resource_local_to_scene = true
+tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
+sources/0 = SubResource("TileSetAtlasSource_uqjft")
+
+[node name="TutorialArea1" type="Node2D" unique_id=1921716596]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1598792524]
+color = Color(0, 0, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1839910098]
+position = Vector2(1035, 525.00006)
+scale = Vector2(3.46875, 2.9375)
+texture = SubResource("GradientTexture2D_ahkww")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=955620435]
+position = Vector2(934.00006, 623.00006)
+scale = Vector2(32.359375, 18.21875)
+texture = SubResource("GradientTexture2D_5tw4x")
+
+[node name="TileMap" type="Node2D" parent="." unique_id=756145371]
+position = Vector2(3, 25)
+
+[node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap" unique_id=885590253]
+tile_map_data = PackedByteArray("AAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAYAA0AAAAAAAAAAAAZAA0AAAAAAAAAAAAaAA0AAAAAAAAAAAAaAAwAAAAAAAAAAAAaAAsAAAAAAAAAAAAaAAoAAAAAAAAAAAAaAAkAAAAAAAAAAAAaAAgAAAAAAAAAAAAaAAcAAAAAAAAAAAAOAAkAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAAAAAAFAA0AAAAAAAAAAAAFAAwAAAAAAAAAAAAFAAsAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAUAAAAAAAAAAAAaAAYAAAAAAAAAAAAaAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_6up4h")
+
+[node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" unique_id=915036263]
