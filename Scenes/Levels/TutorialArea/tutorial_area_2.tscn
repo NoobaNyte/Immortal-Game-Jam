@@ -318,6 +318,7 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_262yi")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.248032, 21.450005, 32, 7.3381577, 32, 32, -32, 32, -32, 10.16053, -26.24804, 13.547371, -21.16777, 4.515789, -15.523033, 15.240791, -8.749344, -8.46711, 3.1046066, 10.16053, 8.749344, -2.8223686, 18.345398, 8.46711)
+0:0/0/custom_data_0 = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_557ky"]
 polygon = PackedVector2Array(-32, 26.63752, -32, 22.747047, -23.903679, 32, -19.27716, 25.060307, -13.879555, 32, -7.710869, 26.216934, -3.8554382, 32, 2.3132553, 20.819332, 6.5542297, 32, 16.578354, 32, 19.662697, 18.891617, 23.518135, 26.988022, 25.060303, 32, 32, 21.97596, 32, 32, -32, 32)
@@ -337,6 +338,7 @@ texture_region_size = Vector2i(64, 64)
 3:0/0 = 0
 3:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_557ky")
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.248032, 21.450005, 32, 7.3381577, 32, 32, -32, 32, -32, 10.16053, -26.24804, 13.547371, -21.16777, 4.515789, -15.523033, 15.240791, -8.749344, -8.46711, 3.1046066, 10.16053, 8.749344, -2.8223686, 18.345398, 8.46711)
+3:0/0/custom_data_0 = true
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7j45d"]
 polygon = PackedVector2Array(3.8554306, 32, 2.6987991, -32, -3.084343, -32, -3.4698868, 32)
@@ -415,6 +417,8 @@ tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 1
 occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "HurtsPlayer"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_nbxsq")
 sources/1 = SubResource("TileSetAtlasSource_sold4")
 sources/2 = SubResource("TileSetAtlasSource_cmevp")
@@ -449,7 +453,7 @@ tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Ve
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_aekm0")]
 
 [node name="PlayerCharacter" parent="." index="1" unique_id=2099930869]
-position = Vector2(371, 958)
+position = Vector2(371, 990)
 
 [node name="PointLight2D2" type="PointLight2D" parent="." index="2" unique_id=1815292616]
 position = Vector2(999, 845)

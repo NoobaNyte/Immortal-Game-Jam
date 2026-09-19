@@ -23,9 +23,9 @@ var is_bat_mode: bool = false
 
 # --- THROW / PICKUP SETTINGS ---
 var held_item: Node2D = null
-var is_item_busy: bool = false # Prevents spamming pickup/throw buttons
-@export var throw_speed: float = 600.0 # Replaces the hardcoded vector for omnidirectional throws
-@export var drop_velocity: float = -100.0 # A gentle upwards toss for a nice drop
+var is_item_busy: bool = false
+@export var throw_speed: float = 600.0
+@export var drop_velocity: float = -100.0
 
 # --- CAMERA LOOK SETTINGS ---
 @export var camera_look_offset: float = 120.0
@@ -51,6 +51,11 @@ var target_camera_y: float = 0.0
 @onready var tomato_hold_point: Marker2D = $TomatoHoldPoint
 @onready var camera: Camera2D = $Camera2D
 
+## the respawn point found in every level
+## will not tp back to respawn point if it is not assigned or there isn't one
+## will just change you to mortal form
+@export var player_respawn_point: Marker2D
+
 func _ready():
 	anim_sprite.play("PlayerIdle")
 	
@@ -64,6 +69,9 @@ func _physics_process(delta: float) -> void:
 	handle_camera_look(delta)
 	
 	move_and_slide()
+	
+	handle_hazard_collisions() # Check for spikes right after moving
+	
 	update_animations()
 
 func handle_gravity(delta: float) -> void:
@@ -105,7 +113,6 @@ func handle_movement(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
 func handle_camera_look(delta: float) -> void:
-	# Only allow camera panning if standing entirely still on the ground
 	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
 		var look_dir = Input.get_axis("look_up", "look_down")
 		
@@ -120,8 +127,58 @@ func handle_camera_look(delta: float) -> void:
 		look_timer = 0.0
 		target_camera_y = 0.0
 
-	# Smoothly interpolate the camera's position
 	camera.position.y = lerp(camera.position.y, target_camera_y, camera_pan_speed * delta)
+
+func handle_hazard_collisions() -> void:
+	# Only spikes hurt the player in bat mode
+	if not is_bat_mode:
+		return
+	
+	# Loop through all collisions that occurred during move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+
+		
+		# Check if the collided object is a TileMapLayer (or legacy TileMap)
+		if collider is TileMapLayer or collider is TileMap:
+			var contact_point = collision.get_position() - (collision.get_normal() * 2.0)
+			var local_pos = collider.to_local(contact_point)
+			var map_pos = collider.local_to_map(local_pos)
+			
+			var tile_data: TileData = null
+			var tile_set: TileSet = collider.tile_set
+			
+			# Make sure the TileSet actually has the layer to prevent the C++ crash
+			if not tile_set or tile_set.get_custom_data_layer_by_name("HurtsPlayer") == -1:
+				continue # Skip this collision, the layer doesn't exist here
+			
+
+			# Extract the TileData depending on Node type
+			if collider is TileMapLayer:
+				tile_data = collider.get_cell_tile_data(map_pos)
+			elif collider is TileMap:
+				for layer in collider.get_layers_count():
+					tile_data = collider.get_cell_tile_data(layer, map_pos)
+					if tile_data: break
+			
+
+			# Safely check the boolean now that we know the layer exists
+			if tile_data and tile_data.get_custom_data("HurtsPlayer") == true:
+				die()
+				break
+
+func die() -> void:
+	# Revert to mortal mode if in bat mode
+	if is_bat_mode:
+		toggle_bat_mode()
+		
+	# Reset movement momentum
+	velocity = Vector2.ZERO
+	
+	# Teleport back to respawn marker
+	if player_respawn_point:
+		global_position = player_respawn_point.global_position
 
 func update_animations() -> void:
 	if is_bat_mode:
@@ -178,13 +235,11 @@ func try_pickup() -> void:
 			if held_item is RigidBody2D:
 				held_item.freeze = true
 			
-			# Smooth Pickup: Reparent while maintaining global position to avoid snapping
 			var start_global = held_item.global_position
 			held_item.get_parent().remove_child(held_item)
 			tomato_hold_point.add_child(held_item)
 			held_item.global_position = start_global
 			
-			# Tween it smoothly into the hold point
 			var tween = create_tween()
 			tween.tween_property(held_item, "position", Vector2.ZERO, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			tween.tween_callback(func(): is_item_busy = false)
@@ -201,7 +256,6 @@ func throw_item(dropped: bool = false) -> void:
 	if "being_thrown" in item_to_throw:
 		item_to_throw.being_thrown = true
 	
-	# Maintain global position during reparenting
 	var throw_start_pos = item_to_throw.global_position
 	item_to_throw.get_parent().remove_child(item_to_throw)
 	get_tree().current_scene.add_child(item_to_throw)
@@ -211,18 +265,14 @@ func throw_item(dropped: bool = false) -> void:
 		item_to_throw.freeze = false
 		
 		if dropped:
-			# Gently toss it up so it drops naturally and doesn't instantly snap downward
 			item_to_throw.linear_velocity = Vector2(0, drop_velocity)
 		else:
-			# Directional throwing utilizing input map axes
 			var throw_dir = Input.get_vector("move_left", "move_right", "look_up", "look_down")
 			
 			if throw_dir == Vector2.ZERO:
-				# Default throw arc if standing still
 				var dir_x = -1 if anim_sprite.flip_h else 1
 				throw_dir = Vector2(dir_x, -0.5).normalized()
 			else:
-				# Ensure diagonals aren't faster than cardinal directions
 				throw_dir = throw_dir.normalized()
 			
 			item_to_throw.linear_velocity = throw_dir * throw_speed
