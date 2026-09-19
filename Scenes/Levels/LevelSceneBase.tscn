@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://g2nj61hd50vc"]
+
+[ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d74yr"]
+
+[node name="LevelSceneBase" type="Node2D" unique_id=1656558072]
+
+[node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("1_d74yr")]
+position = Vector2(-1, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1559591102]
+position = Vector2(-3, -195)
+color = Color(0, 0, 0, 1)
