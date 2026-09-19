@@ -34,6 +34,10 @@ var is_item_busy: bool = false
 var look_timer: float = 0.0
 var target_camera_y: float = 0.0
 
+# --- ANIMATION STATE ---
+var is_action_anim_playing: bool = false
+var was_on_floor: bool = true
+
 # --- NODES ---
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pickup_area: Area2D = $PickupArea
@@ -51,18 +55,21 @@ var target_camera_y: float = 0.0
 @onready var tomato_hold_point: Marker2D = $TomatoHoldPoint
 @onready var camera: Camera2D = $Camera2D
 
-## the respawn point found in every level
-## will not tp back to respawn point if it is not assigned or there isn't one
-## will just change you to mortal form
 @export var player_respawn_point: Marker2D
 
 func _ready():
 	anim_sprite.play("PlayerIdle")
 	
+	# Connect the signal so we know when action animations finish
+	anim_sprite.animation_finished.connect(_on_animation_finished)
+	
 	if tomato_hold_point.get_child_count() > 0:
 		tomato_hold_point.get_child(0).queue_free()
 
 func _physics_process(delta: float) -> void:
+	# Record floor state before moving to detect landing
+	was_on_floor = is_on_floor()
+	
 	handle_gravity(delta)
 	handle_jump(delta)
 	handle_movement(delta)
@@ -70,8 +77,12 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	handle_hazard_collisions() # Check for spikes right after moving
+	handle_hazard_collisions()
 	
+	# Detect landing
+	if not was_on_floor and is_on_floor() and not is_bat_mode:
+		play_action_anim("PlayerLand")
+		
 	update_animations()
 
 func handle_gravity(delta: float) -> void:
@@ -108,7 +119,9 @@ func handle_movement(delta: float) -> void:
 	
 	if direction != 0:
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
-		anim_sprite.flip_h = direction < 0
+		# Only flip sprite if we aren't mid-throw to prevent weird backwards throws
+		if not is_action_anim_playing or anim_sprite.animation == "PlayerLand":
+			anim_sprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
@@ -130,17 +143,13 @@ func handle_camera_look(delta: float) -> void:
 	camera.position.y = lerp(camera.position.y, target_camera_y, camera_pan_speed * delta)
 
 func handle_hazard_collisions() -> void:
-	# Only spikes hurt the player in bat mode
 	if not is_bat_mode:
 		return
 	
-	# Loop through all collisions that occurred during move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-
 		
-		# Check if the collided object is a TileMapLayer (or legacy TileMap)
 		if collider is TileMapLayer or collider is TileMap:
 			var contact_point = collision.get_position() - (collision.get_normal() * 2.0)
 			var local_pos = collider.to_local(contact_point)
@@ -149,12 +158,9 @@ func handle_hazard_collisions() -> void:
 			var tile_data: TileData = null
 			var tile_set: TileSet = collider.tile_set
 			
-			# Make sure the TileSet actually has the layer to prevent the C++ crash
 			if not tile_set or tile_set.get_custom_data_layer_by_name("HurtsPlayer") == -1:
-				continue # Skip this collision, the layer doesn't exist here
+				continue
 			
-
-			# Extract the TileData depending on Node type
 			if collider is TileMapLayer:
 				tile_data = collider.get_cell_tile_data(map_pos)
 			elif collider is TileMap:
@@ -162,25 +168,35 @@ func handle_hazard_collisions() -> void:
 					tile_data = collider.get_cell_tile_data(layer, map_pos)
 					if tile_data: break
 			
-
-			# Safely check the boolean now that we know the layer exists
 			if tile_data and tile_data.get_custom_data("HurtsPlayer") == true:
 				die()
 				break
 
 func die() -> void:
-	# Revert to mortal mode if in bat mode
 	if is_bat_mode:
 		toggle_bat_mode()
 		
-	# Reset movement momentum
 	velocity = Vector2.ZERO
 	
-	# Teleport back to respawn marker
 	if player_respawn_point:
 		global_position = player_respawn_point.global_position
 
+func play_action_anim(anim_name: String) -> void:
+	is_action_anim_playing = true
+	anim_sprite.play(anim_name)
+
+func _on_animation_finished() -> void:
+	if anim_sprite.animation in ["PlayerLand", "PlayerThrowSide", "PlayerThrowUp"]:
+		is_action_anim_playing = false
+
 func update_animations() -> void:
+	if is_action_anim_playing:
+		# Cancel landing animation if the player immediately moves or jumps
+		if anim_sprite.animation == "PlayerLand" and (velocity.x != 0 or not is_on_floor()):
+			is_action_anim_playing = false
+		else:
+			return # Let the action animation finish
+			
 	if is_bat_mode:
 		if velocity.y < 0:
 			anim_sprite.play("BatFlap")
@@ -209,6 +225,7 @@ func _input(event: InputEvent) -> void:
 
 func toggle_bat_mode() -> void:
 	is_bat_mode = !is_bat_mode
+	is_action_anim_playing = false # Reset animation lock on transform
 
 	if is_bat_mode:
 		anim_sprite.play("BatIdle")
@@ -252,7 +269,6 @@ func throw_item(dropped: bool = false) -> void:
 	var item_to_throw = held_item
 	held_item = null
 
-	## tell the tomato script that it is being thrown so it can know that it is ready to splat
 	if "being_thrown" in item_to_throw:
 		item_to_throw.being_thrown = true
 	
@@ -276,6 +292,12 @@ func throw_item(dropped: bool = false) -> void:
 				throw_dir = throw_dir.normalized()
 			
 			item_to_throw.linear_velocity = throw_dir * throw_speed
+			
+			# Trigger the correct throw animation based on vector height
+			if throw_dir.y < -0.5 and abs(throw_dir.x) < 0.5:
+				play_action_anim("PlayerThrowUp")
+			else:
+				play_action_anim("PlayerThrowSide")
 
 	is_item_busy = false
 
