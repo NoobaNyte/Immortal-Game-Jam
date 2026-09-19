@@ -27,15 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="25_s2mfx"]
 [ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="26_whc0m"]
 
-[sub_resource type="Gradient" id="Gradient_s2mfx"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ahkww"]
-gradient = SubResource("Gradient_s2mfx")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 1)
-
 [sub_resource type="Gradient" id="Gradient_sd6i1"]
 offsets = PackedFloat32Array(0.0034013605, 1)
 colors = PackedColorArray(0.24044561, 0.2800274, 0.3731386, 1, 0.29636478, 0.37592244, 0.65872014, 1)
@@ -393,13 +384,6 @@ fill_to = Vector2(0.5, 1)
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1598792524]
 color = Color(0, 0, 0, 1)
 
-[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=549641454]
-position = Vector2(936, 914)
-scale = Vector2(9.117188, 6.9179688)
-energy = 2.87
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_ahkww")
-
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=955620435]
 position = Vector2(1803, -49)
 scale = Vector2(58.03906, 42.39063)
@@ -431,6 +415,28 @@ position = Vector2(182, 1004)
 base_color = Color(1, 0, 0.20089293, 1)
 
 [node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato" unique_id=57338922]
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+color = Color(1, 0.79910713, 0.79910713, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_whc0m")
+texture_scale = 16.71
+
+[node name="Tomato2" parent="." unique_id=1072452538 instance=ExtResource("26_whc0m")]
+position = Vector2(957, 1004)
+base_color = Color(1, 0, 0.20089293, 1)
+
+[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato2" unique_id=1113705391]
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+color = Color(1, 0.79910713, 0.79910713, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_whc0m")
+texture_scale = 16.71
+
+[node name="Tomato3" parent="." unique_id=1204876119 instance=ExtResource("26_whc0m")]
+position = Vector2(1615, 1004)
+base_color = Color(1, 0, 0.20089293, 1)
+
+[node name="TomatoPointLight2D" type="PointLight2D" parent="Tomato3" unique_id=1838674323]
 position = Vector2(6.1035156e-05, -4.7683716e-07)
 color = Color(1, 0.79910713, 0.79910713, 1)
 shadow_enabled = true
