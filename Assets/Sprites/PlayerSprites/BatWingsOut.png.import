@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biffbqud56k7f"
-path="res://.godot/imported/BatWingsOut.png-a1446ad99323096df6bea4521bb52eec.ctex"
+path="res://.godot/imported/BatWingsOut.png-6cdefd3d76c0285215a5ea6c4ef324e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/2D/PlayerSprites/BatWingsOut.png"
-dest_files=["res://.godot/imported/BatWingsOut.png-a1446ad99323096df6bea4521bb52eec.ctex"]
+source_file="res://Assets/Sprites/PlayerSprites/BatWingsOut.png"
+dest_files=["res://.godot/imported/BatWingsOut.png-6cdefd3d76c0285215a5ea6c4ef324e2.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cu5ggdj5seqik"]
 
 [ext_resource type="Script" uid="uid://dbqky8yun6u1r" path="res://Scenes/Prefabs/Player/player_character.gd" id="1_aylpn"]
-[ext_resource type="Texture2D" uid="uid://grmvk0556q1n" path="res://Assets/2D/PlayerSprites/PlayerIdle.png" id="1_vvx6r"]
-[ext_resource type="Texture2D" uid="uid://biffbqud56k7f" path="res://Assets/2D/PlayerSprites/BatWingsOut.png" id="2_deqfm"]
+[ext_resource type="Texture2D" uid="uid://grmvk0556q1n" path="res://Assets/Sprites/PlayerSprites/PlayerIdle.png" id="1_vvx6r"]
+[ext_resource type="Texture2D" uid="uid://biffbqud56k7f" path="res://Assets/Sprites/PlayerSprites/BatWingsOut.png" id="2_deqfm"]
 [ext_resource type="Shape2D" uid="uid://de20x8lknl7rx" path="res://Scenes/Prefabs/Player/PlayerCollisionShape.tres" id="4_2bhw3"]
 [ext_resource type="Shape2D" uid="uid://chba5gi7fbafp" path="res://Scenes/Prefabs/Player/BatCollisionShape.tres" id="5_pe1i5"]
 [ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="6_i7hv3"]
