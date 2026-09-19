@@ -426,6 +426,10 @@ tile_set = SubResource("TileSet_ub1st")
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("26_gvmtn")]
 position = Vector2(182, 1004)
 
+[node name="ReferenceTomato" parent="TomatoSpawners/TomatoSpawner" index="1" unique_id=1072452538]
+stem_color = Color(0.5, 1, 0.39999998, 1)
+tomato_splat_blob_color = Color(1, 0.7, 0.7, 1)
+
 [node name="CanvasModulate" parent="." index="5" unique_id=1559591102]
 position = Vector2(0, 0)
 

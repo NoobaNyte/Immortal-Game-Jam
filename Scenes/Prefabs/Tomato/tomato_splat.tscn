@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b728tlmvnq4ks" path="res://Scenes/Prefabs/Tomato/tomato_splat.gd" id="1_mgmgs"]
 [ext_resource type="Texture2D" uid="uid://brl5vcvvtex44" path="res://Assets/Sprites/Tomato/TomatoSplatBlob_1.png" id="2_1fmdt"]
+[ext_resource type="Texture2D" uid="uid://b2ylun6yxvips" path="res://Assets/Sprites/Tomato/TomatoSplatParticle_1.png" id="3_55oiq"]
+[ext_resource type="Texture2D" uid="uid://cvmkhp1n2eo1l" path="res://Assets/Sprites/Tomato/TomatoSplatParticle_2.png" id="4_8wk4m"]
 
 [sub_resource type="Gradient" id="Gradient_mgmgs"]
 interpolation_mode = 2
@@ -14,42 +16,24 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.4902439, 0.902439)
 
-[sub_resource type="Gradient" id="Gradient_1fmdt"]
-offsets = PackedFloat32Array(0, 0.43617022)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_w3xlq"]
-gradient = SubResource("Gradient_1fmdt")
-width = 10
-height = 10
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
 [node name="TomatoSplat" type="Node2D" unique_id=1819062012]
 script = ExtResource("1_mgmgs")
 droplet_texture = ExtResource("2_1fmdt")
-spray_distance = 50.0
+spray_distance_min = 45.0
+spray_distance_max = 55.0
+particle_textures = Array[Texture2D]([ExtResource("3_55oiq"), ExtResource("4_8wk4m")])
+physics_particle_count = 5
+particle_size_min = 0.5
+particle_size_max = 1.2
+particle_lifetime = 1.0
+particle_fade_duration = 0.1
+particle_min_speed = 120.0
+primary_color = Color(0.61, 0, 0, 1)
+primary_color_chance = 0.9
+secondary_color = Color(0, 0.82, 0, 1)
+secondary_color_chance = 0.1
 
 [node name="SplatLight" type="PointLight2D" parent="." unique_id=490285762]
 position = Vector2(6.1035156e-05, -4.7683716e-07)
 texture = SubResource("GradientTexture2D_mgmgs")
 texture_scale = 16.71
-
-[node name="SplatParticles" type="CPUParticles2D" parent="." unique_id=732449810]
-emitting = false
-amount = 15
-texture = SubResource("GradientTexture2D_w3xlq")
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-emission_shape = 3
-emission_rect_extents = Vector2(32.25, 7.4)
-direction = Vector2(0, -1)
-spread = 90.0
-gravity = Vector2(0, 250)
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-angle_min = -360.0
-angle_max = 360.0
-scale_amount_max = 3.0
