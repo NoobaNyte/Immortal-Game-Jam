@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://dsab03diuiw6t" path="res://Assets/Sprites/Walls/Area1/Area1Platform1x1png.png" id="16_333ap"]
 [ext_resource type="Texture2D" uid="uid://dhogmlm2fewpf" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Lpng.png" id="17_1ed7k"]
 [ext_resource type="Texture2D" uid="uid://dnyfw26w0gyd3" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Rpng.png" id="18_557ky"]
+[ext_resource type="Texture2D" uid="uid://cm11iqj7ug6c8" path="res://Assets/Sprites/Walls/Area1/Area1Spikes1.png" id="19_557ky"]
+[ext_resource type="Texture2D" uid="uid://j8xlybrvyyci" path="res://Assets/Sprites/Walls/Area1/LevelPropsAtlas.png" id="20_2jxwe"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fy4d6"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -270,6 +272,35 @@ texture_region_size = Vector2i(64, 64)
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ldjiu")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -10.16053, -1.9756622, 0, -32, 1.1289482)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_262yi"]
+polygon = PackedVector2Array(-32, 26.63752, -32, 22.747047, -23.903679, 32, -19.27716, 25.060307, -13.879555, 32, -7.710869, 26.216934, -3.8554382, 32, 2.3132553, 20.819332, 6.5542297, 32, 16.578354, 32, 19.662697, 18.891617, 23.518135, 26.988022, 25.060303, 32, 32, 21.97596, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1y4ef"]
+texture = ExtResource("19_557ky")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_262yi")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.248032, 21.450005, 32, 7.3381577, 32, 32, -32, 32, -32, 10.16053, -26.24804, 13.547371, -21.16777, 4.515789, -15.523033, 15.240791, -8.749344, -8.46711, 3.1046066, 10.16053, 8.749344, -2.8223686, 18.345398, 8.46711)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_557ky"]
+polygon = PackedVector2Array(-32, 26.63752, -32, 22.747047, -23.903679, 32, -19.27716, 25.060307, -13.879555, 32, -7.710869, 26.216934, -3.8554382, 32, 2.3132553, 20.819332, 6.5542297, 32, 16.578354, 32, 19.662697, 18.891617, 23.518135, 26.988022, 25.060303, 32, 32, 21.97596, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_io6jd"]
+texture = ExtResource("20_2jxwe")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_6eaxr")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -10.725006, -1.9756622, 0, -32, -10.16053)
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_130of")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -10.725006, 32, 0.5644722, -1.9756622, 0, -32, -10.16053)
+2:0/0 = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ldjiu")
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -10.16053, -1.9756622, 0, -32, 1.1289482)
+3:0/0 = 0
+3:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_557ky")
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(26.248032, 21.450005, 32, 7.3381577, 32, 32, -32, 32, -32, 10.16053, -26.24804, 13.547371, -21.16777, 4.515789, -15.523033, 15.240791, -8.749344, -8.46711, 3.1046066, 10.16053, 8.749344, -2.8223686, 18.345398, 8.46711)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mg4k7"]
 texture = ExtResource("5_lqgnx")
 texture_region_size = Vector2i(64, 64)
@@ -334,6 +365,8 @@ sources/30 = SubResource("TileSetAtlasSource_78151")
 sources/31 = SubResource("TileSetAtlasSource_a3fct")
 sources/32 = SubResource("TileSetAtlasSource_6js4s")
 sources/33 = SubResource("TileSetAtlasSource_7j45d")
+sources/34 = SubResource("TileSetAtlasSource_1y4ef")
+sources/35 = SubResource("TileSetAtlasSource_io6jd")
 tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Vector2i(1, 0)], [23, Vector2i(1, 0)], [22, Vector2i(2, 0)], [23, Vector2i(2, 0)], [22, Vector2i(3, 0)], [23, Vector2i(3, 0)], [22, Vector2i(4, 0)], [23, Vector2i(4, 0)], [22, Vector2i(5, 0)], [23, Vector2i(5, 0)], [22, Vector2i(6, 0)], [23, Vector2i(6, 0)], [22, Vector2i(7, 0)], [23, Vector2i(7, 0)], [22, Vector2i(8, 0)], [23, Vector2i(8, 0)], [22, Vector2i(9, 0)], [23, Vector2i(9, 0)], [22, Vector2i(10, 0)], [23, Vector2i(10, 0)], [22, Vector2i(11, 0)], [23, Vector2i(11, 0)], [22, Vector2i(12, 0)], [23, Vector2i(12, 0)], [22, Vector2i(13, 0)], [23, Vector2i(13, 0)]]
 
 [node name="TileMap" type="Node2D" unique_id=756145371]
