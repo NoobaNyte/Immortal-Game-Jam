@@ -452,9 +452,6 @@ tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Ve
 
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
 
-[node name="BlackBackground" parent="." index="0" unique_id=871170875]
-visible = false
-
 [node name="PointLight2D2" type="PointLight2D" parent="." index="2" unique_id=1815292616]
 position = Vector2(999, 845)
 scale = Vector2(9.117188, 6.9179688)

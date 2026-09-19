@@ -71,6 +71,7 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_pe1i5"]
+interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.50886524, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.12056738, 0.12056738, 0.12056738, 1, 0, 0, 0, 1)
 

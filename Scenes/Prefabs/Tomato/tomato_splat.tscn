@@ -1,24 +1,18 @@
 [gd_scene format=3 uid="uid://bvl6f15qoechr"]
 
 [ext_resource type="Script" uid="uid://b728tlmvnq4ks" path="res://Scenes/Prefabs/Tomato/tomato_splat.gd" id="1_mgmgs"]
-
-[sub_resource type="Gradient" id="Gradient_hmnni"]
-offsets = PackedFloat32Array(0.37588653, 0.5070922, 0.6241135)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmnni"]
-gradient = SubResource("Gradient_hmnni")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
+[ext_resource type="Texture2D" uid="uid://brl5vcvvtex44" path="res://Assets/Sprites/Tomato/TomatoSplatBlob_1.png" id="2_1fmdt"]
 
 [sub_resource type="Gradient" id="Gradient_mgmgs"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(1, 0.55, 0.55, 1, 1, 0.55, 0.55, 0.4509804, 1, 0.55, 0.55, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1fmdt"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mgmgs"]
 gradient = SubResource("Gradient_mgmgs")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 1)
+fill_to = Vector2(0.4902439, 0.902439)
 
 [sub_resource type="Gradient" id="Gradient_1fmdt"]
 offsets = PackedFloat32Array(0, 0.43617022)
@@ -34,14 +28,12 @@ fill_to = Vector2(0.5, 0)
 
 [node name="TomatoSplat" type="Node2D" unique_id=1819062012]
 script = ExtResource("1_mgmgs")
-
-[node name="SplatSprite" type="Sprite2D" parent="." unique_id=1488180104]
-texture = SubResource("GradientTexture2D_hmnni")
+droplet_texture = ExtResource("2_1fmdt")
+spray_distance = 50.0
 
 [node name="SplatLight" type="PointLight2D" parent="." unique_id=490285762]
 position = Vector2(6.1035156e-05, -4.7683716e-07)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_1fmdt")
+texture = SubResource("GradientTexture2D_mgmgs")
 texture_scale = 16.71
 
 [node name="SplatParticles" type="CPUParticles2D" parent="." unique_id=732449810]

@@ -1,19 +1,40 @@
 [gd_scene format=3 uid="uid://g2nj61hd50vc"]
 
+[ext_resource type="Shader" uid="uid://bxj4fldl7p6xx" path="res://Assets/Shaders/ScreenGlow.gdshader" id="1_0d02i"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d74yr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d74yr"]
+shader = ExtResource("1_0d02i")
+shader_parameter/blur_amount = 4.5
+shader_parameter/glow_intensity = 0.34000001615
+shader_parameter/threshold = 0.0
+shader_parameter/soft_edge = 0.0
+shader_parameter/glow_color_tint = Color(1, 1, 1, 1)
 
 [node name="LevelSceneBase" type="Node2D" unique_id=1656558072]
 
-[node name="BlackBackground" type="CanvasLayer" parent="." unique_id=871170875]
-layer = -1
+[node name="Glow" type="CanvasLayer" parent="." unique_id=1866471108]
+layer = 10
 
-[node name="ColorRect" type="ColorRect" parent="BlackBackground" unique_id=2025399543]
+[node name="GlowArea" type="ColorRect" parent="Glow" unique_id=377187023]
+material = SubResource("ShaderMaterial_d74yr")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DarkBackground" type="CanvasLayer" parent="." unique_id=871170875]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="DarkBackground" unique_id=2025399543]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.043137256, 0.05882353, 1)
 metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1559591102]
