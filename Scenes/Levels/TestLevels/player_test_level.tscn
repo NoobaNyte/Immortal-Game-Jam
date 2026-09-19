@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bdrebmtm6d7ff"]
+
+[ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d3ym1"]
+[ext_resource type="Texture2D" uid="uid://c0iatojja87sn" path="res://Assets/Sprites/Walls/Area1/Area1Wall7.png" id="2_udx7n"]
+
+[node name="PlayerTestLevel" type="Node2D" unique_id=462510868]
+
+[node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("1_d3ym1")]
+position = Vector2(906, 424)
+
+[node name="Area1Wall7" type="Sprite2D" parent="." unique_id=1656804673]
+position = Vector2(906.00006, 698)
+scale = Vector2(6.164063, 6.164063)
+texture = ExtResource("2_udx7n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=802663776]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1536814742]
+position = Vector2(906.00006, 698)
+scale = Vector2(6.164063, 6.164063)
+build_mode = 1
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)

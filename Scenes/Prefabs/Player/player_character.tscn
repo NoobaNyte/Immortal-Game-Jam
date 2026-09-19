@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cu5ggdj5seqik"]
+
+[ext_resource type="Script" uid="uid://dbqky8yun6u1r" path="res://Scenes/Prefabs/Player/player_character.gd" id="1_aylpn"]
+[ext_resource type="Texture2D" uid="uid://grmvk0556q1n" path="res://Assets/2D/PlayerSprites/PlayerIdle.png" id="1_vvx6r"]
+[ext_resource type="Texture2D" uid="uid://biffbqud56k7f" path="res://Assets/2D/PlayerSprites/BatWingsOut.png" id="2_deqfm"]
+[ext_resource type="Shape2D" uid="uid://de20x8lknl7rx" path="res://Scenes/Prefabs/Player/PlayerCollisionShape.tres" id="4_2bhw3"]
+[ext_resource type="Shape2D" uid="uid://chba5gi7fbafp" path="res://Scenes/Prefabs/Player/BatCollisionShape.tres" id="5_pe1i5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aylpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_deqfm")
+}],
+"loop": 1,
+"name": &"BatIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vvx6r")
+}],
+"loop": 1,
+"name": &"PlayerIdle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
+radius = 42.0
+height = 132.0
+
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=2099930869]
+script = ExtResource("1_aylpn")
+player_collision_shape = ExtResource("4_2bhw3")
+bat_collision_shape = ExtResource("5_pe1i5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
+sprite_frames = SubResource("SpriteFrames_aylpn")
+animation = &"PlayerIdle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=747167888]
+shape = ExtResource("4_2bhw3")
+debug_color = Color(0, 0.5950001, 0.7, 0.6156863)
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1649542201]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=827654607]
+shape = SubResource("CapsuleShape2D_aylpn")
+debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
