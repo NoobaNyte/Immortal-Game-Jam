@@ -70,6 +70,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_pe1i5"]
+offsets = PackedFloat32Array(0, 0.50886524, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.12056738, 0.12056738, 0.12056738, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i7hv3"]
+gradient = SubResource("Gradient_pe1i5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=2099930869]
 collision_layer = 2
 script = ExtResource("1_aylpn")
@@ -102,5 +112,13 @@ position_smoothing_speed = 50.0
 position = Vector2(6, 11)
 
 [node name="ReferenceTomato" parent="TomatoHoldPoint" unique_id=1072452538 instance=ExtResource("6_i7hv3")]
+
+[node name="PlayerPointLight2D" type="PointLight2D" parent="." unique_id=990795686]
+position = Vector2(6.1035156e-05, -4.7683716e-07)
+scale = Vector2(1, 1.461)
+energy = 0.2
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_i7hv3")
+texture_scale = 3.18
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
