@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://vroty8lbhrvh"]
 
 [ext_resource type="Script" uid="uid://c8jw2mlv1tarx" path="res://Scenes/Prefabs/Tomato/tomato.gd" id="1_8ahql"]
+[ext_resource type="PackedScene" uid="uid://bvl6f15qoechr" path="res://Scenes/Prefabs/Tomato/tomato_splat.tscn" id="2_74neo"]
 [ext_resource type="Texture2D" uid="uid://2h2700fxrjxb" path="res://Assets/Sprites/Tomato/TomatoBaseStroke.png" id="2_if6fp"]
 [ext_resource type="Texture2D" uid="uid://eqeivimyxhdm" path="res://Assets/Sprites/Tomato/TomatoStemBottomStroke.png" id="3_74neo"]
 [ext_resource type="Texture2D" uid="uid://clkurksxptdu6" path="res://Assets/Sprites/Tomato/TomatoStemTopStroke.png" id="4_fdbju"]
@@ -8,11 +9,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ahql"]
 radius = 23.021729
 
-[sub_resource type="Gradient" id="Gradient_ahkww"]
+[sub_resource type="Gradient" id="Gradient_fdbju"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8ahql"]
-gradient = SubResource("Gradient_ahkww")
+gradient = SubResource("Gradient_fdbju")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
@@ -23,6 +24,7 @@ mass = 0.001
 script = ExtResource("1_8ahql")
 base_color = Color(1, 0, 0, 1)
 stem_color = Color(0.47058824, 0.5882353, 0.44705883, 1)
+splat_prefab = ExtResource("2_74neo")
 
 [node name="Mesh" type="Node2D" parent="." unique_id=303329564]
 
