@@ -102,19 +102,19 @@ func update_animations() -> void:
 	# Basic animation state machine
 	if is_bat_mode:
 		if velocity.y < 0:
-			anim_sprite.play("bat_flap")
+			anim_sprite.play("BatFlap")
 		else:
-			anim_sprite.play("bat_fall")
+			anim_sprite.play("BatFall")
 	else:
 		if not is_on_floor():
 			if velocity.y < 0:
-				anim_sprite.play("jump")
+				anim_sprite.play("PlayerJump")
 			else:
-				anim_sprite.play("fall")
+				anim_sprite.play("PlayerFall")
 		elif velocity.x != 0:
-			anim_sprite.play("run")
+			anim_sprite.play("PlayerRun")
 		else:
-			anim_sprite.play("idle")
+			anim_sprite.play("PlayerIdle")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_bat_mode"):

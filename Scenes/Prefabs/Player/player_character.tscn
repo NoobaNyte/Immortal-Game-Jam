@@ -13,6 +13,22 @@ animations = [{
 "texture": ExtResource("2_deqfm")
 }],
 "loop": 1,
+"name": &"BatFall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_deqfm")
+}],
+"loop": 1,
+"name": &"BatFlap",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_deqfm")
+}],
+"loop": 1,
 "name": &"BatIdle",
 "speed": 5.0
 }, {
@@ -21,7 +37,31 @@ animations = [{
 "texture": ExtResource("1_vvx6r")
 }],
 "loop": 1,
+"name": &"PlayerFall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vvx6r")
+}],
+"loop": 1,
 "name": &"PlayerIdle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vvx6r")
+}],
+"loop": 1,
+"name": &"PlayerJump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vvx6r")
+}],
+"loop": 1,
+"name": &"PlayerRun",
 "speed": 5.0
 }]
 
@@ -36,7 +76,7 @@ bat_collision_shape = ExtResource("5_pe1i5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerIdle"
+animation = &"PlayerRun"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=747167888]
 shape = ExtResource("4_2bhw3")
