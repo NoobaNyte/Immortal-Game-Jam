@@ -669,18 +669,23 @@ previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area
 music_for_this_level = ExtResource("2_621rf")
 music_volume_db = 15.0
 
-[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
 position = Vector2(622, 974)
-player_respawn_point = NodePath("../PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
-position = Vector2(616.97, 946)
-
-[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(316, 974)
 
-[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
 position = Vector2(2614, -1223)
+
+[node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
+position = Vector2(724, 1089)
+
+[node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
+position = Vector2(500, 1086)
+
+[node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
+position = Vector2(2614, -1087)
 
 [node name="TileMap" type="Node2D" parent="." index="9" unique_id=756145371]
 
@@ -709,9 +714,9 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.03
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(209, 852.57294)
+position = Vector2(209, 778.91113)
 rotation = 0.0022522486
-progress = 55.42872
+progress = 129.09389
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]

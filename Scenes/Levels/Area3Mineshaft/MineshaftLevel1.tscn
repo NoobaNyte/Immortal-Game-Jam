@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bwdscx6ysqwkl"]
 
 [ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_6r306"]
-[ext_resource type="AudioStream" uid="uid://lxdepxjk3kgm" path="res://Assets/Music/Exploring_3.mp3" id="2_fye7a"]
+[ext_resource type="AudioStream" uid="uid://c17a504agk7wh" path="res://Assets/Music/Exploring_4.mp3" id="2_fye7a"]
 [ext_resource type="Texture2D" uid="uid://bdvjhafawv8np" path="res://Assets/Sprites/Walls/Wooden/WoodenBeam_Cross_Background.png" id="3_mtq81"]
 [ext_resource type="Texture2D" uid="uid://qq0k11m76da0" path="res://Assets/Sprites/Walls/Wooden/WoodenBeam_Horizontal_Background.png" id="4_5widc"]
 [ext_resource type="Texture2D" uid="uid://ds6qw6ojpxsy8" path="res://Assets/Sprites/Walls/Area3/Area3BackgroundBeams.png" id="6_maf5t"]
@@ -381,7 +381,7 @@ point_count = 2
 next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel2.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftTransitionArea.tscn"
 music_for_this_level = ExtResource("2_fye7a")
-music_volume_db = -15.0
+music_volume_db = -17.0
 
 [node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
 visible = false
@@ -553,8 +553,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(400.95694, -101.00076)
-progress = 0.082977556
+position = Vector2(354.39053, -689.99384)
+progress = 1215.2074
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
@@ -579,9 +579,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.99984, 190.87979)
+position = Vector2(79.9972, 188.8686)
 rotation = -0.002824851
-progress = 0.20704156
+progress = 2.1368709
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970 groups=["MovingObject"]]
@@ -605,8 +605,8 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(0.015702238, 0)
-progress = 0.03065634
+position = Vector2(93.04759, 0)
+progress = 93.049286
 rotates = false
 
 [editable path="Wires/ElectricWire2"]

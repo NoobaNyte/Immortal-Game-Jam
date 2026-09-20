@@ -843,7 +843,7 @@ sources/3 = SubResource("TileSetAtlasSource_u7hrf")
 next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel1.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
 music_for_this_level = ExtResource("2_5rijx")
-music_volume_db = -15.0
+music_volume_db = -17.0
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
 position = Vector2(243, 44)
