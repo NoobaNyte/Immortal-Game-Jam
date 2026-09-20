@@ -27,6 +27,39 @@ var is_item_busy: bool = false
 @export var throw_speed: float = 600.0
 @export var drop_velocity: float = -100.0
 
+# --- HOLD POINT BOB & SWAY SETTINGS ---
+@export_category("Hold Point Bob & Sway")
+@export var bob_run_speed: float = 15.0
+@export var bob_run_amount: float = 3.0
+@export var bob_idle_speed: float = 3.0
+@export var bob_idle_amount: float = 1.0
+@export var bob_air_speed: float = 6.0
+@export var bob_air_amount: float = 2.0
+
+@export var sway_run_amount: float = 0.2
+@export var sway_idle_amount: float = 0.05
+@export var sway_air_amount: float = 0.1
+
+# --- HOLD POINT OFFSETS ---
+@export_category("Hold Point Offsets")
+@export var offset_idle_right: Vector2 = Vector2(8, 0)
+@export var offset_idle_left: Vector2 = Vector2(-8, 0)
+@export var offset_run_right: Vector2 = Vector2(8, 0)
+@export var offset_run_left: Vector2 = Vector2(-8, 0)
+@export var offset_jump_right: Vector2 = Vector2(8, 0)
+@export var offset_jump_left: Vector2 = Vector2(-8, 0)
+
+var bob_time: float = 0.0
+var base_hold_pos: Vector2 = Vector2.ZERO
+
+# --- AUDIO SETTINGS ---
+@export_category("Audio Settings")
+@export var player_footsteps_node_parent: Node
+@export var footstep_pitch_min: float = 0.8
+@export var footstep_pitch_max: float = 1.2
+@export var footstep_interval: float = 0.3
+var footstep_timer: float = 0.0
+
 # --- CAMERA LOOK SETTINGS ---
 @export var camera_look_offset: float = 120.0
 @export var camera_look_delay: float = 0.6
@@ -59,29 +92,30 @@ var was_on_floor: bool = true
 
 func _ready():
 	anim_sprite.play("PlayerIdle")
-	
-	# Connect the signal so we know when action animations finish
 	anim_sprite.animation_finished.connect(_on_animation_finished)
+	
+	base_hold_pos = tomato_hold_point.position
 	
 	if tomato_hold_point.get_child_count() > 0:
 		tomato_hold_point.get_child(0).queue_free()
 
 func _physics_process(delta: float) -> void:
-	# Record floor state before moving to detect landing
 	was_on_floor = is_on_floor()
 	
 	handle_gravity(delta)
 	handle_jump(delta)
 	handle_movement(delta)
 	handle_camera_look(delta)
+	handle_item_bob_and_sway(delta)
+	handle_footsteps(delta)
 	
 	move_and_slide()
 	
 	handle_hazard_collisions()
 	
-	# Detect landing
 	if not was_on_floor and is_on_floor() and not is_bat_mode:
 		play_action_anim("PlayerLand")
+		play_footstep()
 		
 	update_animations()
 
@@ -119,11 +153,71 @@ func handle_movement(delta: float) -> void:
 	
 	if direction != 0:
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
-		# Only flip sprite if we aren't mid-throw to prevent weird backwards throws
 		if not is_action_anim_playing or anim_sprite.animation == "PlayerLand":
 			anim_sprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
+
+func handle_item_bob_and_sway(delta: float) -> void:
+	if is_bat_mode:
+		return
+		
+	var target_bob = 0.0
+	var target_sway = 0.0
+	var target_speed = 0.0
+	var target_offset = Vector2.ZERO
+	var is_facing_left = anim_sprite.flip_h
+	
+	# Determine the current state's bob, sway, and exact positional offset
+	if not is_on_floor():
+		target_bob = bob_air_amount
+		target_sway = sway_air_amount
+		target_speed = bob_air_speed
+		target_offset = offset_jump_left if is_facing_left else offset_jump_right
+	elif velocity.x != 0:
+		target_bob = bob_run_amount
+		target_sway = sway_run_amount
+		target_speed = bob_run_speed
+		target_offset = offset_run_left if is_facing_left else offset_run_right
+	else:
+		target_bob = bob_idle_amount
+		target_sway = sway_idle_amount
+		target_speed = bob_idle_speed
+		target_offset = offset_idle_left if is_facing_left else offset_idle_right
+			
+	bob_time += delta * target_speed
+	
+	# Combine Base Position + State Offset + Sine Wave Bob
+	var target_y = base_hold_pos.y + target_offset.y + (sin(bob_time) * target_bob)
+	var target_x = base_hold_pos.x + target_offset.x
+	var target_rot = cos(bob_time) * target_sway
+	
+	# Smoothly interpolate to the new transforms
+	tomato_hold_point.position.y = lerp(tomato_hold_point.position.y, target_y, 15.0 * delta)
+	tomato_hold_point.position.x = lerp(tomato_hold_point.position.x, target_x, 15.0 * delta)
+	tomato_hold_point.rotation = lerp_angle(tomato_hold_point.rotation, target_rot, 15.0 * delta)
+
+func handle_footsteps(delta: float) -> void:
+	if is_on_floor() and velocity.x != 0 and not is_bat_mode:
+		footstep_timer -= delta
+		if footstep_timer <= 0.0:
+			play_footstep()
+			footstep_timer = footstep_interval
+	else:
+		footstep_timer = 0.0
+
+func play_footstep() -> void:
+	if not player_footsteps_node_parent:
+		return
+		
+	var count = player_footsteps_node_parent.get_child_count()
+	if count == 0:
+		return
+		
+	var random_player = player_footsteps_node_parent.get_child(randi() % count) as AudioStreamPlayer
+	if random_player:
+		random_player.pitch_scale = randf_range(footstep_pitch_min, footstep_pitch_max)
+		random_player.play()
 
 func handle_camera_look(delta: float) -> void:
 	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
@@ -191,14 +285,12 @@ func _on_animation_finished() -> void:
 
 func update_animations() -> void:
 	if is_action_anim_playing:
-		# Cancel landing animation if the player immediately moves or jumps
 		if anim_sprite.animation == "PlayerLand" and (velocity.x != 0 or not is_on_floor()):
 			is_action_anim_playing = false
 		else:
-			return # Let the action animation finish
+			return
 			
 	if is_bat_mode:
-		# Check if the bat is on the ground first
 		if is_on_floor():
 			anim_sprite.play("BatIdle")
 		elif velocity.y < 0:
@@ -228,7 +320,7 @@ func _input(event: InputEvent) -> void:
 
 func toggle_bat_mode() -> void:
 	is_bat_mode = !is_bat_mode
-	is_action_anim_playing = false # Reset animation lock on transform
+	is_action_anim_playing = false
 
 	if is_bat_mode:
 		anim_sprite.play("BatIdle")
@@ -296,7 +388,6 @@ func throw_item(dropped: bool = false) -> void:
 			
 			item_to_throw.linear_velocity = throw_dir * throw_speed
 			
-			# Trigger the correct throw animation based on vector height
 			if throw_dir.y < -0.5 and abs(throw_dir.x) < 0.5:
 				play_action_anim("PlayerThrowUp")
 			else:
