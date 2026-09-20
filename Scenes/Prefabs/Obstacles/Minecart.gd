@@ -6,9 +6,9 @@ extends CharacterBody2D
 @export var max_fall_speed: float = 600.0
 
 # --- KNOCKBACK SETTINGS ---
-@export var knockback_speed: float = 5000.0   # horizontal punch, applied in direction of travel
+@export var knockback_speed: float = 500.0   # horizontal punch, applied in direction of travel
 @export var knockback_up_speed: float = -250.0 # negative = upward pop
-@export var hit_cooldown: float = 0.75         # prevents re-hitting the same overlap every frame
+@export var hit_cooldown: float = 0.25         # prevents re-hitting the same overlap every frame
 
 # --- STATE ---
 var direction: int = 1
@@ -50,10 +50,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_hit_area_body_entered(body: Node) -> void:
+	
+	print("HitArea touched: ", body.name)
+	
 	if hit_cooldown_timer > 0.0:
 		return
 
 	if body.has_method("apply_knockback"):
-		var knock_vector := Vector2(direction * knockback_speed, knockback_up_speed)
+		var knock_vector := Vector2(direction * knockback_speed * speed, knockback_up_speed)
 		body.apply_knockback(knock_vector)
 		hit_cooldown_timer = hit_cooldown

@@ -10,6 +10,7 @@ size = Vector2(49, 13)
 scale = Vector2(2, 2)
 script = ExtResource("1_pr0e8")
 speed = 300.0
+knockback_speed = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=44110590]
 texture = ExtResource("1_83o03")
@@ -24,18 +25,20 @@ scale = Vector2(0.09, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1036235694]
-position = Vector2(22.5, -3.5)
+position = Vector2(23, -2)
 scale = Vector2(0.09, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="HitArea" type="Area2D" parent="." unique_id=2025137970]
+collision_layer = 2
+collision_mask = 2
 
 [node name="HitArea" type="CollisionShape2D" parent="HitArea" unique_id=472031528]
-position = Vector2(27.5, 1)
-scale = Vector2(0.21, 1)
+position = Vector2(26, 0)
+scale = Vector2(0.025, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="HitArea2" type="CollisionShape2D" parent="HitArea" unique_id=1429656867]
-position = Vector2(-31, 1.5)
-scale = Vector2(0.23, 1)
+position = Vector2(-28, 0)
+scale = Vector2(0.025, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
