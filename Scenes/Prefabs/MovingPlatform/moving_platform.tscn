@@ -23,9 +23,9 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="." unique_id=2021665693]
-position = Vector2(1.8755064, -26.984789)
-rotation = -1.5014056
-progress = 27.057486
+position = Vector2(3.5937126, -313.82144)
+rotation = -1.5766102
+progress = 313.99606
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatformPathFollow2D" unique_id=1070380355 groups=["MovingObject"]]
 collision_layer = 7
@@ -39,6 +39,8 @@ texture = ExtResource("2_bpoen")
 polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
 
 [node name="PlayerDetector" type="Area2D" parent="MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" unique_id=1045737840]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector" unique_id=676202713]
 position = Vector2(0, -16)

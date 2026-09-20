@@ -90,9 +90,9 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 
 
 func _is_player(body: Node2D) -> bool:
-	# Adjust this check to whatever convention your project uses to mark the player
-	# (a group is usually simplest).
-	return body.is_in_group("player")
+	# Matches the same duck-typing convention used by the minecart/wire scripts -
+	# checks for a method unique to the player rather than requiring a group.
+	return body.has_method("apply_knockback")
 
 
 func set_moving_platform_sprite():
