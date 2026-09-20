@@ -451,6 +451,10 @@ func _input(event: InputEvent) -> void:
 			try_pickup()
 
 func toggle_bat_mode() -> void:
+	# Prevent transforming if actively in the middle of picking up or throwing an item
+	if is_item_busy:
+		return
+		
 	is_bat_mode = !is_bat_mode
 	is_action_anim_playing = false
 

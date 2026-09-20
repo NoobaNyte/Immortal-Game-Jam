@@ -1,5 +1,7 @@
 extends Node2D
 
+
+@export_file_path var level_to_go_to_after_intro_scene_file_path
 ## will start this music on level load
 ## if this music stream is already playing then do nothing
 ## if a different music stream is playing then crossfade to this one
@@ -172,7 +174,7 @@ func _finish_intro_sequence() -> void:
     if camera_tween:
         camera_tween.kill()
         
-    Global.load_next_level.emit()
+    Global.load_next_level.emit(level_to_go_to_after_intro_scene_file_path, 0, 2)
 
 # --- FADE HELPERS ---
 

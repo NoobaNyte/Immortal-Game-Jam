@@ -36,6 +36,7 @@ font_size = 55
 
 [node name="IntroScene" type="Node2D" unique_id=1056356550 node_paths=PackedStringArray("intro_sprites_texture_rect", "sprites_transition_overlay", "skip_label", "camera_pulse_point")]
 script = ExtResource("1_j8ae3")
+level_to_go_to_after_intro_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn"
 music_for_this_level = ExtResource("2_gtb3e")
 music_volume_db = -10.0
 intro_sprite_textures_in_order = Array[CompressedTexture2D]([ExtResource("3_gtb3e"), ExtResource("4_hm67n"), ExtResource("5_cunr0"), ExtResource("6_4mjv1"), ExtResource("7_q1eep"), ExtResource("8_8gspe"), ExtResource("9_ystwu")])
