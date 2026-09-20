@@ -1,3 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://qh626mmnp1ab"]
 
+[ext_resource type="FontFile" uid="uid://dt77oi8iqgl40" path="res://Assets/Fonts/pixelta.regular.ttf" id="1_1npr3"]
+
 [resource]
+default_font = ExtResource("1_1npr3")
