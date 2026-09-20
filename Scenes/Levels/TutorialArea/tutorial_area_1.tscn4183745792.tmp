@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://d3glw13115soc" path="res://Scenes/Prefabs/Tomato/tomato_spawner.tscn" id="26_gvmtn"]
 [ext_resource type="Script" uid="uid://eicibdxj20jx" path="res://Scenes/Levels/TutorialArea/tutorial_popup_area.gd" id="29_5hai7"]
 [ext_resource type="Theme" uid="uid://qh626mmnp1ab" path="res://Assets/Themes/main_font.tres" id="30_rlv20"]
-[ext_resource type="Script" uid="uid://786d55wtt5iv" path="res://Utility/base_ui_element.gd" id="31_83rdf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wfwci"]
 shader = ExtResource("2_hn5iw")
@@ -393,12 +392,6 @@ sources/11 = SubResource("TileSetAtlasSource_dluud")
 sources/12 = SubResource("TileSetAtlasSource_fcq0e")
 tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Vector2i(1, 0)], [23, Vector2i(1, 0)], [22, Vector2i(2, 0)], [23, Vector2i(2, 0)], [22, Vector2i(3, 0)], [23, Vector2i(3, 0)], [22, Vector2i(4, 0)], [23, Vector2i(4, 0)], [22, Vector2i(5, 0)], [23, Vector2i(5, 0)], [22, Vector2i(6, 0)], [23, Vector2i(6, 0)], [22, Vector2i(7, 0)], [23, Vector2i(7, 0)], [22, Vector2i(8, 0)], [23, Vector2i(8, 0)], [22, Vector2i(9, 0)], [23, Vector2i(9, 0)], [22, Vector2i(10, 0)], [23, Vector2i(10, 0)], [22, Vector2i(11, 0)], [23, Vector2i(11, 0)], [22, Vector2i(12, 0)], [23, Vector2i(12, 0)], [22, Vector2i(13, 0)], [23, Vector2i(13, 0)]]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83rdf"]
-size = Vector2(392.5, 265)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4y41"]
-size = Vector2(658, 155.5)
-
 [node name="TutorialArea1" unique_id=1656558072 instance=ExtResource("1_ollvm")]
 next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.tscn"
 music_for_this_level = ExtResource("3_5hai7")
@@ -463,24 +456,13 @@ position = Vector2(1387, 579)
 [node name="TomatoSpawner4" parent="TomatoSpawners" index="3" unique_id=2130624422 instance=ExtResource("26_gvmtn")]
 position = Vector2(470, -62)
 
-[node name="TutorialPopupArea" type="Area2D" parent="." index="11" unique_id=1869317963 node_paths=PackedStringArray("control_to_fade_in")]
-collision_layer = 7
-collision_mask = 7
+[node name="TutorialPopupArea" type="Area2D" parent="." index="11" unique_id=1869317963]
 script = ExtResource("29_5hai7")
-control_to_fade_in = NodePath("TutorialPopupCanvasLayer/TutorialPopupContainer1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPopupArea" index="0" unique_id=1091295250]
-position = Vector2(148, 910)
-shape = SubResource("RectangleShape2D_83rdf")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialPopupArea" index="1" unique_id=1317299569]
-position = Vector2(1745.75, 910)
-shape = SubResource("RectangleShape2D_83rdf")
-
-[node name="TutorialPopupCanvasLayer" type="CanvasLayer" parent="TutorialPopupArea" index="2" unique_id=1364411019]
+[node name="TutorialPopupCanvasLayer" type="CanvasLayer" parent="TutorialPopupArea" index="0" unique_id=1364411019]
 layer = 8
 
-[node name="TutorialPopupContainer1" type="Control" parent="TutorialPopupArea/TutorialPopupCanvasLayer" index="0" unique_id=419114342]
+[node name="TutorialPopupContainer" type="Control" parent="TutorialPopupArea/TutorialPopupCanvasLayer" index="0" unique_id=419114342]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -489,9 +471,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("30_rlv20")
-script = ExtResource("31_83rdf")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TutorialPopupArea/TutorialPopupCanvasLayer/TutorialPopupContainer1" index="0" unique_id=129085038]
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialPopupArea/TutorialPopupCanvasLayer/TutorialPopupContainer" index="0" unique_id=129085038]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -507,51 +488,6 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 73
 text = "[X] PICK UP TOMATO"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TutorialPopupArea2" type="Area2D" parent="." index="12" unique_id=181114730 node_paths=PackedStringArray("control_to_fade_in")]
-collision_layer = 7
-collision_mask = 7
-script = ExtResource("29_5hai7")
-control_to_fade_in = NodePath("TutorialPopupCanvasLayer/TutorialPopupContainer2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPopupArea2" index="0" unique_id=1623060588]
-position = Vector2(992, 963)
-shape = SubResource("RectangleShape2D_r4y41")
-
-[node name="TutorialPopupCanvasLayer" type="CanvasLayer" parent="TutorialPopupArea2" index="1" unique_id=1673984882]
-layer = 8
-
-[node name="TutorialPopupContainer2" type="Control" parent="TutorialPopupArea2/TutorialPopupCanvasLayer" index="0" unique_id=310232951]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("30_rlv20")
-script = ExtResource("31_83rdf")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="TutorialPopupArea2/TutorialPopupCanvasLayer/TutorialPopupContainer2" index="0" unique_id=727155917]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -239.0
-offset_top = -133.0
-offset_right = 239.0
-offset_bottom = -54.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 73
-text = "[X] THROW TOMATO"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1

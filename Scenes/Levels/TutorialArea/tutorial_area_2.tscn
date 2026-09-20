@@ -482,10 +482,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(1235.9152, 1.9493933)
-rotation = 0.0015772858
+position = Vector2(7.1247606, 0.011237793)
+rotation = 0.0015772857
 scale = Vector2(2, 1.5)
-progress = 1235.9152
+progress = 7.1090584
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
