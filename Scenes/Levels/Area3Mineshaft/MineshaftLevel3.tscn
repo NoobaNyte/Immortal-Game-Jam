@@ -612,11 +612,11 @@ gradient = SubResource("Gradient_48sa5")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Curve2D" id="Curve2D_s1fu5"]
+[sub_resource type="Curve2D" id="Curve2D_7qrer"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, -71.94, 0, 0, 0, 0, -7.2591553, -374.95087, 0, 0, 0, 0, 283.09985, -725.72003, 0, 0, 0, 0, -437.92554, -1006.33496, 0, 0, 0, 0, 276.95508, -1138.87, 0, 0, 0, 0, -414.04492, -1372.87, 0, 0, 0, 0, 274.95508, -1730.87, 0, 0, 0, 0, -395.05383, -2183.3606, 0, 0, 0, 0, 271.40808, -2417.2073, 0, 0, 0, 0, -450.04492, -2605.87, 0, 0, 0, 0, 99.95508, -3011.87, 0, 0, 0, 0, -262.04492, -3200.87, 0, 0, 0, 0, -194.33557, -3403.26, 0, 0, 0, 0, -73.51514, -3473.4138, 0, 0, 0, 0, -3.0449219, -3800.87)
+"points": PackedVector2Array(0, 0, 0, 0, 49, 16.575562, 0, 0, 0, 0, 47, -825.8502)
 }
-point_count = 16
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpoen"]
 size = Vector2(102.60281, 17)
@@ -1237,7 +1237,7 @@ scale = Vector2(0.5, 0.5)
 
 [node name="MovingPlatform" type="Path2D" parent="." index="17" unique_id=2021162858 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow", "player_detector")]
 position = Vector2(3037.045, -72.13)
-curve = SubResource("Curve2D_s1fu5")
+curve = SubResource("Curve2D_7qrer")
 script = ExtResource("26_3moi0")
 mode = 1
 moving_platform_texture = ExtResource("9_gker0")

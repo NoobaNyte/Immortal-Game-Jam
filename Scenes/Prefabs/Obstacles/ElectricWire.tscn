@@ -16,7 +16,7 @@ _data = {
 point_count = 25
 
 [sub_resource type="Gradient" id="Gradient_wu3x2"]
-offsets = PackedFloat32Array(0, 0.33673468, 0.5578231)
+offsets = PackedFloat32Array(0, 0.6188811, 0.6853147)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_maf5t"]
@@ -51,8 +51,8 @@ rotation = 1.2473831
 [node name="SparkVisual" type="Node2D" parent="WirePath/SparkFollow" unique_id=1396496595]
 
 [node name="PointLight2D" type="PointLight2D" parent="WirePath/SparkFollow/SparkVisual" unique_id=752520042]
-position = Vector2(-1.8963127, -0.6356077)
-scale = Vector2(0.3734321, 0.38467115)
+position = Vector2(0.94815445, 0.31780624)
+scale = Vector2(0.14466758, 0.16198945)
 color = Color(0.79, 0.7107367, 0.110599995, 1)
 energy = 9.76
 texture = SubResource("GradientTexture2D_maf5t")
