@@ -353,11 +353,11 @@ func die(hit_normal: Vector2 = Vector2.UP) -> void:
 		
 	is_dying = true
 	
-	# Drop the tomato/item if holding one
+	# Instantly delete the tomato/item if holding one instead of dropping it
 	if held_item:
-		# Force item busy to false in case they die exactly mid-pickup animation
+		held_item.queue_free()
+		held_item = null
 		is_item_busy = false
-		throw_item(true)
 	
 	if is_bat_mode:
 		play_bat_hurt_sfx()
