@@ -10,29 +10,28 @@ radius = 7.0
 height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr0e8"]
-size = Vector2(49, 13)
+size = Vector2(64.5, 13)
 
 [node name="Minecart" type="CharacterBody2D" unique_id=1874672753 node_paths=PackedStringArray("minecart_hit_sfx_node_parent") groups=["MovingObject"]]
 scale = Vector2(2, 2)
-floor_max_angle = 1.1362094
-floor_snap_length = 0.0
+floor_max_angle = 0.863938
 script = ExtResource("1_pr0e8")
 speed = 300.0
 knockback_speed = 3.0
 minecart_hit_sfx_node_parent = NodePath("MinecartHitSFX")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=211266758]
-position = Vector2(-1, 6)
+position = Vector2(-1, 6.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_w5obs")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1784348124]
-position = Vector2(-25, -3)
-scale = Vector2(0.09, 1)
+position = Vector2(-24.555, -5.445)
+scale = Vector2(0.105, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=1036235694]
-position = Vector2(23, -2)
+position = Vector2(23.5, -6)
 scale = Vector2(0.09, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
@@ -41,16 +40,17 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="HitArea" type="CollisionShape2D" parent="HitArea" unique_id=472031528]
-position = Vector2(26, 0)
+position = Vector2(28, -2.5)
 scale = Vector2(0.025, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="HitArea2" type="CollisionShape2D" parent="HitArea" unique_id=1429656867]
-position = Vector2(-28, 0)
+position = Vector2(-30, -2.5)
 scale = Vector2(0.025, 1)
 shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=44110590]
+position = Vector2(-0.5, -0.5)
 texture = ExtResource("1_83o03")
 
 [node name="MinecartHitSFX" type="Node" parent="." unique_id=1548078291]
