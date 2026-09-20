@@ -3,31 +3,103 @@
 [ext_resource type="Script" uid="uid://cfdf61rj2h2cg" path="res://Scenes/Levels/Intro/intro_scene.gd" id="1_j8ae3"]
 [ext_resource type="AudioStream" uid="uid://co2p680ic52sy" path="res://Assets/Music/Exploring_2.mp3" id="2_gtb3e"]
 [ext_resource type="Texture2D" uid="uid://bupno13m05md8" path="res://Assets/Sprites/Intro/Day 1.png" id="3_gtb3e"]
+[ext_resource type="Texture2D" uid="uid://c86lfb74kq18s" path="res://Assets/Sprites/Intro/Day 149.png" id="4_hm67n"]
+[ext_resource type="Texture2D" uid="uid://cb8bnsif5gnqs" path="res://Assets/Sprites/Intro/Day 999.png" id="5_cunr0"]
+[ext_resource type="Texture2D" uid="uid://dpdtrt54suadj" path="res://Assets/Sprites/Intro/Day 10,562.png" id="6_4mjv1"]
+[ext_resource type="Texture2D" uid="uid://c3sumtq6kvrgi" path="res://Assets/Sprites/Intro/Day 49,678.png" id="7_q1eep"]
+[ext_resource type="Texture2D" uid="uid://drlr5015u5eu8" path="res://Assets/Sprites/Intro/Day 234,845.png" id="8_8gspe"]
+[ext_resource type="Texture2D" uid="uid://dnmrqx0jhm2k" path="res://Assets/Sprites/Intro/Day 1,000,000.png" id="9_ystwu"]
+[ext_resource type="Script" uid="uid://786d55wtt5iv" path="res://Utility/base_ui_element.gd" id="10_cunr0"]
 
-[node name="IntroScene" type="Node2D" unique_id=1056356550]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cunr0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mjv1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1eep"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gspe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ystwu"]
+
+[sub_resource type="Gradient" id="Gradient_pe1i5"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cunr0"]
+gradient = SubResource("Gradient_pe1i5")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[node name="IntroScene" type="Node2D" unique_id=1056356550 node_paths=PackedStringArray("intro_sprites_texture_rect", "sprites_transition_overlay", "camera_pulse_point")]
 script = ExtResource("1_j8ae3")
 music_for_this_level = ExtResource("2_gtb3e")
+intro_sprite_textures_in_order = Array[CompressedTexture2D]([ExtResource("3_gtb3e"), ExtResource("4_hm67n"), ExtResource("5_cunr0"), ExtResource("6_4mjv1"), ExtResource("7_q1eep"), ExtResource("8_8gspe"), ExtResource("9_ystwu")])
+intro_sprites_texture_rect = NodePath("Control/IntroSpritesTextureRect")
+sprites_transition_overlay = NodePath("Control/SpritesTransitionOverlay")
+camera_pulse_point = NodePath("CameraPulsePoint")
 
-[node name="IntroControl" type="CanvasLayer" parent="." unique_id=2143012660]
-layer = 5
-
-[node name="Control" type="Control" parent="IntroControl" unique_id=633800641]
+[node name="Control" type="Control" parent="." unique_id=633800641]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="IntroControl/Control" unique_id=2075673638]
+[node name="IntroSpritesTextureRect" type="TextureRect" parent="Control" unique_id=2075673638]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gtb3e")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ClickScreenButton" type="Button" parent="Control/IntroSpritesTextureRect" unique_id=1806961372]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cunr0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4mjv1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_q1eep")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gspe")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ystwu")
+
+[node name="SpritesTransitionOverlay" type="ColorRect" parent="Control" unique_id=653699661]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("10_cunr0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=161036792]
+position = Vector2(960, 540)
+
+[node name="CameraPulsePoint" type="Marker2D" parent="." unique_id=263620447]
+position = Vector2(1036, 702)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=616964360]
+position = Vector2(1036, 702)
+color = Color(0, 0, 0, 1)
+
+[node name="PlayerPointLight2D" type="PointLight2D" parent="." unique_id=1721294483]
+position = Vector2(960, 540)
+scale = Vector2(2.2, 1.311)
+energy = 1.4
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_cunr0")
+texture_scale = 23.21
+
+[connection signal="pressed" from="Control/IntroSpritesTextureRect/ClickScreenButton" to="." method="_on_click_screen_button_pressed"]
