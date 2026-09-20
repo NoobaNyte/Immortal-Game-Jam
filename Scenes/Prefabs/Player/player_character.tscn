@@ -26,7 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://cx41u5n0xu71j" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_ThrowSide_2.png" id="20_sxo0n"]
 [ext_resource type="Texture2D" uid="uid://c52q884xerrfh" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_ThrowSide_3.png" id="21_v8s1r"]
 [ext_resource type="Texture2D" uid="uid://b7e3d5s1sqkhf" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_ThrowSide_4.png" id="22_kcgfi"]
+[ext_resource type="Texture2D" uid="uid://b0knop4gae50q" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_ThrowUp_1.png" id="26_qe1fk"]
 [ext_resource type="AudioStream" uid="uid://b4hxmwll2qggv" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone1.wav" id="27_676lg"]
+[ext_resource type="Texture2D" uid="uid://d04icdguc0ab4" path="res://Assets/Sprites/PlayerSprites/NewPlayer/Character_ThrowUp_2.png" id="27_wsdyi"]
 [ext_resource type="AudioStream" uid="uid://getpktgmffdp" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone2.wav" id="28_651jw"]
 [ext_resource type="AudioStream" uid="uid://dgcbl6r0j7pa2" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone3.wav" id="29_qe1fk"]
 [ext_resource type="AudioStream" uid="uid://l6y4f84oasg3" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone4.wav" id="30_wsdyi"]
@@ -168,7 +170,13 @@ animations = [{
 "name": &"PlayerThrowSide",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_qe1fk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_wsdyi")
+}],
 "loop": 0,
 "name": &"PlayerThrowUp",
 "speed": 5.0
@@ -215,9 +223,10 @@ debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerIdle"
+animation = &"PlayerThrowUp"
 autoplay = "PlayerIdle"
-frame_progress = 0.83679676
+frame = 1
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 position = Vector2(0, -100)
