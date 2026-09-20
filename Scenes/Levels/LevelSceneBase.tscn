@@ -3,7 +3,14 @@
 [ext_resource type="Shader" uid="uid://bxj4fldl7p6xx" path="res://Assets/Shaders/ScreenGlow.gdshader" id="1_0d02i"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d74yr"]
 [ext_resource type="Script" uid="uid://sqlswc2p88cd" path="res://Scenes/Levels/level_scene_base.gd" id="1_fr4t0"]
+[ext_resource type="Theme" uid="uid://qh626mmnp1ab" path="res://Assets/Themes/main_font.tres" id="2_2er1n"]
+[ext_resource type="Script" uid="uid://c0r6b0j38gbyx" path="res://Scenes/Levels/level_ui.gd" id="2_7h11b"]
+[ext_resource type="Theme" uid="uid://d2hu8ckvklngm" path="res://Assets/Themes/pause_menu_buttons.tres" id="2_mf2ji"]
 [ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="3_2ax51"]
+[ext_resource type="LabelSettings" uid="uid://bunt23taft1rk" path="res://Assets/Themes/menu_title_font_size.tres" id="4_dnwf5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7h11b"]
+font_size = 60
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d74yr"]
 shader = ExtResource("1_0d02i")
@@ -35,6 +42,129 @@ size = Vector2(300, 300)
 [node name="LevelSceneBase" type="Node2D" unique_id=1656558072]
 script = ExtResource("1_fr4t0")
 
+[node name="LevelUI" type="CanvasLayer" parent="." unique_id=1470160433]
+layer = 2
+
+[node name="UIContainer" type="Control" parent="LevelUI" unique_id=1286426135]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2er1n")
+script = ExtResource("2_7h11b")
+
+[node name="PauseMenu" type="BoxContainer" parent="LevelUI/UIContainer" unique_id=1290258178]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+vertical = true
+
+[node name="PauseMenuTitleLabel" type="Label" parent="LevelUI/UIContainer/PauseMenu" unique_id=2038052782]
+layout_mode = 2
+text = "PAUSED"
+label_settings = ExtResource("4_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/UIContainer/PauseMenu" unique_id=1418103389]
+layout_mode = 2
+theme_override_constants/separation = 27
+
+[node name="SettingsButton" type="Button" parent="LevelUI/UIContainer/PauseMenu/VBoxContainer" unique_id=1966338941]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_mf2ji")
+theme_override_font_sizes/font_size = 82
+text = "SETTINGS"
+
+[node name="ControlsInfoButton" type="Button" parent="LevelUI/UIContainer/PauseMenu/VBoxContainer" unique_id=753456678]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_mf2ji")
+theme_override_font_sizes/font_size = 82
+text = "CONTROLS"
+
+[node name="ExitGameButton" type="Button" parent="LevelUI/UIContainer/PauseMenu/VBoxContainer" unique_id=615280432]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_mf2ji")
+theme_override_font_sizes/font_size = 82
+text = "EXIT GAME"
+
+[node name="ControlsMenu" type="BoxContainer" parent="LevelUI/UIContainer" unique_id=206488472]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+vertical = true
+
+[node name="ControlsMenuTitleLabel" type="Label" parent="LevelUI/UIContainer/ControlsMenu" unique_id=695923604]
+layout_mode = 2
+text = "CONTROLS"
+label_settings = ExtResource("4_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsMenuBodyLabel" type="Label" parent="LevelUI/UIContainer/ControlsMenu" unique_id=1019321407]
+layout_mode = 2
+text = "[ARROW KEYS] Move
+[SPACE] Jump / Fly if bat mode only
+[Z] Toggle Bat Mode
+[X] Pick up / Throw Tomatoes
+"
+label_settings = SubResource("LabelSettings_7h11b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsMenu" type="BoxContainer" parent="LevelUI/UIContainer" unique_id=708832545]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+vertical = true
+
+[node name="SettingsMenuTitleLabel" type="Label" parent="LevelUI/UIContainer/SettingsMenu" unique_id=1788982306]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = ExtResource("4_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoBackButton" type="Button" parent="LevelUI/UIContainer" unique_id=1121019084]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -153.0
+offset_right = 133.0
+offset_bottom = -32.0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 82
+text = "<<"
+
 [node name="Glow" type="CanvasLayer" parent="." unique_id=1866471108]
 layer = 10
 
@@ -45,6 +175,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="DarkBackground" type="CanvasLayer" parent="." unique_id=871170875]
@@ -141,3 +272,8 @@ script = ExtResource("3_2ax51")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitLevelArea" unique_id=350067906]
 shape = SubResource("RectangleShape2D_2ax51")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/SettingsButton" to="LevelUI/UIContainer" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/ControlsInfoButton" to="LevelUI/UIContainer" method="_on_controls_info_button_pressed"]
+[connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/ExitGameButton" to="LevelUI/UIContainer" method="_on_exit_game_button_pressed"]
+[connection signal="pressed" from="LevelUI/UIContainer/GoBackButton" to="LevelUI/UIContainer" method="_on_go_back_button_pressed"]
