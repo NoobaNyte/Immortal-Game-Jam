@@ -647,7 +647,7 @@ tile_set = SubResource("TileSet_14171")
 position = Vector2(767, -2947)
 
 [node name="TomatoSpawner2" parent="TileMap" index="3" unique_id=1740913996 instance=ExtResource("23_bu6tb")]
-position = Vector2(716, -1344)
+position = Vector2(712, -1344)
 
 [node name="TomatoSpawner3" parent="TileMap" index="4" unique_id=209666350 instance=ExtResource("23_bu6tb")]
 position = Vector2(399, -3968)
