@@ -278,15 +278,6 @@ tile_proxies/coords_level = [[11, Vector2i(0, 0)], [40, Vector2i(0, 0)], [12, Ve
 
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_6r306")]
 
-[node name="GlowArea" parent="Glow" parent_id_path=PackedInt32Array(1866471108) index="0" unique_id=377187023]
-visible = false
-
-[node name="DarkBackground" parent="." index="1" unique_id=871170875]
-visible = false
-
-[node name="CanvasModulate" parent="." index="2" unique_id=1559591102]
-visible = false
-
 [node name="TileMap" type="Node2D" parent="." index="3" unique_id=756145371]
 position = Vector2(3, 4)
 
