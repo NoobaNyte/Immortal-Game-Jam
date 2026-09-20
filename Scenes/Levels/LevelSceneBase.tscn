@@ -90,6 +90,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "PLAYER RESPAWN POINT"
+script = ExtResource("3_2ax51")
 
 [node name="EnterLevelArea" type="Area2D" parent="." unique_id=1882371121]
 position = Vector2(-447, 0)

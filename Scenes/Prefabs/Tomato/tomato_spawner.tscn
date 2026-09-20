@@ -59,4 +59,4 @@ texture_scale = 8.0
 
 [node name="TomatoSpawnpointOptions" type="Node2D" parent="." unique_id=1959304713]
 
-[node name="SpawnpointOption" type="Marker2D" parent="TomatoSpawnpointOptions" unique_id=500048010]
+[node name="SpawnpointOption1" type="Marker2D" parent="TomatoSpawnpointOptions" unique_id=500048010]
