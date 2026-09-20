@@ -81,7 +81,7 @@ func splat(surface_normal: Vector2, contact_point: Vector2) -> void:
 		#AudioManager.play_sfx(tomato_splat_sfx, -12, randf_range(0.55, 0.7))
 
 		var splat_instance = splat_prefab.instantiate()
-		get_tree().current_scene.add_child(splat_instance)
+		get_tree().current_scene.get_node("LevelContainer").get_child(0).add_child(splat_instance)
 		
 		# Fire the new setup method
 		if splat_instance.has_method("setup_splat"):
