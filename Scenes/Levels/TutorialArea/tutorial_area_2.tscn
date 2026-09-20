@@ -460,16 +460,16 @@ position = Vector2(622, 974)
 player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
 
 [node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
-position = Vector2(316, 974)
+position = Vector2(-101, 974)
 
 [node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
 position = Vector2(5233, 364)
 
 [node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
-position = Vector2(621, 1048)
+position = Vector2(501, 1048)
 
 [node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
-position = Vector2(316, 1048)
+position = Vector2(253, 1048)
 
 [node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
 position = Vector2(5239, 471)
@@ -498,10 +498,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(44.78537, 0.07063938)
-rotation = 0.0015772858
+position = Vector2(272.52252, 0.42984626)
+rotation = 0.0015772857
 scale = Vector2(2, 1.5)
-progress = 44.802563
+progress = 272.52267
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7

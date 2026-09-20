@@ -55,14 +55,12 @@ func _ready() -> void:
 	# Point this to an Area2D child node inside your player character
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-	await get_tree().physics_frame
 	var player_sensor_area: Area2D = player_character.get_node("PickupArea") # or "DetectionArea"
 
 	if player_sensor_area:
 		var overlapping_areas = player_sensor_area.get_overlapping_areas()
 		
 		if overlapping_areas.is_empty():
-			print("false empty")
 			Global.player_is_transitioning = false
 		else:
 			var only_in_transition_areas = true
@@ -76,7 +74,6 @@ func _ready() -> void:
 				# They are only touching transition areas, keep transitioning true (or handle as needed)
 				pass
 			else:
-				print("false")
 				Global.player_is_transitioning = false
 
 
