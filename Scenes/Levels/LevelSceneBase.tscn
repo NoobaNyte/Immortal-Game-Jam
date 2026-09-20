@@ -11,6 +11,18 @@ shader_parameter/threshold = 0.0
 shader_parameter/soft_edge = 0.0
 shader_parameter/glow_color_tint = Color(1, 1, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_2ax51"]
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d02i"]
+size = Vector2(300, 300)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0d02i"]
+font_size = 40
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ax51"]
+size = Vector2(300, 300)
+
 [node name="LevelSceneBase" type="Node2D" unique_id=1656558072]
 
 [node name="Glow" type="CanvasLayer" parent="." unique_id=1866471108]
@@ -61,3 +73,49 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "PLAYER RESPAWN POINT"
+
+[node name="EnterLevelArea" type="Area2D" parent="." unique_id=1882371121]
+position = Vector2(-447, 0)
+metadata/_edit_group_ = true
+
+[node name="EnterLevelAreaLabel" type="Label" parent="EnterLevelArea" unique_id=642577362]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "EnterLevelArea"
+label_settings = SubResource("LabelSettings_2ax51")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterLevelArea" unique_id=1850457086]
+shape = SubResource("RectangleShape2D_0d02i")
+debug_color = Color(0.017857194, 1, 0, 0.41960785)
+
+[node name="ExitLevelArea" type="Area2D" parent="." unique_id=1960829182]
+position = Vector2(528, -1)
+metadata/_edit_group_ = true
+
+[node name="ExitLevelAreaLabel" type="Label" parent="ExitLevelArea" unique_id=1592446371]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -11.5
+offset_right = 59.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ExitLevelArea"
+label_settings = SubResource("LabelSettings_0d02i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitLevelArea" unique_id=350067906]
+shape = SubResource("RectangleShape2D_2ax51")
+debug_color = Color(1, 0, 0, 0.41960785)
