@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bkkq7s4ncosca" path="res://Scenes/Prefabs/Tomato/tomato_spawner.gd" id="1_2wpqt"]
 [ext_resource type="PackedScene" uid="uid://vroty8lbhrvh" path="res://Scenes/Prefabs/Tomato/tomato.tscn" id="2_psugu"]
+[ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="3_r2m7w"]
+[ext_resource type="Texture2D" uid="uid://s24twqm37fh0" path="res://Assets/Sprites/Tomato/TomatoPlant.png" id="4_22m3t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_psugu"]
 font_size = 12
@@ -10,21 +12,28 @@ font_size = 12
 script = ExtResource("1_2wpqt")
 tomato_prefab = ExtResource("2_psugu")
 
-[node name="Label" type="Label" parent="." unique_id=1917626339]
+[node name="TomatoPlant" type="Sprite2D" parent="." unique_id=1963099124]
+texture_filter = 4
+position = Vector2(-25, -26)
+scale = Vector2(-1.6, 1.6)
+texture = ExtResource("4_22m3t")
+
+[node name="ReferenceTomato" parent="." unique_id=1072452538 instance=ExtResource("2_psugu")]
+
+[node name="TomatoSpawnerLabel" type="Label" parent="." unique_id=1917626339]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = -39.0
-offset_right = 56.0
-offset_bottom = -2.0
+offset_left = -81.0
+offset_top = -93.0
+offset_right = 31.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "TOMATO SPAWNER"
 label_settings = SubResource("LabelSettings_psugu")
 horizontal_alignment = 1
-
-[node name="ReferenceTomato" parent="." unique_id=1072452538 instance=ExtResource("2_psugu")]
+script = ExtResource("3_r2m7w")
