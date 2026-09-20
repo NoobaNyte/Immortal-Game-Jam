@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bvl6f15qoechr" path="res://Scenes/Prefabs/Tomato/tomato_splat.tscn" id="2_74neo"]
 [ext_resource type="Texture2D" uid="uid://2h2700fxrjxb" path="res://Assets/Sprites/Tomato/TomatoBaseStroke.png" id="2_if6fp"]
 [ext_resource type="Texture2D" uid="uid://eqeivimyxhdm" path="res://Assets/Sprites/Tomato/TomatoStemBottomStroke.png" id="3_74neo"]
+[ext_resource type="AudioStream" uid="uid://k1c0424pddyt" path="res://Assets/SFX/TomatoSplat.mp3" id="3_fdbju"]
 [ext_resource type="Texture2D" uid="uid://clkurksxptdu6" path="res://Assets/Sprites/Tomato/TomatoStemTopStroke.png" id="4_fdbju"]
 
 [sub_resource type="Gradient" id="Gradient_hn5iw"]
@@ -39,6 +40,7 @@ base_color = SubResource("GradientTexture2D_74neo")
 stem_color = Color(0.13000005, 0.78, 0, 1)
 splat_prefab = ExtResource("2_74neo")
 tomato_splat_blob_color = Color(1, 0.53, 0.53, 1)
+tomato_splat_sfx = ExtResource("3_fdbju")
 
 [node name="Mesh" type="Node2D" parent="." unique_id=303329564]
 

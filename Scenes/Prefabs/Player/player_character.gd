@@ -60,6 +60,10 @@ var base_hold_pos: Vector2 = Vector2.ZERO
 @export var footstep_interval: float = 0.3
 var footstep_timer: float = 0.0
 
+@export var bat_flap_sfx: AudioStreamPlayer
+@export var bat_flap_pitch_min: float = 0.9
+@export var bat_flap_pitch_max: float = 1.1
+
 # --- CAMERA LOOK SETTINGS ---
 @export var camera_look_offset: float = 120.0
 @export var camera_look_delay: float = 0.6
@@ -144,6 +148,7 @@ func handle_jump(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_bat_mode:
 			velocity.y = bat_flap_velocity
+			play_bat_flap_sfx()
 		elif coyote_timer > 0.0:
 			velocity.y = max_jump_velocity
 			coyote_timer = 0.0
@@ -168,7 +173,6 @@ func handle_item_bob_and_sway(delta: float) -> void:
 	var target_offset = Vector2.ZERO
 	var is_facing_left = anim_sprite.flip_h
 	
-	# Determine the current state's bob, sway, and exact positional offset
 	if not is_on_floor():
 		target_bob = bob_air_amount
 		target_sway = sway_air_amount
@@ -187,12 +191,10 @@ func handle_item_bob_and_sway(delta: float) -> void:
 			
 	bob_time += delta * target_speed
 	
-	# Combine Base Position + State Offset + Sine Wave Bob
 	var target_y = base_hold_pos.y + target_offset.y + (sin(bob_time) * target_bob)
 	var target_x = base_hold_pos.x + target_offset.x
 	var target_rot = cos(bob_time) * target_sway
 	
-	# Smoothly interpolate to the new transforms
 	tomato_hold_point.position.y = lerp(tomato_hold_point.position.y, target_y, 15.0 * delta)
 	tomato_hold_point.position.x = lerp(tomato_hold_point.position.x, target_x, 15.0 * delta)
 	tomato_hold_point.rotation = lerp_angle(tomato_hold_point.rotation, target_rot, 15.0 * delta)
@@ -218,6 +220,11 @@ func play_footstep() -> void:
 	if random_player:
 		random_player.pitch_scale = randf_range(footstep_pitch_min, footstep_pitch_max)
 		random_player.play()
+
+func play_bat_flap_sfx() -> void:
+	if bat_flap_sfx:
+		bat_flap_sfx.pitch_scale = randf_range(bat_flap_pitch_min, bat_flap_pitch_max)
+		bat_flap_sfx.play()
 
 func handle_camera_look(delta: float) -> void:
 	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
@@ -327,6 +334,7 @@ func toggle_bat_mode() -> void:
 		player_point_light.energy = 0.1
 		collision_shape.shape = bat_collision_shape
 		velocity.y = bat_flap_velocity / 2.0
+		play_bat_flap_sfx() # Plays once when bursting into bat mode as well
 
 		if held_item:
 			throw_item(true)
