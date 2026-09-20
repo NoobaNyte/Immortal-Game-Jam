@@ -51,6 +51,7 @@ horizontal_alignment = 1
 script = ExtResource("3_r2m7w")
 
 [node name="TomatoSpawnerPointLight2D" type="PointLight2D" parent="." unique_id=1333102728]
+visible = false
 position = Vector2(2, -37)
 energy = 0.7
 shadow_filter = 1
