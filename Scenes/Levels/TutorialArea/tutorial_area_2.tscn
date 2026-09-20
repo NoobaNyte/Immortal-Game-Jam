@@ -33,6 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://cx7hiroeo21hj" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner4.png" id="30_3v8qa"]
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="31_f8g3g"]
 [ext_resource type="Script" uid="uid://dcmb4idn33dp3" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.gd" id="32_epeqh"]
+[ext_resource type="Script" uid="uid://eicibdxj20jx" path="res://Scenes/Levels/TutorialArea/tutorial_popup_area.gd" id="34_vpfme"]
+[ext_resource type="Theme" uid="uid://qh626mmnp1ab" path="res://Assets/Themes/main_font.tres" id="35_yio0i"]
+[ext_resource type="Script" uid="uid://786d55wtt5iv" path="res://Utility/base_ui_element.gd" id="36_ebskq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4mati"]
 texture = ExtResource("3_g336b")
@@ -449,6 +452,9 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e43tw"]
+size = Vector2(195, 306)
+
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
 next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn"
@@ -482,10 +488,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(7.1247606, 0.011237793)
-rotation = 0.0015772857
+position = Vector2(1810.9059, 2.8563182)
+rotation = 0.0015772858
 scale = Vector2(2, 1.5)
-progress = 7.1090584
+progress = 1810.903
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
@@ -524,3 +530,48 @@ position = Vector2(2307, 88)
 
 [node name="TomatoSpawner2" parent="TomatoSpawners" index="1" unique_id=2143105848 instance=ExtResource("2_hnie4")]
 position = Vector2(719, 1048)
+
+[node name="TutorialPopupArea3" type="Area2D" parent="." index="11" unique_id=1400473642 node_paths=PackedStringArray("control_to_fade_in")]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("34_vpfme")
+control_to_fade_in = NodePath("TutorialPopupCanvasLayer/TutorialPopupContainer3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPopupArea3" index="0" unique_id=891042302]
+position = Vector2(2113.5, 270)
+shape = SubResource("RectangleShape2D_e43tw")
+
+[node name="TutorialPopupCanvasLayer" type="CanvasLayer" parent="TutorialPopupArea3" index="1" unique_id=823766487]
+layer = 8
+
+[node name="TutorialPopupContainer3" type="Control" parent="TutorialPopupArea3/TutorialPopupCanvasLayer" index="0" unique_id=690826500]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("35_yio0i")
+script = ExtResource("36_ebskq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialPopupArea3/TutorialPopupCanvasLayer/TutorialPopupContainer3" index="0" unique_id=973638751]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -239.0
+offset_top = -133.0
+offset_right = 239.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 73
+text = "[Z] TOGGLE BAT FORM"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -13,8 +13,6 @@ config_version=5
 config/name="Project"
 run/main_scene="uid://dfkpyc52wnwyv"
 config/features=PackedStringArray("4.8", "GL Compatibility")
-boot_splash/bg_color=Color(0.14, 0.14, 0.14, 0)
-boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
