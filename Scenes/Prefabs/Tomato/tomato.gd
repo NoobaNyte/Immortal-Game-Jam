@@ -21,6 +21,8 @@ extends RigidBody2D
 
 @export var tomato_splat_blob_color: Color
 
+@export var tomato_splat_sfx: AudioStream
+
 @onready var tomato_point_light: PointLight2D = $TomatoPointLight2D
 @onready var tomato_base_fill: Polygon2D = $Mesh/TomatoBaseFill
 @onready var tomato_stem_bottom_fill: Polygon2D = $Mesh/TomatoStemBottomFill
@@ -67,6 +69,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func splat(surface_normal: Vector2, contact_point: Vector2) -> void:
 	if splat_prefab:
+		## play tomato splat sfx
+		AudioManager.play_sfx(tomato_splat_sfx, -12, randf_range(0.55, 0.7))
+
 		var splat_instance = splat_prefab.instantiate()
 		get_tree().current_scene.add_child(splat_instance)
 		
