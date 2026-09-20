@@ -232,10 +232,8 @@ debug_color = Color(0.51116073, 0.51116073, 0.51116073, 0.41960785)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754970602]
 sprite_frames = SubResource("SpriteFrames_aylpn")
-animation = &"PlayerThrowUp"
+animation = &"BatFlap"
 autoplay = "PlayerIdle"
-frame = 1
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=463746406]
 position = Vector2(0, -100)

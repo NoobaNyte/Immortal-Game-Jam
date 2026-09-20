@@ -383,6 +383,9 @@ previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftTr
 music_for_this_level = ExtResource("2_fye7a")
 music_volume_db = -15.0
 
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = false
+
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(-1032, -4)
 throw_speed = 600.0
@@ -550,8 +553,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(184.39754, -104.8224)
-progress = 216.6346
+position = Vector2(400.95694, -101.00076)
+progress = 0.082977556
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
@@ -576,9 +579,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.44314, -232.7757)
+position = Vector2(79.99984, 190.87979)
 rotation = -0.002824851
-progress = 423.77545
+progress = 0.20704156
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970 groups=["MovingObject"]]
@@ -602,8 +605,8 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(71.40179, 0)
-progress = 71.40593
+position = Vector2(0.015702238, 0)
+progress = 0.03065634
 rotates = false
 
 [editable path="Wires/ElectricWire2"]

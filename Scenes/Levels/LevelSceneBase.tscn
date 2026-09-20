@@ -69,10 +69,11 @@ shader_parameter/glow_color_tint = Color(1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_sd6i1"]
 offsets = PackedFloat32Array(0.0034013605, 1)
-colors = PackedColorArray(0.24044561, 0.2800274, 0.3731386, 1, 0.29636478, 0.37592244, 0.65872014, 1)
+colors = PackedColorArray(0.41650003, 0.51042503, 0.85, 1, 0.109843336, 0.121502474, 0.1629464, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2ax51"]
 gradient = SubResource("Gradient_sd6i1")
+fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ax51"]
 font_size = 40
@@ -118,6 +119,7 @@ alignment = 1
 vertical = true
 
 [node name="PauseMenuTitleLabel" type="Label" parent="LevelUI/UIContainer/PauseMenu" unique_id=2038052782]
+visible = false
 layout_mode = 2
 text = "PAUSED"
 label_settings = ExtResource("4_dnwf5")
@@ -287,6 +289,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_j78uy")
 value = 70.0
 
 [node name="GoBackButton" type="Button" parent="LevelUI/UIContainer" unique_id=1121019084]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

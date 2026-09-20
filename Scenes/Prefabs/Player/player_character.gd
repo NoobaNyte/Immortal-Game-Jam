@@ -112,6 +112,12 @@ var was_on_floor: bool = true
 
 @export var player_respawn_point: Marker2D
 
+## for end scene
+## set by the end game area script
+var disable_input: bool = false
+var disable_anim_player: bool = false
+var disable_sfx: bool = false
+
 func _ready():
 	anim_sprite.play("PlayerIdle")
 	anim_sprite.animation_finished.connect(_on_animation_finished)
@@ -160,7 +166,8 @@ func _physics_process(delta: float) -> void:
 	handle_hazard_collisions()
 	
 	if not was_on_floor and is_on_floor() and not is_bat_mode:
-		play_action_anim("PlayerLand")
+		if not disable_anim_player:
+			play_action_anim("PlayerLand")
 		play_footstep()
 		
 	update_animations()
@@ -193,6 +200,9 @@ func handle_jump(delta: float) -> void:
 	else:
 		coyote_timer -= delta
 
+	if disable_input:
+		return
+
 	if Input.is_action_just_released("jump") and velocity.y < min_jump_velocity and not is_bat_mode:
 		velocity.y = min_jump_velocity
 
@@ -205,7 +215,11 @@ func handle_jump(delta: float) -> void:
 			coyote_timer = 0.0
 
 func handle_movement(delta: float) -> void:
-	var direction := Input.get_axis("move_left", "move_right")
+	var direction := 0.0
+	
+	# Only read input if it is not disabled
+	if not disable_input:
+		direction = Input.get_axis("move_left", "move_right")
 	
 	if direction != 0:
 		velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
@@ -260,6 +274,10 @@ func handle_footsteps(delta: float) -> void:
 		footstep_timer = 0.0
 
 func play_footstep() -> void:
+	if disable_sfx:
+		return
+
+
 	if not player_footsteps_node_parent:
 		return
 		
@@ -283,7 +301,8 @@ func play_bat_hurt_sfx() -> void:
 		bat_hurt_sfx.play()
 
 func handle_camera_look(delta: float) -> void:
-	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
+	# Add 'and not disable_input' to prevent camera panning
+	if is_on_floor() and velocity.x == 0 and not is_bat_mode and not disable_input:
 		var look_dir = Input.get_axis("look_up", "look_down")
 		
 		if look_dir != 0:
@@ -375,6 +394,9 @@ func _respawn_sequence() -> void:
 		flash_tween.tween_property(anim_sprite, "modulate:a", 1.0, 0.1)
 
 func play_action_anim(anim_name: String) -> void:
+	if disable_anim_player:
+		return
+		
 	is_action_anim_playing = true
 	anim_sprite.play(anim_name)
 
@@ -383,6 +405,9 @@ func _on_animation_finished() -> void:
 		is_action_anim_playing = false
 
 func update_animations() -> void:
+	if disable_anim_player:
+		return
+		
 	if is_action_anim_playing:
 		if anim_sprite.animation == "PlayerLand" and (velocity.x != 0 or not is_on_floor()):
 			is_action_anim_playing = false
@@ -408,8 +433,8 @@ func update_animations() -> void:
 			anim_sprite.play("PlayerIdle")
 
 func _input(event: InputEvent) -> void:
-	# Lock out player inputs if dying
-	if is_dying:
+	# Lock out player inputs if dying OR if input is disabled
+	if is_dying or disable_input:
 		return
 		
 	if event.is_action_pressed("toggle_bat_mode"):
