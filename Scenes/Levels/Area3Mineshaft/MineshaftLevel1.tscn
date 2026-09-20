@@ -360,12 +360,6 @@ point_count = 25
 
 [sub_resource type="Curve2D" id="Curve2D_fyfds"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12.625, 10.650429, 0, 0, 0, 0, 25.25, 21.12219, 0, 0, 0, 0, 37.875, 31.239676, 0, 0, 0, 0, 50.5, 40.833332, 0, 0, 0, 0, 63.125, 49.74258, 0, 0, 0, 0, 75.75, 57.818542, 0, 0, 0, 0, 88.375, 64.9266, 0, 0, 0, 0, 101, 70.9487, 0, 0, 0, 0, 113.625, 75.78536, 0, 0, 0, 0, 126.25, 79.3574, 0, 0, 0, 0, 138.875, 81.607254, 0, 0, 0, 0, 151.5, 82.5, 0, 0, 0, 0, 164.125, 82.023926, 0, 0, 0, 0, 176.75, 80.190735, 0, 0, 0, 0, 189.375, 77.03536, 0, 0, 0, 0, 202, 72.615364, 0, 0, 0, 0, 214.625, 67.00993, 0, 0, 0, 0, 227.25, 60.318542, 0, 0, 0, 0, 239.875, 52.65925, 0, 0, 0, 0, 252.5, 44.166668, 0, 0, 0, 0, 265.125, 34.989674, 0, 0, 0, 0, 277.75, 25.288857, 0, 0, 0, 0, 290.375, 15.233762, 0, 0, 0, 0, 303, 5)
-}
-point_count = 25
-
-[sub_resource type="Curve2D" id="Curve2D_7qrer"]
-_data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 39.32893, 0, 0, 0, 0, 22, 78.32285, 0, 0, 0, 0, 33, 116.65251, 0, 0, 0, 0, 44, 154, 0, 0, 0, 0, 55, 190.06421, 0, 0, 0, 0, 66, 224.56602, 0, 0, 0, 0, 77, 257.253, 0, 0, 0, 0, 88, 287.9038, 0, 0, 0, 0, 99, 316.33194, 0, 0, 0, 0, 110, 342.3889, 0, 0, 0, 0, 121, 365.96674, 0, 0, 0, 0, 132, 387, 0, 0, 0, 0, 143, 405.46674, 0, 0, 0, 0, 154, 421.3889, 0, 0, 0, 0, 165, 434.83194, 0, 0, 0, 0, 176, 445.9038, 0, 0, 0, 0, 187, 454.753, 0, 0, 0, 0, 198, 461.566, 0, 0, 0, 0, 209, 466.5642, 0, 0, 0, 0, 220, 470, 0, 0, 0, 0, 231, 472.15253, 0, 0, 0, 0, 242, 473.32285, 0, 0, 0, 0, 253, 473.82892, 0, 0, 0, 0, 264, 474)
 }
 point_count = 25
@@ -511,27 +505,7 @@ rotation = 0.4051939
 [node name="PointB" parent="Wires/ElectricWire4" index="5" unique_id=1801364618]
 position = Vector2(1470, 4)
 
-[node name="ElectricWire5" parent="Wires" index="4" unique_id=1382128524 instance=ExtResource("21_wu3x2")]
-position = Vector2(-537, -2507)
-sag = 80.0
-
-[node name="WireLine" parent="Wires/ElectricWire5" index="1" unique_id=399621698]
-points = PackedVector2Array(0, 0, 12.625, 10.650429, 25.25, 21.12219, 37.875, 31.239676, 50.5, 40.833332, 63.125, 49.74258, 75.75, 57.818542, 88.375, 64.9266, 101, 70.9487, 113.625, 75.78536, 126.25, 79.3574, 138.875, 81.607254, 151.5, 82.5, 164.125, 82.023926, 176.75, 80.190735, 189.375, 77.03536, 202, 72.615364, 214.625, 67.00993, 227.25, 60.318542, 239.875, 52.65925, 252.5, 44.166668, 265.125, 34.989674, 277.75, 25.288857, 290.375, 15.233762, 303, 5)
-width = 4.0
-
-[node name="WireCollision" parent="Wires/ElectricWire5" index="2" unique_id=291888980]
-polygon = PackedVector2Array(-3.2240162, 3.821743, 9.416866, 14.485514, 22.090237, 24.997225, 34.798275, 35.180965, 47.544613, 44.866405, 60.334248, 53.891277, 73.17328, 62.10346, 86.068214, 69.36267, 99.024666, 75.54196, 112.04521, 80.52923, 125.126625, 84.22957, 138.25746, 86.56897, 151.4175, 87.49932, 164.58038, 87.00314, 177.7191, 85.09592, 190.8118, 81.82448, 203.84512, 77.26247, 216.81421, 71.505196, 229.72058, 64.66552, 242.5693, 56.87122, 255.36671, 48.26324, 268.11893, 38.994213, 280.83105, 29.226757, 293.50684, 19.131407, 306.1485, 8.884189, 299.8515, 1.1158113, 287.24316, 11.336118, 274.66895, 21.350956, 262.13107, 30.985134, 249.63329, 40.070095, 237.1807, 48.447277, 224.77942, 55.97156, 212.43579, 62.51467, 200.15488, 67.96826, 187.9382, 72.24625, 175.7809, 75.28555, 163.66962, 77.04471, 151.5825, 77.50068, 139.49254, 76.64554, 127.373375, 74.48523, 115.20479, 71.0415, 102.975334, 66.35544, 90.681786, 60.490524, 78.32672, 53.533627, 65.91576, 45.593884, 53.455387, 36.80026, 40.951725, 27.298386, 28.409763, 17.247156, 15.833134, 6.815344, 3.2240162, -3.821743)
-
-[node name="WirePath" parent="Wires/ElectricWire5" index="3" unique_id=1638167496]
-curve = SubResource("Curve2D_fyfds")
-
-[node name="SparkFollow" parent="Wires/ElectricWire5/WirePath" index="0" unique_id=986921555]
-rotation = 0.7007658
-
-[node name="PointB" parent="Wires/ElectricWire5" index="5" unique_id=1801364618]
-position = Vector2(303, 5)
-
-[node name="ElectricWire7" parent="Wires" index="5" unique_id=1349851739 instance=ExtResource("21_wu3x2")]
+[node name="ElectricWire7" parent="Wires" index="4" unique_id=1349851739 instance=ExtResource("21_wu3x2")]
 position = Vector2(511, -2500)
 sag = 150.0
 
@@ -543,7 +517,7 @@ width = 4.0
 polygon = PackedVector2Array(-4.8152046, 1.3467758, 6.186292, 40.681046, 17.190865, 79.69114, 28.198765, 118.04827, 39.210445, 155.43533, 50.2266, 191.55238, 61.24824, 226.12192, 72.27681, 258.89355, 83.31433, 289.64868, 94.363686, 318.20398, 105.428894, 344.41498, 116.51565, 368.1782, 127.63182, 389.43292, 138.78815, 408.16122, 149.99844, 424.3868, 161.27875, 438.17145, 172.64392, 449.6101, 184.1002, 458.8262, 195.63492, 465.97128, 207.2102, 471.23288, 218.76903, 474.8461, 230.25328, 477.09647, 241.6201, 478.30838, 252.84618, 478.82654, 263.92224, 478.9994, 264.07776, 469.0006, 253.15382, 468.8313, 242.3799, 468.3373, 231.74672, 467.2086, 221.23097, 465.1539, 210.7898, 461.89554, 200.36508, 457.16074, 189.8998, 450.67978, 179.35608, 442.1975, 168.72125, 431.49243, 158.00156, 418.39096, 147.21185, 402.77225, 136.36818, 384.56708, 125.48435, 363.75528, 114.571106, 340.3628, 103.636314, 314.4599, 92.68567, 286.15894, 81.72319, 255.61243, 70.751755, 223.01013, 59.7734, 188.57603, 48.789555, 152.56467, 37.801235, 115.25675, 26.809135, 76.95457, 15.813707, 37.976814, 4.8152046, -1.3467758)
 
 [node name="WirePath" parent="Wires/ElectricWire7" index="3" unique_id=1638167496]
-curve = SubResource("Curve2D_7qrer")
+curve = SubResource("Curve2D_fyfds")
 
 [node name="SparkFollow" parent="Wires/ElectricWire7/WirePath" index="0" unique_id=986921555]
 rotation = 1.2980729
@@ -574,8 +548,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(388.33383, -101.2235)
-progress = 12.71489
+position = Vector2(202.33527, -688.45276)
+progress = 1063.3977
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
@@ -600,9 +574,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.95996, 160.53061)
+position = Vector2(79.58486, -124.91917)
 rotation = -0.002824851
-progress = 30.495153
+progress = 315.92032
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970]
@@ -626,14 +600,13 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(31, -156.8566)
-progress = 182.21065
+position = Vector2(31, 21.182934)
+progress = 4.2743154
 rotates = false
 
 [editable path="Wires/ElectricWire2"]
 [editable path="Wires/ElectricWire3"]
 [editable path="Wires/ElectricWire"]
 [editable path="Wires/ElectricWire4"]
-[editable path="Wires/ElectricWire5"]
 [editable path="Wires/ElectricWire7"]
 [editable path="MovingPlatforms/MovingPlatform3"]
