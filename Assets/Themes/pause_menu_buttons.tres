@@ -1,3 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://d2hu8ckvklngm"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnwf5"]
+
 [resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 0.69411767)
+Button/colors/font_pressed_color = Color(1, 1, 1, 0.3882353)
+Button/styles/disabled = SubResource("StyleBoxEmpty_dnwf5")
+Button/styles/focus = SubResource("StyleBoxEmpty_dnwf5")
+Button/styles/hover = SubResource("StyleBoxEmpty_dnwf5")
+Button/styles/normal = SubResource("StyleBoxEmpty_dnwf5")
+Button/styles/pressed = SubResource("StyleBoxEmpty_dnwf5")
