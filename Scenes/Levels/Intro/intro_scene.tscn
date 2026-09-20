@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkvyqnntbj6ox"]
 
-[ext_resource type="Script" uid="uid://cfdf61rj2h2cg" path="res://Scenes/Levels/Intro/intro_scene.gd" id="1_j8ae3"]
+[ext_resource type="Script" uid="uid://bad78ijbhx7dh" path="res://Scenes/Levels/Intro/intro_scene.gd" id="1_j8ae3"]
 [ext_resource type="AudioStream" uid="uid://co2p680ic52sy" path="res://Assets/Music/Exploring_2.mp3" id="2_gtb3e"]
 [ext_resource type="Texture2D" uid="uid://bupno13m05md8" path="res://Assets/Sprites/Intro/Day 1.png" id="3_gtb3e"]
 [ext_resource type="Texture2D" uid="uid://c86lfb74kq18s" path="res://Assets/Sprites/Intro/Day 149.png" id="4_hm67n"]
