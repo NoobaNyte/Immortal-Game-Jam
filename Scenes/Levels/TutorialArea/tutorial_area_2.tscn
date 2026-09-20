@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cid88i271unq"]
 
 [ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_h0pwd"]
-[ext_resource type="Script" uid="uid://sqlswc2p88cd" path="res://Scenes/Levels/level_scene_base.gd" id="2_4mati"]
 [ext_resource type="PackedScene" uid="uid://d3glw13115soc" path="res://Scenes/Prefabs/Tomato/tomato_spawner.tscn" id="2_hnie4"]
 [ext_resource type="Texture2D" uid="uid://cmcqwfq26qofe" path="res://Assets/Sprites/Walls/Wooden/WoodenBeam_Background.png" id="3_g336b"]
 [ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="4_6jgwl"]
@@ -444,7 +443,6 @@ texture = ExtResource("3_g336b")
 sources/0 = SubResource("TileSetAtlasSource_4mati")
 
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
-script = ExtResource("2_4mati")
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn"
 
 [node name="BackgroundSprite" parent="." index="2" unique_id=678310874]

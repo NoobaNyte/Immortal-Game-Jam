@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bxj4fldl7p6xx" path="res://Assets/Shaders/ScreenGlow.gdshader" id="1_0d02i"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d74yr"]
+[ext_resource type="Script" uid="uid://sqlswc2p88cd" path="res://Scenes/Levels/level_scene_base.gd" id="1_fr4t0"]
 [ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="3_2ax51"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d74yr"]
@@ -32,6 +33,7 @@ font_size = 40
 size = Vector2(300, 300)
 
 [node name="LevelSceneBase" type="Node2D" unique_id=1656558072]
+script = ExtResource("1_fr4t0")
 
 [node name="Glow" type="CanvasLayer" parent="." unique_id=1866471108]
 layer = 10
