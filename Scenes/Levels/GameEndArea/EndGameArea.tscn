@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bc357ygir6ht"]
+
+[ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_tloxb"]
+
+[node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_tloxb")]
+previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel3.tscn"

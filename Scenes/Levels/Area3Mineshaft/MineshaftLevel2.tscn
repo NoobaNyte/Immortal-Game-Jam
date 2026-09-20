@@ -494,8 +494,13 @@ _data = {
 point_count = 25
 
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_bhd7p")]
+next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel3.tscn"
+previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel1.tscn"
 
-[node name="BackgroundSprite" parent="." index="2" unique_id=678310874]
+[node name="GlowArea" parent="Glow" parent_id_path=PackedInt32Array(1866471108) index="0" unique_id=377187023]
+mouse_filter = 0
+
+[node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
 position = Vector2(177, -16)
 
 [node name="TileMap" type="Node2D" parent="." index="4" unique_id=756145371]
@@ -514,18 +519,15 @@ position = Vector2(-356, -642)
 [node name="TomatoSpawner2" parent="TileMap" index="3" unique_id=380191912 instance=ExtResource("24_yygi5")]
 position = Vector2(2244, -1029)
 
-[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+[node name="PlayerCharacter" parent="." index="6" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(-315, -23)
 player_respawn_point = NodePath("../PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
+[node name="PlayerRespawnPoint" parent="." index="7" unique_id=185332786]
 position = Vector2(-146, -29)
 
-[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="8" unique_id=1882371121]
 position = Vector2(-593, -17)
-
-[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
-position = Vector2(2500, -1152)
 
 [node name="Minecart" parent="." index="9" unique_id=1874672753 instance=ExtResource("23_ito35")]
 position = Vector2(1612, 155)
@@ -691,6 +693,9 @@ curve = SubResource("Curve2D_5cq8h")
 
 [node name="PointB" parent="Wires/ElectricWire8" index="5" unique_id=1801364618]
 position = Vector2(1807, 0)
+
+[node name="ExitLevelArea" parent="." index="13" unique_id=1960829182]
+position = Vector2(2500, -1152)
 
 [editable path="Wires/ElectricWire"]
 [editable path="Wires/ElectricWire2"]
