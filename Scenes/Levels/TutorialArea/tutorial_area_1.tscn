@@ -412,6 +412,7 @@ position = Vector2(-23, 32)
 visible = true
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+visible = false
 position = Vector2(384, 968)
 player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
 

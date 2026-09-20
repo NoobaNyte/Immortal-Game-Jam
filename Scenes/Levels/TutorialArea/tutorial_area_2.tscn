@@ -501,10 +501,17 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
+<<<<<<< Updated upstream
 position = Vector2(1284.3025, 2.0257132)
 rotation = 0.0015772858
 scale = Vector2(2, 1.5)
 progress = 1284.3025
+=======
+position = Vector2(1541.7418, 2.4317691)
+rotation = 0.0015772857
+scale = Vector2(2, 1.5)
+progress = 1541.7395
+>>>>>>> Stashed changes
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
