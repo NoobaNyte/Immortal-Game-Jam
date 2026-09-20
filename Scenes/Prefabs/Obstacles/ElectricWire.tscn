@@ -1,3 +1,54 @@
 [gd_scene format=3 uid="uid://by1aso6g6mrqv"]
 
-[node name="ElectricWire" type="Node2D" unique_id=1939340747]
+[ext_resource type="Script" uid="uid://bg6iarauqyxih" path="res://Scenes/Prefabs/Obstacles/ElectricWire.gd" id="1_cmb25"]
+
+[sub_resource type="Gradient" id="Gradient_van5o"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_maf5t"]
+gradient = SubResource("Gradient_van5o")
+
+[sub_resource type="Curve2D" id="Curve2D_van5o"]
+
+[sub_resource type="Gradient" id="Gradient_wu3x2"]
+offsets = PackedFloat32Array(0, 0.33673468, 0.5578231)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_maf5t"]
+gradient = SubResource("Gradient_wu3x2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="ElectricWire" type="Area2D" unique_id=1123411782]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cmb25")
+spark_speed = 800.0
+
+[node name="PointA" type="Marker2D" parent="." unique_id=670674649]
+
+[node name="WireLine" type="Line2D" parent="." unique_id=399621698]
+position = Vector2(0, 9.536743e-07)
+default_color = Color(0.22, 0.15385333, 0.1298, 1)
+texture = SubResource("GradientTexture1D_maf5t")
+
+[node name="WireCollision" type="CollisionPolygon2D" parent="." unique_id=291888980]
+
+[node name="WirePath" type="Path2D" parent="." unique_id=1638167496]
+curve = SubResource("Curve2D_van5o")
+
+[node name="SparkFollow" type="PathFollow2D" parent="WirePath" unique_id=986921555]
+
+[node name="SparkVisual" type="Node2D" parent="WirePath/SparkFollow" unique_id=1396496595]
+
+[node name="PointLight2D" type="PointLight2D" parent="WirePath/SparkFollow/SparkVisual" unique_id=752520042]
+position = Vector2(1.9073486e-06, -0.50000095)
+scale = Vector2(1.9062499, 1.953125)
+color = Color(0.79, 0.7107367, 0.110599995, 1)
+energy = 9.76
+texture = SubResource("GradientTexture2D_maf5t")
+
+[node name="CycleTimer" type="Timer" parent="." unique_id=1553719650]
+
+[node name="PointB" type="Marker2D" parent="." unique_id=1801364618]
+position = Vector2(42, 0)
