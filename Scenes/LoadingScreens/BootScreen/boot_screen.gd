@@ -2,6 +2,9 @@ extends Control
 
 @export_file_path var main_scene_file_path
 
+@onready var tomato_sprite: Sprite2D = $TomatoSprite
+@export var rotation_speed: float = 2.5 ## Speed of the clockwise rotation in radians per second
+
 var _swapping := false
 
 func _ready() -> void:
@@ -12,6 +15,8 @@ func _ready() -> void:
 
 ## loads the main scene and swaps to it once it is completely done loading
 func _process(_delta: float) -> void:
+	tomato_sprite.rotation += rotation_speed * _delta
+
 	if _swapping:
 		return
 
