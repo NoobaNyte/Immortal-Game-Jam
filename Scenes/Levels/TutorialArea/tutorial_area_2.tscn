@@ -452,15 +452,12 @@ point_count = 2
 next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn"
 
-[node name="PlayerCharacter" parent="." index="4" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
 player_respawn_point = NodePath("../PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="5" unique_id=185332786]
+[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
 position = Vector2(1540, 648)
-
-[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
-position = Vector2(316, 974)
 
 [node name="TileMap" type="Node2D" parent="." index="7" unique_id=2048739067]
 position = Vector2(675, 718)
@@ -486,10 +483,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(882.96857, 1.392695)
-rotation = 0.0015772857
+position = Vector2(1693.6893, 2.671434)
+rotation = 0.0015772858
 scale = Vector2(2, 1.5)
-progress = 882.9688
+progress = 1693.6866
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
@@ -505,10 +502,13 @@ polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32
 [node name="TomatoSpawners" type="Node2D" parent="." index="8" unique_id=991591883]
 
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("2_hnie4")]
-position = Vector2(2307, 36)
+position = Vector2(2307, 88)
 
 [node name="TomatoSpawner2" parent="TomatoSpawners" index="1" unique_id=2143105848 instance=ExtResource("2_hnie4")]
-position = Vector2(774, 1020)
+position = Vector2(719, 1048)
 
-[node name="ExitLevelArea" parent="." index="9" unique_id=1960829182]
+[node name="EnterLevelArea" parent="." index="9" unique_id=1882371121]
+position = Vector2(316, 974)
+
+[node name="ExitLevelArea" parent="." index="10" unique_id=1960829182]
 position = Vector2(5233, 364)

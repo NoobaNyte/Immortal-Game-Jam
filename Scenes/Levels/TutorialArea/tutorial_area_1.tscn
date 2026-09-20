@@ -406,18 +406,15 @@ offset_right = 5499040.0
 offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
 
-[node name="PlayerCharacter" parent="." index="4" unique_id=2099930869]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
 visible = false
 position = Vector2(326, 971)
 
-[node name="PlayerRespawnPoint" parent="." index="5" unique_id=185332786]
+[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
 position = Vector2(562, 972)
 
-[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
 position = Vector2(-404, 965)
-
-[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
-position = Vector2(2304, -731)
 
 [node name="TileMap" type="Node2D" parent="." index="8" unique_id=1988256431]
 position = Vector2(288, 953)
@@ -439,3 +436,9 @@ position = Vector2(1645, 1025)
 
 [node name="TomatoSpawner3" parent="TomatoSpawners" index="2" unique_id=916843930 instance=ExtResource("26_gvmtn")]
 position = Vector2(1387, 579)
+
+[node name="TomatoSpawner4" parent="TomatoSpawners" index="3" unique_id=2130624422 instance=ExtResource("26_gvmtn")]
+position = Vector2(470, -62)
+
+[node name="ExitLevelArea" parent="." index="10" unique_id=1960829182]
+position = Vector2(2304, -731)

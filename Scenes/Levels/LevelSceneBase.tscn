@@ -93,6 +93,7 @@ script = ExtResource("1_fr4t0")
 layer = 2
 
 [node name="UIContainer" type="Control" parent="LevelUI" unique_id=1286426135 node_paths=PackedStringArray("master_audio_slider", "music_audio_slider", "sfx_audio_slider")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +107,7 @@ music_audio_slider = NodePath("SettingsMenu/VBoxContainer/MusicAudioSliderContai
 sfx_audio_slider = NodePath("SettingsMenu/VBoxContainer/SFXAudioSliderContainer/SFXAudioSlider")
 
 [node name="PauseMenu" type="BoxContainer" parent="LevelUI/UIContainer" unique_id=1290258178]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
