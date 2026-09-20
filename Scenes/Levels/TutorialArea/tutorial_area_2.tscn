@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dkl6q4ipvp62l" path="res://Assets/Sprites/Walls/Area1/Area1Wal4.png" id="29_b15t1"]
 [ext_resource type="Texture2D" uid="uid://cx7hiroeo21hj" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner4.png" id="30_3v8qa"]
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="31_f8g3g"]
+[ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="33_epeqh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4mati"]
 texture = ExtResource("3_g336b")
@@ -469,3 +470,6 @@ player_respawn_point = NodePath("../PlayerRespawnPoint")
 
 [node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
 position = Vector2(515, 1036)
+
+[node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
+script = ExtResource("33_epeqh")

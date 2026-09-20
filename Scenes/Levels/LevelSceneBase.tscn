@@ -43,7 +43,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("1_d74yr")]
 position = Vector2(-1, 0)
-max_jump_velocity = -700.0
 
 [node name="PlayerRespawnPoint" type="Marker2D" parent="." unique_id=185332786]
 gizmo_extents = 20.0

@@ -28,8 +28,8 @@ var is_item_busy: bool = false
 @export var drop_velocity: float = -100.0
 
 # --- KNOCKBACK SETTINGS ---
-@export var knockback_recovery_time: float = 0.3   # how long movement input is locked out after a hit
-@export var knockback_invuln_time: float = 0.5      # cooldown before another knockback can apply
+@export var knockback_recovery_time: float = 0.3 # how long movement input is locked out after a hit
+@export var knockback_invuln_time: float = 0.5 # cooldown before another knockback can apply
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
 var knockback_invuln_timer: float = 0.0
@@ -70,6 +70,11 @@ var footstep_timer: float = 0.0
 @export var bat_flap_sfx: AudioStreamPlayer
 @export var bat_flap_pitch_min: float = 0.9
 @export var bat_flap_pitch_max: float = 1.1
+
+@export var bat_hurt_sfx: AudioStreamPlayer
+@export var bat_hurt_pitch_min: float = 0.9
+@export var bat_hurt_pitch_max: float = 1.1
+
 
 # --- CAMERA LOOK SETTINGS ---
 @export var camera_look_offset: float = 120.0
@@ -252,6 +257,11 @@ func play_bat_flap_sfx() -> void:
 		bat_flap_sfx.pitch_scale = randf_range(bat_flap_pitch_min, bat_flap_pitch_max)
 		bat_flap_sfx.play()
 
+func play_bat_hurt_sfx() -> void:
+	if bat_hurt_sfx:
+		bat_hurt_sfx.pitch_scale = randf_range(bat_hurt_pitch_min, bat_hurt_pitch_max)
+		bat_hurt_sfx.play()
+
 func handle_camera_look(delta: float) -> void:
 	if is_on_floor() and velocity.x == 0 and not is_bat_mode:
 		var look_dir = Input.get_axis("look_up", "look_down")
@@ -301,6 +311,7 @@ func handle_hazard_collisions() -> void:
 
 func die() -> void:
 	if is_bat_mode:
+		play_bat_hurt_sfx()
 		toggle_bat_mode()
 		
 	velocity = Vector2.ZERO
