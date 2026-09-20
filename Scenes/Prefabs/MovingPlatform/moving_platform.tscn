@@ -19,8 +19,8 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="." unique_id=2021665693]
-position = Vector2(71.62164, 0)
-progress = 71.624794
+position = Vector2(185.63481, 0)
+progress = 185.76057
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatformPathFollow2D" unique_id=1070380355]
 collision_layer = 7
