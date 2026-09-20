@@ -428,9 +428,11 @@ tile_set = SubResource("TileSet_ub1st")
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("26_gvmtn")]
 position = Vector2(182, 1004)
 
-[node name="ReferenceTomato" parent="TomatoSpawners/TomatoSpawner" index="1" unique_id=1072452538]
-stem_color = Color(0.5, 1, 0.39999998, 1)
-tomato_splat_blob_color = Color(1, 0.7, 0.7, 1)
+[node name="TomatoSpawner2" parent="TomatoSpawners" index="1" unique_id=834918778 instance=ExtResource("26_gvmtn")]
+position = Vector2(1645, 1002)
+
+[node name="TomatoSpawner3" parent="TomatoSpawners" index="2" unique_id=916843930 instance=ExtResource("26_gvmtn")]
+position = Vector2(1387, 555)
 
 [node name="CanvasModulate" parent="." index="5" unique_id=1559591102]
 position = Vector2(0, 0)
@@ -438,5 +440,4 @@ position = Vector2(0, 0)
 [node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
 visible = false
 position = Vector2(484, 930)
-
-[editable path="TomatoSpawners/TomatoSpawner"]
+max_jump_velocity = -700.0
