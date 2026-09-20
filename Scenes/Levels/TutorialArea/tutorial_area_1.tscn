@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_ollvm"]
 [ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="2_ejdja"]
 [ext_resource type="Shader" uid="uid://bxj4fldl7p6xx" path="res://Assets/Shaders/ScreenGlow.gdshader" id="2_hn5iw"]
-[ext_resource type="Script" uid="uid://ltfijow8s25k" path="res://Scenes/Levels/TutorialArea/tutorial_area_1.gd" id="2_wfwci"]
 [ext_resource type="AudioStream" uid="uid://dlcdn2u71au02" path="res://Assets/Music/Exploring_1.mp3" id="3_5hai7"]
 [ext_resource type="Texture2D" uid="uid://bvgjyfvlirowf" path="res://Assets/Sprites/Walls/Area1/Wall2.png" id="3_hn5iw"]
 [ext_resource type="Texture2D" uid="uid://dhogmlm2fewpf" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Lpng.png" id="4_wfwci"]
@@ -392,12 +391,9 @@ sources/12 = SubResource("TileSetAtlasSource_fcq0e")
 tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Vector2i(1, 0)], [23, Vector2i(1, 0)], [22, Vector2i(2, 0)], [23, Vector2i(2, 0)], [22, Vector2i(3, 0)], [23, Vector2i(3, 0)], [22, Vector2i(4, 0)], [23, Vector2i(4, 0)], [22, Vector2i(5, 0)], [23, Vector2i(5, 0)], [22, Vector2i(6, 0)], [23, Vector2i(6, 0)], [22, Vector2i(7, 0)], [23, Vector2i(7, 0)], [22, Vector2i(8, 0)], [23, Vector2i(8, 0)], [22, Vector2i(9, 0)], [23, Vector2i(9, 0)], [22, Vector2i(10, 0)], [23, Vector2i(10, 0)], [22, Vector2i(11, 0)], [23, Vector2i(11, 0)], [22, Vector2i(12, 0)], [23, Vector2i(12, 0)], [22, Vector2i(13, 0)], [23, Vector2i(13, 0)]]
 
 [node name="TutorialArea1" unique_id=1656558072 instance=ExtResource("1_ollvm")]
-script = ExtResource("2_wfwci")
-music = ExtResource("3_5hai7")
 next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.tscn"
-
-[node name="UIContainer" parent="LevelUI" parent_id_path=PackedInt32Array(1470160433) index="0" unique_id=1286426135]
-visible = true
+music_for_this_level = ExtResource("3_5hai7")
+music_volume_db = 15.0
 
 [node name="GlowArea" parent="Glow" parent_id_path=PackedInt32Array(1866471108) index="0" unique_id=377187023]
 material = SubResource("ShaderMaterial_wfwci")
@@ -409,12 +405,8 @@ offset_right = 5499040.0
 offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
 
-[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
-visible = false
-
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
-visible = false
-position = Vector2(326, 971)
+position = Vector2(1972, -703)
 
 [node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
 position = Vector2(562, 972)

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://c788b4cqhx3ve"]
 
 [ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_rd2ai"]
+[ext_resource type="AudioStream" uid="uid://lxdepxjk3kgm" path="res://Assets/Music/Exploring_3.mp3" id="2_5rijx"]
 [ext_resource type="Texture2D" uid="uid://bvihydlq8sfo6" path="res://Assets/Sprites/Walls/Area3/Area3WallRight.png" id="2_gql8q"]
 [ext_resource type="Texture2D" uid="uid://c8jjnaylvq58n" path="res://Assets/Sprites/Walls/Area3/Area1WallLeft.png" id="3_51td1"]
 [ext_resource type="Texture2D" uid="uid://gr06pxruiese" path="res://Assets/Sprites/Walls/Area3/Area3WallBotton.png" id="4_5rijx"]
@@ -841,8 +842,22 @@ sources/3 = SubResource("TileSetAtlasSource_u7hrf")
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_rd2ai")]
 next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel1.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
+music_for_this_level = ExtResource("2_5rijx")
+music_volume_db = -15.0
 
-[node name="TileMap2" type="Node2D" parent="." index="4" unique_id=756145371]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
+position = Vector2(243, 44)
+
+[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
+position = Vector2(240, -24)
+
+[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+position = Vector2(-74, 5)
+
+[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+position = Vector2(1714, 7)
+
+[node name="TileMap2" type="Node2D" parent="." index="9" unique_id=756145371]
 position = Vector2(-320, -35)
 
 [node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap2" index="0" unique_id=885590253]
@@ -852,7 +867,7 @@ tile_set = SubResource("TileSet_boptq")
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap2" index="1" unique_id=915036263]
 
-[node name="TileMap" type="Node2D" parent="." index="5" unique_id=724086731]
+[node name="TileMap" type="Node2D" parent="." index="10" unique_id=724086731]
 position = Vector2(-320, -35)
 
 [node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap" index="0" unique_id=331240937]
@@ -865,18 +880,3 @@ tile_set = SubResource("TileSet_588gj")
 
 [node name="TomatoSpawner" parent="TileMap" index="2" unique_id=665116026 instance=ExtResource("57_51td1")]
 position = Vector2(1008, 140)
-
-[node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
-position = Vector2(243, 44)
-
-[node name="PlayerRespawnPoint" parent="." index="7" unique_id=185332786]
-position = Vector2(240, -24)
-
-[node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
-script = null
-
-[node name="EnterLevelArea" parent="." index="8" unique_id=1882371121]
-position = Vector2(-74, 5)
-
-[node name="ExitLevelArea" parent="." index="9" unique_id=1960829182]
-position = Vector2(1714, 7)

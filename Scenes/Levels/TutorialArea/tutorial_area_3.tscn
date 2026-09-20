@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ofnjrbpj2rdy"]
 
 [ext_resource type="PackedScene" uid="uid://g2nj61hd50vc" path="res://Scenes/Levels/LevelSceneBase.tscn" id="1_r5f4p"]
+[ext_resource type="AudioStream" uid="uid://dlcdn2u71au02" path="res://Assets/Music/Exploring_1.mp3" id="2_621rf"]
 [ext_resource type="Texture2D" uid="uid://qq0k11m76da0" path="res://Assets/Sprites/Walls/Wooden/WoodenBeam_Horizontal_Background.png" id="2_fan2f"]
 [ext_resource type="Texture2D" uid="uid://da64t0s3dg3iy" path="res://Assets/Sprites/Walls/Wooden/WoodenBackgroundBeams.png" id="3_621rf"]
 [ext_resource type="Texture2D" uid="uid://dny8y3avj2bwh" path="res://Assets/Sprites/Walls/Area1/Wall1.png" id="3_nlo6v"]
@@ -662,15 +663,11 @@ _data = {
 }
 point_count = 2
 
-[node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_r5f4p")]
+[node name="TutorialArea3" unique_id=1656558072 instance=ExtResource("1_r5f4p")]
 next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftTransitionArea.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.tscn"
-
-[node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
-visible = false
-
-[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
-visible = false
+music_for_this_level = ExtResource("2_621rf")
+music_volume_db = 15.0
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
@@ -712,12 +709,12 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.03
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(208.99998, -386.9156)
+position = Vector2(209, 852.57294)
 rotation = 0.0022522486
-progress = 1294.9154
+progress = 55.42872
 rotates = false
 
-[node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
+[node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
 scale = Vector2(18, 3)
 collision_layer = 7
 collision_mask = 7

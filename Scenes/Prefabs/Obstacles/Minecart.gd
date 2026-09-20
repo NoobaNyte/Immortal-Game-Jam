@@ -74,8 +74,7 @@ func _update_rotation() -> void:
 
 
 func _on_hit_area_body_entered(body: Node) -> void:
-	print("HitArea touched: ", body.name)
-	
+	#print("HitArea touched: ", body.name)
 	if hit_cooldown_timer > 0.0:
 		return
 
