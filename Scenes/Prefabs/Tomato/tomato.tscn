@@ -91,6 +91,6 @@ texture_scale = 16.71
 
 [node name="TomatoSplatSFX" type="AudioStreamPlayer" parent="." unique_id=1332006458]
 stream = ExtResource("3_fdbju")
-volume_db = -10.0
+volume_db = -15.0
 bus = &"TomatoSplatReverbSFX"
 script = ExtResource("7_fdbju")
