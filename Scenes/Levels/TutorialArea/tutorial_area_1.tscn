@@ -396,6 +396,9 @@ script = ExtResource("2_wfwci")
 music = ExtResource("3_5hai7")
 next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.tscn"
 
+[node name="UIContainer" parent="LevelUI" parent_id_path=PackedInt32Array(1470160433) index="0" unique_id=1286426135]
+visible = true
+
 [node name="GlowArea" parent="Glow" parent_id_path=PackedInt32Array(1866471108) index="0" unique_id=377187023]
 material = SubResource("ShaderMaterial_wfwci")
 
@@ -405,6 +408,9 @@ offset_top = -49999460.0
 offset_right = 5499040.0
 offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
+
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = false
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
 visible = false
@@ -416,7 +422,10 @@ position = Vector2(562, 972)
 [node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
 position = Vector2(-404, 965)
 
-[node name="TileMap" type="Node2D" parent="." index="8" unique_id=1988256431]
+[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+position = Vector2(2304, -731)
+
+[node name="TileMap" type="Node2D" parent="." index="9" unique_id=1988256431]
 position = Vector2(288, 953)
 
 [node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap" index="0" unique_id=1931621549]
@@ -426,7 +435,7 @@ tile_set = SubResource("TileSet_ub1st")
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" index="1" unique_id=1184689707]
 
-[node name="TomatoSpawners" type="Node2D" parent="." index="9" unique_id=1968917883]
+[node name="TomatoSpawners" type="Node2D" parent="." index="10" unique_id=1968917883]
 
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("26_gvmtn")]
 position = Vector2(190, 1028)
@@ -439,6 +448,3 @@ position = Vector2(1387, 579)
 
 [node name="TomatoSpawner4" parent="TomatoSpawners" index="3" unique_id=2130624422 instance=ExtResource("26_gvmtn")]
 position = Vector2(470, -62)
-
-[node name="ExitLevelArea" parent="." index="10" unique_id=1960829182]
-position = Vector2(2304, -731)

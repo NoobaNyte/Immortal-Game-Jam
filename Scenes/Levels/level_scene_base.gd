@@ -9,6 +9,7 @@ class_name LevelSceneBase
 @export_file_path var previous_level_scene_file_path
 
 func _ready() -> void:
+	show()
 	player_character.show()
 	enter_level_area.body_entered.connect(_on_enter_level_area_entered)
 	exit_level_area.body_entered.connect(_on_exit_level_area_entered)

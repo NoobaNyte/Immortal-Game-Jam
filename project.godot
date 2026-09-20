@@ -43,6 +43,7 @@ folder_colors={
 [global_group]
 
 Grabbable=""
+MovingObject="tomat o splat checks if collider has this group and reparents to this if so"
 
 [input]
 

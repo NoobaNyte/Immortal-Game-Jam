@@ -6,15 +6,17 @@ extends CharacterBody2D
 @export var max_fall_speed: float = 600.0
 
 # --- KNOCKBACK SETTINGS ---
-@export var knockback_speed: float = 500.0   # horizontal punch, applied in direction of travel
+@export var knockback_speed: float = 500.0 # horizontal punch, applied in direction of travel
 @export var knockback_up_speed: float = -250.0 # negative = upward pop
-@export var hit_cooldown: float = 0.25         # prevents re-hitting the same overlap every frame
+@export var hit_cooldown: float = 0.25 # prevents re-hitting the same overlap every frame
 
 # --- SLOPE HANDLING SETTINGS ---
-@export var floor_max_angle_degrees: float = 65.0  # steeper than this counts as a wall (triggers the bounce below)
-@export var floor_snap_distance: float = 8.0        # keeps the cart glued to the floor across small bumps/tile seams
-@export var safe_margin_distance: float = 0.5       # extra slack for collision detection at tile seams (default is 0.08, quite tight)
+@export var floor_max_angle_degrees: float = 65.0 # steeper than this counts as a wall (triggers the bounce below)
+@export var floor_snap_distance: float = 8.0 # keeps the cart glued to the floor across small bumps/tile seams
+@export var safe_margin_distance: float = 0.5 # extra slack for collision detection at tile seams (default is 0.08, quite tight)
 
+
+@export var minecart_hit_sfx_node_parent: Node
 # --- STATE ---
 var direction: int = 1
 var hit_cooldown_timer: float = 0.0
@@ -72,13 +74,29 @@ func _update_rotation() -> void:
 
 
 func _on_hit_area_body_entered(body: Node) -> void:
-	
 	print("HitArea touched: ", body.name)
 	
 	if hit_cooldown_timer > 0.0:
 		return
 
 	if body.has_method("apply_knockback"):
+		play_minecart_hit_sfx()
 		var knock_vector := Vector2(direction * knockback_speed * speed, knockback_up_speed)
 		body.apply_knockback(knock_vector)
 		hit_cooldown_timer = hit_cooldown
+
+func play_minecart_hit_sfx():
+	if not minecart_hit_sfx_node_parent:
+		return
+		
+	# Get all audio player children from the parent node
+	var sfx_children = minecart_hit_sfx_node_parent.get_children()
+	if sfx_children.is_empty():
+		return
+		
+	# Pick a random node from the list
+	var random_sfx = sfx_children.pick_random() as AudioStreamPlayer
+	if random_sfx:
+		# Apply random pitch variation and play
+		random_sfx.pitch_scale = randf_range(0.9, 1.1)
+		random_sfx.play()

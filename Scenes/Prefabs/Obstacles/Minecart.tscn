@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://ccrg2aotvbdpl" path="res://Assets/Sprites/Walls/Wooden/Minecart.png" id="1_83o03"]
 [ext_resource type="Script" uid="uid://77o0ge8lf7gk" path="res://Scenes/Prefabs/Obstacles/Minecart.gd" id="1_pr0e8"]
+[ext_resource type="AudioStream" uid="uid://b32nnk5pkaq2o" path="res://Assets/SFX/Minecart_1.mp3" id="3_l3xhm"]
+[ext_resource type="AudioStream" uid="uid://bxstpy73lpl4e" path="res://Assets/SFX/Minecart_2.mp3" id="4_xti31"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5obs"]
 radius = 7.0
@@ -10,13 +12,14 @@ height = 54.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pr0e8"]
 size = Vector2(49, 13)
 
-[node name="Minecart" type="CharacterBody2D" unique_id=1874672753]
+[node name="Minecart" type="CharacterBody2D" unique_id=1874672753 node_paths=PackedStringArray("minecart_hit_sfx_node_parent") groups=["MovingObject"]]
 scale = Vector2(2, 2)
 floor_max_angle = 1.1362094
 floor_snap_length = 0.0
 script = ExtResource("1_pr0e8")
 speed = 300.0
 knockback_speed = 3.0
+minecart_hit_sfx_node_parent = NodePath("MinecartHitSFX")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=211266758]
 position = Vector2(-1, 6)
@@ -49,3 +52,17 @@ shape = SubResource("RectangleShape2D_pr0e8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=44110590]
 texture = ExtResource("1_83o03")
+
+[node name="MinecartHitSFX" type="Node" parent="." unique_id=1548078291]
+
+[node name="MinecartHitSFX1" type="AudioStreamPlayer" parent="MinecartHitSFX" unique_id=1809725672]
+stream = ExtResource("3_l3xhm")
+volume_db = -13.0
+max_polyphony = 5
+bus = &"TomatoSplatReverbSFX"
+
+[node name="MinecartHitSFX2" type="AudioStreamPlayer" parent="MinecartHitSFX" unique_id=2119427580]
+stream = ExtResource("4_xti31")
+volume_db = -13.0
+max_polyphony = 5
+bus = &"TomatoSplatReverbSFX"
