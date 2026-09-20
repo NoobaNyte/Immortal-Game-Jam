@@ -200,6 +200,7 @@ collision_layer = 2
 script = ExtResource("1_aylpn")
 max_jump_velocity = -700.0
 throw_speed = 800.0
+death_hang_time = 1.0
 offset_idle_right = Vector2(-28.8, -8.1)
 offset_idle_left = Vector2(-31, -9)
 offset_run_right = Vector2(-22.05, 0)

@@ -28,11 +28,18 @@ var is_item_busy: bool = false
 @export var drop_velocity: float = -100.0
 
 # --- KNOCKBACK SETTINGS ---
-@export var knockback_recovery_time: float = 0.3 # how long movement input is locked out after a hit
-@export var knockback_invuln_time: float = 0.5 # cooldown before another knockback can apply
+@export var knockback_recovery_time: float = 0.3
+@export var knockback_invuln_time: float = 0.5
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
 var knockback_invuln_timer: float = 0.0
+
+# --- DEATH SETTINGS ---
+@export_category("Death Settings")
+@export var death_hang_time: float = 2.0
+@export var respawn_flash_count: int = 4
+var is_dying: bool = false
+var death_spin_velocity: float = 0.0 # Add this line
 
 # --- HOLD POINT BOB & SWAY SETTINGS ---
 @export_category("Hold Point Bob & Sway")
@@ -75,7 +82,6 @@ var footstep_timer: float = 0.0
 @export var bat_hurt_pitch_min: float = 0.9
 @export var bat_hurt_pitch_max: float = 1.1
 
-
 # --- CAMERA LOOK SETTINGS ---
 @export var camera_look_offset: float = 120.0
 @export var camera_look_delay: float = 0.6
@@ -116,6 +122,20 @@ func _ready():
 		tomato_hold_point.get_child(0).queue_free()
 
 func _physics_process(delta: float) -> void:
+	# Custom physics for the death tumbling effect
+	if is_dying:
+		velocity.y += gravity * delta
+		anim_sprite.rotation += death_spin_velocity * delta
+		
+		# move_and_collide gives us true physics bouncing without normal sliding rules
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			# Bounce off the surface and lose some momentum
+			velocity = velocity.bounce(collision.get_normal()) * 0.6
+			# Add friction to slow down the spin when hitting the ground
+			death_spin_velocity *= 0.7
+		return
+
 	was_on_floor = is_on_floor()
 	
 	if knockback_invuln_timer > 0.0:
@@ -146,7 +166,7 @@ func _physics_process(delta: float) -> void:
 	update_animations()
 
 func apply_knockback(knock_vector: Vector2) -> void:
-	if knockback_invuln_timer > 0.0:
+	if knockback_invuln_timer > 0.0 or is_dying:
 		return
 	
 	velocity = knock_vector
@@ -306,18 +326,53 @@ func handle_hazard_collisions() -> void:
 					if tile_data: break
 			
 			if tile_data and tile_data.get_custom_data("HurtsPlayer") == true:
-				die()
+				# Pass the exact wall/ceiling/floor normal into the die function
+				die(collision.get_normal())
 				break
 
-func die() -> void:
+func die(hit_normal: Vector2 = Vector2.UP) -> void:
+	if is_dying:
+		return
+		
+	is_dying = true
+	
 	if is_bat_mode:
 		play_bat_hurt_sfx()
-		toggle_bat_mode()
 		
-	velocity = Vector2.ZERO
+	# Calculate a strong physical pop away from the wall/floor, plus some vertical lift
+	var bounce_dir = hit_normal
+	if bounce_dir == Vector2.ZERO:
+		bounce_dir = Vector2.UP
+		
+	velocity = (bounce_dir * 50.0) + Vector2(randf_range(-150.0, 150.0), -350.0)
 	
+	# Give it a fast random spin (clockwise or counter-clockwise)
+	death_spin_velocity = randf_range(5.0, 7.0)
+	if randf() > 0.5:
+		death_spin_velocity *= -1.0
+		
+	# Just wait out the death hang time, the physics process handles the bouncing
+	var tween = create_tween()
+	tween.tween_interval(death_hang_time)
+	tween.tween_callback(_respawn_sequence)
+
+func _respawn_sequence() -> void:
 	if player_respawn_point:
 		global_position = player_respawn_point.global_position
+
+	# Reset visual rotation and kill leftover bounce momentum
+	anim_sprite.rotation = 0.0
+	velocity = Vector2.ZERO
+	
+	if is_bat_mode:
+		toggle_bat_mode()
+	
+	is_dying = false
+	
+	var flash_tween = create_tween()
+	for i in range(respawn_flash_count):
+		flash_tween.tween_property(anim_sprite, "modulate:a", 0.5, 0.1)
+		flash_tween.tween_property(anim_sprite, "modulate:a", 1.0, 0.1)
 
 func play_action_anim(anim_name: String) -> void:
 	is_action_anim_playing = true
@@ -353,6 +408,10 @@ func update_animations() -> void:
 			anim_sprite.play("PlayerIdle")
 
 func _input(event: InputEvent) -> void:
+	# Lock out player inputs if dying
+	if is_dying:
+		return
+		
 	if event.is_action_pressed("toggle_bat_mode"):
 		toggle_bat_mode()
 		
@@ -371,7 +430,7 @@ func toggle_bat_mode() -> void:
 		player_point_light.energy = 0.1
 		collision_shape.shape = bat_collision_shape
 		velocity.y = bat_flap_velocity / 2.0
-		play_bat_flap_sfx() # Plays once when bursting into bat mode as well
+		play_bat_flap_sfx()
 
 		if held_item:
 			throw_item(true)
