@@ -633,6 +633,9 @@ visible = true
 [node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
 position = Vector2(-994, 2177)
 
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = true
+
 [node name="TileMap" type="Node2D" parent="." index="5" unique_id=756145371]
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" index="0" unique_id=915036263]
@@ -647,7 +650,7 @@ tile_set = SubResource("TileSet_14171")
 position = Vector2(767, -2947)
 
 [node name="TomatoSpawner2" parent="TileMap" index="3" unique_id=1740913996 instance=ExtResource("23_bu6tb")]
-position = Vector2(716, -1344)
+position = Vector2(712, -1344)
 
 [node name="TomatoSpawner3" parent="TileMap" index="4" unique_id=209666350 instance=ExtResource("23_bu6tb")]
 position = Vector2(399, -3968)

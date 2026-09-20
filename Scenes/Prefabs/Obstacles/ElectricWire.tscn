@@ -15,12 +15,15 @@ _data = {
 }
 point_count = 25
 
-[sub_resource type="Gradient" id="Gradient_wu3x2"]
-offsets = PackedFloat32Array(0, 0.6188811, 0.6853147)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_606cw"]
+blend_mode = 1
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_maf5t"]
-gradient = SubResource("Gradient_wu3x2")
+[sub_resource type="Gradient" id="Gradient_606cw"]
+offsets = PackedFloat32Array(0, 0.27622378)
+colors = PackedColorArray(1, 0.96160346, 0.430005, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xb4wu"]
+gradient = SubResource("Gradient_606cw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -50,12 +53,9 @@ rotation = 1.2473831
 
 [node name="SparkVisual" type="Node2D" parent="WirePath/SparkFollow" unique_id=1396496595]
 
-[node name="PointLight2D" type="PointLight2D" parent="WirePath/SparkFollow/SparkVisual" unique_id=752520042]
-position = Vector2(0.94815445, 0.31780624)
-scale = Vector2(0.14466758, 0.16198945)
-color = Color(0.79, 0.7107367, 0.110599995, 1)
-energy = 9.76
-texture = SubResource("GradientTexture2D_maf5t")
+[node name="Sprite2D" type="Sprite2D" parent="WirePath/SparkFollow/SparkVisual" unique_id=1150460052]
+material = SubResource("CanvasItemMaterial_606cw")
+texture = SubResource("GradientTexture2D_xb4wu")
 
 [node name="CycleTimer" type="Timer" parent="." unique_id=1553719650]
 
