@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="24_kvo0j"]
 [ext_resource type="Texture2D" uid="uid://dnyfw26w0gyd3" path="res://Assets/Sprites/Walls/Area1/Area1Platform2x1_Rpng.png" id="25_4sh51"]
 [ext_resource type="PackedScene" uid="uid://d3glw13115soc" path="res://Scenes/Prefabs/Tomato/tomato_spawner.tscn" id="26_gvmtn"]
-[ext_resource type="PackedScene" uid="uid://cxqsdn3fbk4ks" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.tscn" id="30_rlv20"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wfwci"]
 shader = ExtResource("2_hn5iw")
@@ -440,10 +439,5 @@ visible = false
 position = Vector2(0, 0)
 
 [node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
-visible = false
-position = Vector2(484, 930)
+position = Vector2(247, 953)
 max_jump_velocity = -700.0
-
-[node name="MovingPlatform" parent="." index="7" unique_id=796250135 instance=ExtResource("30_rlv20")]
-position = Vector2(419, 982)
-speed = 0.2

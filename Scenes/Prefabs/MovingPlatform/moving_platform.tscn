@@ -9,21 +9,26 @@ _data = {
 }
 point_count = 2
 
-[node name="MovingPlatform" type="Node2D" unique_id=796250135 node_paths=PackedStringArray("moving_platform_sprite", "moving_platform_path_follow")]
+[node name="MovingPlatform" type="Node2D" unique_id=796250135 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow")]
 script = ExtResource("1_bpoen")
 moving_platform_texture = ExtResource("2_bpoen")
-moving_platform_sprite = NodePath("Path2D/MovingPlatformPathFollow2D/MovingPlatform/MovingPlatformSprite")
+animatable_body = NodePath("Path2D/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody")
+moving_platform_sprite = NodePath("Path2D/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/MovingPlatformSprite")
+moving_platform_collision_polygon = NodePath("Path2D/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/CollisionPolygon2D")
 moving_platform_path_follow = NodePath("Path2D/MovingPlatformPathFollow2D")
-speed = null
 
 [node name="Path2D" type="Path2D" parent="." unique_id=629316442]
 curve = SubResource("Curve2D_bpoen")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=2021665693]
 
-[node name="MovingPlatform" type="RigidBody2D" parent="Path2D/MovingPlatformPathFollow2D" unique_id=1774062453]
-freeze = true
-freeze_mode = 1
+[node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="Path2D/MovingPlatformPathFollow2D" unique_id=1070380355]
+collision_layer = 7
+collision_mask = 7
+sync_to_physics = false
 
-[node name="MovingPlatformSprite" type="Sprite2D" parent="Path2D/MovingPlatformPathFollow2D/MovingPlatform" unique_id=1326102084]
+[node name="MovingPlatformSprite" type="Sprite2D" parent="Path2D/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" unique_id=1326102084]
 texture = ExtResource("2_bpoen")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" unique_id=886111199]
+polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
