@@ -378,9 +378,6 @@ point_count = 2
 
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_6r306")]
 
-[node name="CanvasModulate" parent="." index="2" unique_id=1559591102]
-visible = false
-
 [node name="TileMap" type="Node2D" parent="." index="3" unique_id=756145371]
 position = Vector2(2, 8)
 
@@ -393,19 +390,7 @@ tile_map_data = PackedByteArray("AAD7/wEAKAACAAAAAAD8/wEAKAACAAAAAAD9/wEAKAACAAA
 tile_set = SubResource("TileSet_3rx8j")
 
 [node name="TomatoSpawner" parent="TileMap" index="2" unique_id=665116026 instance=ExtResource("57_c4u50")]
-position = Vector2(163, -1368)
-
-[node name="PlayerCharacter" parent="." index="4" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
-position = Vector2(-1032, -4)
-throw_speed = 600.0
-offset_idle_right = Vector2(8, 0)
-offset_idle_left = Vector2(-8, 0)
-offset_run_right = Vector2(8, 0)
-offset_run_left = Vector2(-8, 0)
-offset_jump_right = Vector2(8, 0)
-offset_jump_left = Vector2(-8, 0)
-footstep_interval = 0.3
-player_respawn_point = NodePath("../PlayerRespawnPoint")
+position = Vector2(161, -1331)
 
 [node name="Minecarts" type="Node" parent="." index="5" unique_id=863749408]
 
@@ -424,7 +409,7 @@ gravity = 500.0
 max_fall_speed = 900.0
 
 [node name="TomatoSpawner" parent="Minecarts" index="3" unique_id=1304086157 instance=ExtResource("57_c4u50")]
-position = Vector2(324, -2585)
+position = Vector2(323, -2539)
 
 [node name="Wires" type="Node" parent="." index="6" unique_id=1077378986]
 
@@ -525,14 +510,23 @@ rotation = 1.2980729
 [node name="PointB" parent="Wires/ElectricWire7" index="5" unique_id=1801364618]
 position = Vector2(264, 474)
 
-[node name="PlayerRespawnPoint" parent="." index="7" unique_id=185332786]
+[node name="PlayerCharacter" parent="." index="7" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+position = Vector2(-1032, -4)
+throw_speed = 600.0
+offset_idle_right = Vector2(8, 0)
+offset_idle_left = Vector2(-8, 0)
+offset_run_right = Vector2(8, 0)
+offset_run_left = Vector2(-8, 0)
+offset_jump_right = Vector2(8, 0)
+offset_jump_left = Vector2(-8, 0)
+footstep_interval = 0.3
+player_respawn_point = NodePath("../PlayerRespawnPoint")
+
+[node name="PlayerRespawnPoint" parent="." index="8" unique_id=185332786]
 position = Vector2(-817, 6)
 
-[node name="EnterLevelArea" parent="." index="8" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="9" unique_id=1882371121]
 position = Vector2(-1260, -9)
-
-[node name="ExitLevelArea" parent="." index="9" unique_id=1960829182]
-position = Vector2(1459, -3147)
 
 [node name="MovingPlatforms" type="Node" parent="." index="10" unique_id=1596185807]
 
@@ -548,8 +542,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(398.99133, -101.03544)
-progress = 2.2531693
+position = Vector2(69.98226, -687.11127)
+progress = 931.0781
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
@@ -574,9 +568,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.992805, 185.53171)
+position = Vector2(79.31115, -333.22092)
 rotation = -0.002824851
-progress = 5.5441813
+progress = 524.22095
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970]
@@ -591,7 +585,7 @@ texture = ExtResource("29_sxqpp")
 polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
 
 [node name="TomatoSpawner" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="1" unique_id=154178562 instance=ExtResource("57_c4u50")]
-position = Vector2(0, -45.1)
+position = Vector2(0, -18.015)
 rotation = 0.002824851
 
 [node name="MovingPlatform3" parent="MovingPlatforms" index="2" unique_id=333686768 instance=ExtResource("23_x8q0e")]
@@ -600,9 +594,12 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(31, -40.82396)
-progress = 66.17614
+position = Vector2(0.32019594, 0)
+progress = 0.47600275
 rotates = false
+
+[node name="ExitLevelArea" parent="." index="11" unique_id=1960829182]
+position = Vector2(1459, -3147)
 
 [editable path="Wires/ElectricWire2"]
 [editable path="Wires/ElectricWire3"]

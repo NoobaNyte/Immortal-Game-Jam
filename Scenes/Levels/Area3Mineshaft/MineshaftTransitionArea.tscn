@@ -862,4 +862,7 @@ tile_set = SubResource("TileSet_d17sx")
 tile_set = SubResource("TileSet_588gj")
 
 [node name="TomatoSpawner" parent="TileMap" index="2" unique_id=665116026 instance=ExtResource("57_51td1")]
-position = Vector2(595, 87)
+position = Vector2(543, 140)
+
+[node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
+position = Vector2(-242, 46)
