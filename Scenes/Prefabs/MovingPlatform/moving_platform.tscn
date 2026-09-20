@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cxqsdn3fbk4ks"]
+
+[ext_resource type="Script" uid="uid://dcmb4idn33dp3" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.gd" id="1_bpoen"]
+[ext_resource type="Texture2D" uid="uid://w2ar0qmkrj4j" path="res://Assets/Sprites/Walls/Wooden/Wooden_PassThroughPlatform.png" id="2_bpoen"]
+
+[sub_resource type="Curve2D" id="Curve2D_bpoen"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[node name="MovingPlatform" type="Node2D" unique_id=796250135 node_paths=PackedStringArray("moving_platform_sprite", "moving_platform_path_follow")]
+script = ExtResource("1_bpoen")
+moving_platform_texture = ExtResource("2_bpoen")
+moving_platform_sprite = NodePath("Path2D/MovingPlatformPathFollow2D/MovingPlatform/MovingPlatformSprite")
+moving_platform_path_follow = NodePath("Path2D/MovingPlatformPathFollow2D")
+speed = null
+
+[node name="Path2D" type="Path2D" parent="." unique_id=629316442]
+curve = SubResource("Curve2D_bpoen")
+
+[node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=2021665693]
+
+[node name="MovingPlatform" type="RigidBody2D" parent="Path2D/MovingPlatformPathFollow2D" unique_id=1774062453]
+freeze = true
+freeze_mode = 1
+
+[node name="MovingPlatformSprite" type="Sprite2D" parent="Path2D/MovingPlatformPathFollow2D/MovingPlatform" unique_id=1326102084]
+texture = ExtResource("2_bpoen")
