@@ -174,7 +174,7 @@ func _finish_intro_sequence() -> void:
     if camera_tween:
         camera_tween.kill()
         
-    Global.load_next_level.emit(level_to_go_to_after_intro_scene_file_path, 0, 2)
+    Global.load_next_level.emit(level_to_go_to_after_intro_scene_file_path, 0, 0.5)
 
 # --- FADE HELPERS ---
 

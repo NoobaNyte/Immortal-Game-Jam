@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgrio8px7bprr" path="res://Scenes/Main/main.gd" id="1_2w1kt"]
 [ext_resource type="PackedScene" uid="uid://dvtcjt4v671wf" path="res://Scenes/LoadingScreens/LoadingScreen/loading_screen.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://dkvyqnntbj6ox" path="res://Scenes/Levels/Intro/intro_scene.tscn" id="2_qw60k"]
+[ext_resource type="PackedScene" uid="uid://gh40gh4hi3q4" path="res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn" id="2_qw60k"]
 
 [node name="Main" type="Node2D" unique_id=753246136]
 script = ExtResource("1_2w1kt")
@@ -12,7 +12,7 @@ editor_description = "This node parent holds the currently active level. Use Glo
 
 Use @export_file_path var x_scene_file_path at the top to assign your file path variable in the inspector easily"
 
-[node name="IntroScene" parent="LevelContainer" unique_id=1056356550 instance=ExtResource("2_qw60k")]
+[node name="TutorialArea1" parent="LevelContainer" unique_id=1656558072 instance=ExtResource("2_qw60k")]
 
 [node name="PersistentUI" type="CanvasLayer" parent="." unique_id=361144630]
 layer = 100

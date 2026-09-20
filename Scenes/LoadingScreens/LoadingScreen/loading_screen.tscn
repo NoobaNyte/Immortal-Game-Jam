@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dvtcjt4v671wf"]
 
-[ext_resource type="Script" uid="uid://786d55wtt5iv" path="res://Utility/base_ui_element.gd" id="1_hvfs7"]
+[ext_resource type="Script" uid="uid://thgcyev4s5rc" path="res://Scenes/LoadingScreens/LoadingScreen/loading_screen.gd" id="1_cfrkh"]
+[ext_resource type="Texture2D" uid="uid://bwhlfv26psqal" path="res://Assets/Sprites/LoadingScreen/FullTomatoBlank.png" id="2_cfrkh"]
 
 [node name="LoadingScreen" type="Control" unique_id=939684719]
 editor_description = "This scene contains all the visual contents of a loading screen and is in the main scene persistent UI canvas layer node to always be available to use to have this scenes visuals overlay and load scenes under it"
@@ -13,7 +14,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("1_hvfs7")
+script = ExtResource("1_cfrkh")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1372736607]
 layout_mode = 1
@@ -26,6 +27,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="RichTextLabel" parent="." unique_id=1221821085]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,8 +36,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 100
-text = "LOADING..."
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TomatoSprite" type="Sprite2D" parent="." unique_id=156634689]
+position = Vector2(1787, 943)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_cfrkh")
