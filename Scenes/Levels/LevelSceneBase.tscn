@@ -12,6 +12,13 @@ shader_parameter/threshold = 0.0
 shader_parameter/soft_edge = 0.0
 shader_parameter/glow_color_tint = Color(1, 1, 1, 1)
 
+[sub_resource type="Gradient" id="Gradient_sd6i1"]
+offsets = PackedFloat32Array(0.0034013605, 1)
+colors = PackedColorArray(0.24044561, 0.2800274, 0.3731386, 1, 0.29636478, 0.37592244, 0.65872014, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ax51"]
+gradient = SubResource("Gradient_sd6i1")
+
 [sub_resource type="LabelSettings" id="LabelSettings_2ax51"]
 font_size = 40
 
@@ -49,6 +56,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.023529412, 0.043137256, 0.05882353, 1)
 metadata/_edit_lock_ = true
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=678310874]
+scale = Vector2(40, 40)
+texture = SubResource("GradientTexture2D_2ax51")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1559591102]
 color = Color(0, 0, 0, 1)
