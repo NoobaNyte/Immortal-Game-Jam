@@ -718,9 +718,9 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.03
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(209.00002, 581.10376)
+position = Vector2(209, 895.8795)
 rotation = 0.0022522486
-progress = 326.89706
+progress = 12.124043
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
