@@ -451,15 +451,6 @@ point_count = 2
 
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
 
-[node name="DarkBackground" parent="." index="1" unique_id=871170875]
-visible = false
-
-[node name="BackgroundSprite" parent="." index="2" unique_id=678310874]
-visible = false
-
-[node name="CanvasModulate" parent="." index="3" unique_id=1559591102]
-visible = false
-
 [node name="PlayerCharacter" parent="." index="4" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
 player_respawn_point = NodePath("../PlayerRespawnPoint")
@@ -497,10 +488,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(181.27556, 0.2859236)
-rotation = 0.0015772857
+position = Vector2(1400.5762, 2.2091105)
+rotation = 0.0015772858
 scale = Vector2(2, 1.5)
-progress = 181.27858
+progress = 1400.5746
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
