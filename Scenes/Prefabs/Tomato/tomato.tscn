@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://k1c0424pddyt" path="res://Assets/SFX/TomatoSplat.mp3" id="3_fdbju"]
 [ext_resource type="Texture2D" uid="uid://clkurksxptdu6" path="res://Assets/Sprites/Tomato/TomatoStemTopStroke.png" id="4_fdbju"]
 [ext_resource type="Script" uid="uid://imnwlw8wdn0b" path="res://Scenes/Prefabs/Tomato/tomato_splat_sfx.gd" id="7_fdbju"]
+[ext_resource type="AudioStream" uid="uid://b4gbe6yx00xft" path="res://Assets/SFX/PickTomato.mp3" id="8_umtpt"]
 
 [sub_resource type="Gradient" id="Gradient_hn5iw"]
 interpolation_mode = 2
@@ -92,5 +93,11 @@ texture_scale = 16.71
 [node name="TomatoSplatSFX" type="AudioStreamPlayer" parent="." unique_id=1332006458]
 stream = ExtResource("3_fdbju")
 volume_db = -15.0
+bus = &"TomatoSplatReverbSFX"
+script = ExtResource("7_fdbju")
+
+[node name="PickTomatoSFX" type="AudioStreamPlayer" parent="." unique_id=1009675868]
+stream = ExtResource("8_umtpt")
+volume_db = -10.0
 bus = &"TomatoSplatReverbSFX"
 script = ExtResource("7_fdbju")

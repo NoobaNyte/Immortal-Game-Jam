@@ -18,7 +18,6 @@ extends RigidBody2D
 
 @export var splat_prefab: PackedScene
 
-
 @export var tomato_splat_blob_color: Color
 
 @export var tomato_splat_sfx_player: AudioStreamPlayer
@@ -27,6 +26,8 @@ extends RigidBody2D
 @onready var tomato_base_fill: Polygon2D = $Mesh/TomatoBaseFill
 @onready var tomato_stem_bottom_fill: Polygon2D = $Mesh/TomatoStemBottomFill
 @onready var tomato_stem_top_fill: Polygon2D = $Mesh/TomatoStemTopFill
+
+@onready var pick_tomato_sfx: AudioStreamPlayer = $PickTomatoSFX
 
 
 ## set to true by player_character.gd
