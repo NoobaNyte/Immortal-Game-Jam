@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://l6y4f84oasg3" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone4.wav" id="30_wsdyi"]
 [ext_resource type="AudioStream" uid="uid://t2o5w121klwk" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone5.wav" id="31_rw8bh"]
 [ext_resource type="AudioStream" uid="uid://bmt2aqe5dxjdf" path="res://Assets/SFX/PlayerFootsteps/Footstep_Stone6.wav" id="32_o1312"]
+[ext_resource type="AudioStream" uid="uid://duqqs4r36gx04" path="res://Assets/SFX/BatFlap.mp3" id="35_wsdyi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylpn"]
 radius = 42.0
@@ -193,8 +194,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 
-[node name="PlayerCharacter" type="CharacterBody2D" unique_id=2099930869 node_paths=PackedStringArray("player_footsteps_node_parent")]
-position = Vector2(-3, 0)
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=2099930869 node_paths=PackedStringArray("player_footsteps_node_parent", "bat_flap_sfx")]
 collision_layer = 2
 script = ExtResource("1_aylpn")
 throw_speed = 800.0
@@ -206,6 +206,9 @@ offset_jump_right = Vector2(-35.1, -30)
 offset_jump_left = Vector2(-47.3, -30)
 player_footsteps_node_parent = NodePath("SFX/PlayerFootsteps")
 footstep_interval = 0.38
+bat_flap_sfx = NodePath("SFX/BatFlap")
+bat_flap_pitch_min = 1.5
+bat_flap_pitch_max = 1.7
 player_collision_shape = ExtResource("4_2bhw3")
 bat_collision_shape = ExtResource("5_pe1i5")
 
@@ -284,6 +287,11 @@ bus = &"ReverbSFX"
 stream = ExtResource("32_o1312")
 volume_db = -16.0
 max_polyphony = 10
+bus = &"ReverbSFX"
+
+[node name="BatFlap" type="AudioStreamPlayer" parent="SFX" unique_id=1654975032]
+stream = ExtResource("35_wsdyi")
+volume_db = -6.0
 bus = &"ReverbSFX"
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]
