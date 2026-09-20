@@ -11,6 +11,7 @@ extends Area2D
 @export var on_duration: float = 2.0
 @export var off_duration: float = 2.0
 @export var start_active: bool = true
+@export var start_offset: float = 0.0   # seconds to fast-forward this wire's cycle at start (for desyncing wires)
 
 # --- SPARK SETTINGS ---
 @export var spark_speed: float = 300.0 # pixels/sec traveling along the wire
@@ -46,10 +47,23 @@ func _ready() -> void:
 	cycle_timer.timeout.connect(_on_cycle_timer_timeout)
 
 	is_active = start_active
-	_update_active_state()
-
 	cycle_timer.one_shot = true
-	cycle_timer.wait_time = on_duration if is_active else off_duration
+
+	# Fast-forward through the on/off cycle by start_offset seconds so wires
+	# with identical durations can be desynced from each other.
+	var cycle_length: float = on_duration + off_duration
+	var offset: float = fmod(start_offset, cycle_length)
+	if offset < 0.0:
+		offset += cycle_length
+
+	var phase_duration: float = on_duration if is_active else off_duration
+	while offset >= phase_duration:
+		offset -= phase_duration
+		is_active = !is_active
+		phase_duration = on_duration if is_active else off_duration
+
+	_update_active_state()
+	cycle_timer.wait_time = phase_duration - offset
 	cycle_timer.start()
 
 
