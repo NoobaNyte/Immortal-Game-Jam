@@ -466,11 +466,17 @@ tile_set = SubResource("TileSet_d0yl5")
 visible = false
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
-position = Vector2(2792, 712)
+position = Vector2(646, 956)
 player_respawn_point = NodePath("../PlayerRespawnPoint")
 
 [node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
-position = Vector2(1483, 649)
+position = Vector2(1540, 648)
 
 [node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
 script = ExtResource("33_epeqh")
+
+[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+position = Vector2(169, 1001)
+
+[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+position = Vector2(5233, 364)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bxj4fldl7p6xx" path="res://Assets/Shaders/ScreenGlow.gdshader" id="1_0d02i"]
 [ext_resource type="PackedScene" uid="uid://cu5ggdj5seqik" path="res://Scenes/Prefabs/Player/player_character.tscn" id="1_d74yr"]
+[ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="3_2ax51"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d74yr"]
 shader = ExtResource("1_0d02i")
@@ -92,6 +93,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "EnterLevelArea"
 label_settings = SubResource("LabelSettings_2ax51")
+script = ExtResource("3_2ax51")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterLevelArea" unique_id=1850457086]
 shape = SubResource("RectangleShape2D_0d02i")
@@ -115,6 +117,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "ExitLevelArea"
 label_settings = SubResource("LabelSettings_0d02i")
+script = ExtResource("3_2ax51")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitLevelArea" unique_id=350067906]
 shape = SubResource("RectangleShape2D_2ax51")

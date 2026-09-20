@@ -440,7 +440,7 @@ visible = false
 position = Vector2(0, 0)
 
 [node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
-position = Vector2(247, 953)
+position = Vector2(1869, -715)
 
 [node name="EnterLevelArea" parent="." index="8" unique_id=1882371121]
 position = Vector2(-404, 965)
