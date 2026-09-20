@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dfkpyc52wnwyv"]
 
 [ext_resource type="Script" uid="uid://drb4ll8qllqgw" path="res://Scenes/LoadingScreens/BootScreen/boot_screen.gd" id="1_fe8am"]
+[ext_resource type="Theme" uid="uid://qh626mmnp1ab" path="res://Assets/Themes/main_font.tres" id="2_6v6g2"]
+[ext_resource type="Texture2D" uid="uid://bwhlfv26psqal" path="res://Assets/Sprites/LoadingScreen/FullTomatoBlank.png" id="2_joknl"]
 
 [node name="BootScreen" type="Control" unique_id=1639633984]
 editor_description = "This scene loads the main scene and swaps to it when it is done loading. It should be the default Main scene that runs when you hit play.
@@ -35,9 +37,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("2_6v6g2")
 theme_override_font_sizes/normal_font_size = 100
 text = "LOADING..."
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TomatoSprite" type="Sprite2D" parent="." unique_id=1458966916]
+position = Vector2(1787, 943)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_joknl")
