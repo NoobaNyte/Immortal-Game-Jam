@@ -257,41 +257,41 @@ texture_scale = 3.18
 stream = ExtResource("27_676lg")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="FootstepStone2" type="AudioStreamPlayer" parent="SFX/PlayerFootsteps" unique_id=422072864]
 stream = ExtResource("28_651jw")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="FootstepStone3" type="AudioStreamPlayer" parent="SFX/PlayerFootsteps" unique_id=980758857]
 stream = ExtResource("29_qe1fk")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="FootstepStone4" type="AudioStreamPlayer" parent="SFX/PlayerFootsteps" unique_id=795910345]
 stream = ExtResource("30_wsdyi")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="FootstepStone5" type="AudioStreamPlayer" parent="SFX/PlayerFootsteps" unique_id=1822516373]
 stream = ExtResource("31_rw8bh")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="FootstepStone6" type="AudioStreamPlayer" parent="SFX/PlayerFootsteps" unique_id=1586671304]
 stream = ExtResource("32_o1312")
 volume_db = -16.0
 max_polyphony = 10
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [node name="BatFlap" type="AudioStreamPlayer" parent="SFX" unique_id=1654975032]
 stream = ExtResource("35_wsdyi")
 volume_db = -6.0
-bus = &"ReverbSFX"
+bus = &"DefaultReverbSFX"
 
 [connection signal="area_entered" from="PickupArea" to="." method="_on_pickup_area_area_entered"]

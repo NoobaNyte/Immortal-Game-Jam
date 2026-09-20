@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://eqeivimyxhdm" path="res://Assets/Sprites/Tomato/TomatoStemBottomStroke.png" id="3_74neo"]
 [ext_resource type="AudioStream" uid="uid://k1c0424pddyt" path="res://Assets/SFX/TomatoSplat.mp3" id="3_fdbju"]
 [ext_resource type="Texture2D" uid="uid://clkurksxptdu6" path="res://Assets/Sprites/Tomato/TomatoStemTopStroke.png" id="4_fdbju"]
+[ext_resource type="Script" uid="uid://imnwlw8wdn0b" path="res://Scenes/Prefabs/Tomato/tomato_splat_sfx.gd" id="7_fdbju"]
 
 [sub_resource type="Gradient" id="Gradient_hn5iw"]
 interpolation_mode = 2
@@ -31,7 +32,7 @@ fill_to = Vector2(0.35853657, 0.16829269)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ahql"]
 radius = 23.021729
 
-[node name="Tomato" type="RigidBody2D" unique_id=1072452538 groups=["Grabbable"]]
+[node name="Tomato" type="RigidBody2D" unique_id=1072452538 node_paths=PackedStringArray("tomato_splat_sfx_player") groups=["Grabbable"]]
 collision_layer = 4
 mass = 0.001
 script = ExtResource("1_8ahql")
@@ -40,7 +41,7 @@ base_color = SubResource("GradientTexture2D_74neo")
 stem_color = Color(0.13000005, 0.78, 0, 1)
 splat_prefab = ExtResource("2_74neo")
 tomato_splat_blob_color = Color(1, 0.53, 0.53, 1)
-tomato_splat_sfx = ExtResource("3_fdbju")
+tomato_splat_sfx_player = NodePath("TomatoSplatSFX")
 
 [node name="Mesh" type="Node2D" parent="." unique_id=303329564]
 
@@ -87,3 +88,9 @@ position = Vector2(6.1035156e-05, -4.7683716e-07)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_if6fp")
 texture_scale = 16.71
+
+[node name="TomatoSplatSFX" type="AudioStreamPlayer" parent="." unique_id=1332006458]
+stream = ExtResource("3_fdbju")
+volume_db = -10.0
+bus = &"TomatoSplatReverbSFX"
+script = ExtResource("7_fdbju")
