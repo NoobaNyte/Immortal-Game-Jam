@@ -449,6 +449,9 @@ func try_pickup() -> void:
 		if body.is_in_group("Grabbable"):
 			held_item = body
 			is_item_busy = true
+
+			if body.is_in_group("Tomato"):
+				body.play_pick_up_tomato_sfx()
 			
 			if held_item is RigidBody2D:
 				held_item.freeze = true

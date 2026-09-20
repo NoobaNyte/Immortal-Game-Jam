@@ -54,7 +54,12 @@ func _update_colors() -> void:
 		tomato_stem_bottom_fill.color = stem_color
 	if tomato_stem_top_fill:
 		tomato_stem_top_fill.color = stem_color
-	
+
+func play_pick_up_tomato_sfx() -> void:
+	if pick_tomato_sfx:
+		pick_tomato_sfx.pitch_scale = randf_range(1.2, 1.5)
+		pick_tomato_sfx.play()
+		
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if being_thrown and state.get_contact_count() > 0:
