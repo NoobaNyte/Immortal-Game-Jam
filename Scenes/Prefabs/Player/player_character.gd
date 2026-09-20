@@ -27,6 +27,13 @@ var is_item_busy: bool = false
 @export var throw_speed: float = 600.0
 @export var drop_velocity: float = -100.0
 
+# --- KNOCKBACK SETTINGS ---
+@export var knockback_recovery_time: float = 0.3   # how long movement input is locked out after a hit
+@export var knockback_invuln_time: float = 0.5      # cooldown before another knockback can apply
+var is_knocked_back: bool = false
+var knockback_timer: float = 0.0
+var knockback_invuln_timer: float = 0.0
+
 # --- HOLD POINT BOB & SWAY SETTINGS ---
 @export_category("Hold Point Bob & Sway")
 @export var bob_run_speed: float = 15.0
@@ -106,9 +113,19 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	was_on_floor = is_on_floor()
 	
+	if knockback_invuln_timer > 0.0:
+		knockback_invuln_timer -= delta
+	
 	handle_gravity(delta)
 	handle_jump(delta)
-	handle_movement(delta)
+	
+	if is_knocked_back:
+		knockback_timer -= delta
+		if knockback_timer <= 0.0:
+			is_knocked_back = false
+	else:
+		handle_movement(delta)
+	
 	handle_camera_look(delta)
 	handle_item_bob_and_sway(delta)
 	handle_footsteps(delta)
@@ -122,6 +139,15 @@ func _physics_process(delta: float) -> void:
 		play_footstep()
 		
 	update_animations()
+
+func apply_knockback(knock_vector: Vector2) -> void:
+	if knockback_invuln_timer > 0.0:
+		return
+	
+	velocity = knock_vector
+	is_knocked_back = true
+	knockback_timer = knockback_recovery_time
+	knockback_invuln_timer = knockback_invuln_time
 
 func handle_gravity(delta: float) -> void:
 	if not is_on_floor():
