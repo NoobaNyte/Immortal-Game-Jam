@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dj60sa4caw0g5" path="res://Assets/Sprites/Walls/Area3/Area3Boulders1.png" id="14_jhlev"]
 [ext_resource type="Texture2D" uid="uid://cpqy7mxjghjeb" path="res://Assets/Sprites/Walls/Area3/A3Walls.png" id="14_s800x"]
 [ext_resource type="Texture2D" uid="uid://ds6qw6ojpxsy8" path="res://Assets/Sprites/Walls/Area3/Area3BackgroundBeams.png" id="15_aemvv"]
+[ext_resource type="Texture2D" uid="uid://c6eihnikw3gv1" path="res://Assets/Sprites/Walls/Area3/Area3Spikes_LeftWall.png" id="15_h17xk"]
+[ext_resource type="Texture2D" uid="uid://ch54lin3ikqds" path="res://Assets/Sprites/Walls/Area3/Area3Spikes_RightWall.png" id="16_x2lfp"]
 [ext_resource type="Texture2D" uid="uid://dfkwinhtbykv7" path="res://Assets/Sprites/Walls/Area3/Area3Platform1x1.png" id="21_p3uwb"]
 [ext_resource type="Texture2D" uid="uid://c1do4xv5dum8t" path="res://Assets/Sprites/Walls/Area3/Area3Platform2x1_L.png" id="22_kuixt"]
 [ext_resource type="Texture2D" uid="uid://dee4odwwkayov" path="res://Assets/Sprites/Walls/Area3/Area3Platform2x1_R.png" id="23_8srmp"]
@@ -284,7 +286,7 @@ texture = ExtResource("13_aemvv")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_3c56i")
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -14.111847, -32, -16.369743)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -14.676323, 15.805275, -10.16053, 6.2092133, 13.547371, -2.2578926, -9.031582, -12.418423, 3.9513168, -32, -14.111847)
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixbx2"]
@@ -356,6 +358,28 @@ texture_region_size = Vector2i(64, 64)
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, -14.111847, -32, -16.369743)
 0:2/0/custom_data_0 = true
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p5j3l"]
+polygon = PackedVector2Array(-32, -32, -24.83685, -32, -25.965797, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wup7o"]
+texture = ExtResource("15_h17xk")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_p5j3l")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, -12.4184265, -32, -12.4184265, -16.36974, 9.596054, -8.467106, -9.031582, 2.8223686, 3.9513168, 11.289478, -14.111847, 20.885532, -14.676323, 32, -32, 32)
+0:0/0/custom_data_0 = true
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ebkp3"]
+polygon = PackedVector2Array(25.965797, -32, 32, -32, 32, 32, 24.272377, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kx42t"]
+texture = ExtResource("16_x2lfp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ebkp3")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(15.240799, -32, 32, -32, 32, 32, 20.32106, 32, -11.8539505, 7.3381615, 12.4184265, -1.1289482, -3.3868408, -10.725006)
+0:0/0/custom_data_0 = true
+
 [sub_resource type="TileSet" id="TileSet_5tw4x"]
 resource_local_to_scene = true
 tile_size = Vector2i(64, 64)
@@ -378,6 +402,8 @@ sources/43 = SubResource("TileSetAtlasSource_4e17u")
 sources/44 = SubResource("TileSetAtlasSource_jhlev")
 sources/45 = SubResource("TileSetAtlasSource_fu648")
 sources/46 = SubResource("TileSetAtlasSource_ixbx2")
+sources/47 = SubResource("TileSetAtlasSource_wup7o")
+sources/48 = SubResource("TileSetAtlasSource_kx42t")
 tile_proxies/coords_level = [[11, Vector2i(0, 0)], [40, Vector2i(0, 0)], [12, Vector2i(0, 0)], [40, Vector2i(1, 0)], [13, Vector2i(0, 0)], [40, Vector2i(2, 0)], [14, Vector2i(0, 0)], [40, Vector2i(3, 0)], [15, Vector2i(0, 0)], [40, Vector2i(4, 0)], [16, Vector2i(0, 0)], [40, Vector2i(5, 0)], [18, Vector2i(0, 0)], [40, Vector2i(6, 0)], [19, Vector2i(0, 0)], [40, Vector2i(7, 0)], [20, Vector2i(0, 0)], [40, Vector2i(8, 0)], [21, Vector2i(0, 0)], [40, Vector2i(9, 0)], [22, Vector2i(0, 0)], [40, Vector2i(10, 0)], [22, Vector2i(1, 0)], [23, Vector2i(1, 0)], [22, Vector2i(2, 0)], [23, Vector2i(2, 0)], [22, Vector2i(3, 0)], [23, Vector2i(3, 0)], [22, Vector2i(4, 0)], [23, Vector2i(4, 0)], [22, Vector2i(5, 0)], [23, Vector2i(5, 0)], [22, Vector2i(6, 0)], [23, Vector2i(6, 0)], [22, Vector2i(7, 0)], [23, Vector2i(7, 0)], [22, Vector2i(8, 0)], [23, Vector2i(8, 0)], [22, Vector2i(9, 0)], [23, Vector2i(9, 0)], [22, Vector2i(10, 0)], [23, Vector2i(10, 0)], [22, Vector2i(11, 0)], [23, Vector2i(11, 0)], [22, Vector2i(12, 0)], [23, Vector2i(12, 0)], [22, Vector2i(13, 0)], [23, Vector2i(13, 0)], [23, Vector2i(0, 0)], [40, Vector2i(11, 0)], [24, Vector2i(0, 0)], [40, Vector2i(0, 1)], [25, Vector2i(0, 0)], [40, Vector2i(1, 1)], [26, Vector2i(0, 0)], [40, Vector2i(2, 1)], [27, Vector2i(0, 0)], [40, Vector2i(3, 1)], [28, Vector2i(0, 0)], [40, Vector2i(4, 1)], [29, Vector2i(0, 0)], [40, Vector2i(5, 1)], [30, Vector2i(0, 0)], [40, Vector2i(6, 1)], [31, Vector2i(0, 0)], [40, Vector2i(7, 1)]]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdtk8"]

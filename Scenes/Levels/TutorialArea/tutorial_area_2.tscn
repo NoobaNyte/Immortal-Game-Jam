@@ -473,6 +473,7 @@ tile_map_data = PackedByteArray("AABJABMAAAABAAIAAABIABEAAAAAAAAAAABIABIAAAAAAAE
 tile_set = SubResource("TileSet_epeqh")
 
 [node name="TomatoSpawners" type="Node2D" parent="." index="8" unique_id=991591883]
+visible = false
 
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("2_hnie4")]
 position = Vector2(2307, 36)
