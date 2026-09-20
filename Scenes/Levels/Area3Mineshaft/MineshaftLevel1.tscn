@@ -427,10 +427,10 @@ position = Vector2(-1260, -9)
 position = Vector2(1506, -3147)
 
 [node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
-position = Vector2(-806.07, 69)
+position = Vector2(-829, 19)
 
 [node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
-position = Vector2(-479, -1494)
+position = Vector2(-1026, 36)
 
 [node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
 position = Vector2(1176, -3002)
@@ -554,8 +554,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(59.600456, -512.86786)
-progress = 745.92267
+position = Vector2(180.56146, -688.23206)
+progress = 1041.624
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
@@ -580,9 +580,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.06253, -522.409)
+position = Vector2(79.53465, -163.1318)
 rotation = -0.002824851
-progress = 713.38556
+progress = 354.13217
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970 groups=["MovingObject"]]
@@ -614,9 +614,9 @@ player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableB
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=162197181]
-position = Vector2(48.89953, -25.743088)
+position = Vector2(47.110096, -779.47833)
 rotation = 0.015398542
-progress = 42.344894
+progress = 796.08295
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform3/MovingPlatformPathFollow2D" index="0" unique_id=1859712914 groups=["MovingObject"]]
