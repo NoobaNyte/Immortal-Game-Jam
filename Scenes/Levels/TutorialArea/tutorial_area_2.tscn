@@ -458,26 +458,7 @@ music_volume_db = 15.0
 [node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
 visible = true
 
-[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
-position = Vector2(622, 974)
-player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
-
-[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
-position = Vector2(-101, 974)
-
-[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
-position = Vector2(5233, 364)
-
-[node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
-position = Vector2(501, 1048)
-
-[node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
-position = Vector2(253, 1048)
-
-[node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
-position = Vector2(5239, 471)
-
-[node name="TileMap" type="Node2D" parent="." index="9" unique_id=2048739067]
+[node name="TileMap" type="Node2D" parent="." index="5" unique_id=2048739067]
 position = Vector2(675, 718)
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" index="0" unique_id=575331040]
@@ -501,10 +482,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(1284.3025, 2.0257132)
+position = Vector2(1235.9152, 1.9493933)
 rotation = 0.0015772858
 scale = Vector2(2, 1.5)
-progress = 1284.3025
+progress = 1235.9152
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7
@@ -516,6 +497,25 @@ texture = ExtResource("25_y1x0p")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" index="1" unique_id=886111199]
 polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
+
+[node name="PlayerCharacter" parent="." index="6" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+position = Vector2(622, 974)
+player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
+
+[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+position = Vector2(-101, 974)
+
+[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+position = Vector2(5233, 364)
+
+[node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
+position = Vector2(501, 1048)
+
+[node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
+position = Vector2(253, 1048)
+
+[node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
+position = Vector2(5239, 471)
 
 [node name="TomatoSpawners" type="Node2D" parent="." index="10" unique_id=991591883]
 
