@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://by1aso6g6mrqv"]
 
 [ext_resource type="Script" uid="uid://bg6iarauqyxih" path="res://Scenes/Prefabs/Obstacles/ElectricWire.gd" id="1_cmb25"]
+[ext_resource type="AudioStream" uid="uid://b6wbwqhel7v88" path="res://Assets/SFX/ElectricitySFX.wav" id="2_8jbdh"]
 
 [sub_resource type="Gradient" id="Gradient_van5o"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -8,7 +9,11 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_maf5t"]
 gradient = SubResource("Gradient_van5o")
 
-[sub_resource type="Curve2D" id="Curve2D_van5o"]
+[sub_resource type="Curve2D" id="Curve2D_8jbdh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.75, 5.221048, 0, 0, 0, 0, 3.5, 10.352762, 0, 0, 0, 0, 5.25, 15.307338, 0, 0, 0, 0, 7, 20, 0, 0, 0, 0, 8.75, 24.350456, 0, 0, 0, 0, 10.5, 28.284271, 0, 0, 0, 0, 12.25, 31.734133, 0, 0, 0, 0, 14, 34.641018, 0, 0, 0, 0, 15.75, 36.95518, 0, 0, 0, 0, 17.5, 38.63703, 0, 0, 0, 0, 19.25, 39.657795, 0, 0, 0, 0, 21, 40, 0, 0, 0, 0, 22.75, 39.657795, 0, 0, 0, 0, 24.5, 38.63703, 0, 0, 0, 0, 26.25, 36.95518, 0, 0, 0, 0, 28, 34.641018, 0, 0, 0, 0, 29.75, 31.734133, 0, 0, 0, 0, 31.5, 28.284271, 0, 0, 0, 0, 33.25, 24.350456, 0, 0, 0, 0, 35, 20, 0, 0, 0, 0, 36.75, 15.307338, 0, 0, 0, 0, 38.5, 10.352762, 0, 0, 0, 0, 40.25, 5.221048, 0, 0, 0, 0, 42, 4.8984254e-15)
+}
+point_count = 25
 
 [sub_resource type="Gradient" id="Gradient_wu3x2"]
 offsets = PackedFloat32Array(0, 0.33673468, 0.5578231)
@@ -29,21 +34,25 @@ spark_speed = 800.0
 
 [node name="WireLine" type="Line2D" parent="." unique_id=399621698]
 position = Vector2(0, 9.536743e-07)
+points = PackedVector2Array(0, 0, 1.75, 5.221048, 3.5, 10.352762, 5.25, 15.307338, 7, 20, 8.75, 24.350456, 10.5, 28.284271, 12.25, 31.734133, 14, 34.641018, 15.75, 36.95518, 17.5, 38.63703, 19.25, 39.657795, 21, 40, 22.75, 39.657795, 24.5, 38.63703, 26.25, 36.95518, 28, 34.641018, 29.75, 31.734133, 31.5, 28.284271, 33.25, 24.350456, 35, 20, 36.75, 15.307338, 38.5, 10.352762, 40.25, 5.221048, 42, 4.8984254e-15)
+width = 4.0
 default_color = Color(0.22, 0.15385333, 0.1298, 1)
 texture = SubResource("GradientTexture1D_maf5t")
 
 [node name="WireCollision" type="CollisionPolygon2D" parent="." unique_id=291888980]
+polygon = PackedVector2Array(-4.7407813, 1.5890234, -2.986637, 6.822382, -1.2236853, 11.991908, 0.5497689, 17.012573, 2.337062, 21.804718, 4.14419, 26.296352, 5.9818954, 30.425938, 7.8700233, 34.14573, 9.846848, 37.42514, 11.988744, 40.249565, 14.44413, 42.594513, 17.435621, 44.316982, 21, 45, 24.564379, 44.316982, 27.55587, 42.594513, 30.011255, 40.249565, 32.153152, 37.42514, 34.12998, 34.14573, 36.018105, 30.425938, 37.855812, 26.296352, 39.662937, 21.804718, 41.45023, 17.012573, 43.223686, 11.991908, 44.986637, 6.822382, 46.74078, 1.5890234, 37.25922, -1.5890234, 35.513363, 3.619714, 33.776314, 8.713616, 32.04977, 13.602102, 30.337063, 18.195282, 28.64419, 22.40456, 26.981895, 26.142605, 25.370024, 29.322535, 23.846848, 31.856897, 22.488745, 33.660797, 21.44413, 34.67955, 20.935621, 34.998608, 21, 35, 21.064379, 34.998608, 20.55587, 34.67955, 19.511255, 33.660797, 18.153152, 31.856897, 16.629976, 29.322535, 15.018105, 26.142605, 13.35581, 22.40456, 11.662938, 18.195282, 9.950232, 13.602102, 8.223685, 8.713616, 6.486637, 3.619714, 4.7407813, -1.5890234)
 
 [node name="WirePath" type="Path2D" parent="." unique_id=1638167496]
-curve = SubResource("Curve2D_van5o")
+curve = SubResource("Curve2D_8jbdh")
 
 [node name="SparkFollow" type="PathFollow2D" parent="WirePath" unique_id=986921555]
+rotation = 1.2473831
 
 [node name="SparkVisual" type="Node2D" parent="WirePath/SparkFollow" unique_id=1396496595]
 
 [node name="PointLight2D" type="PointLight2D" parent="WirePath/SparkFollow/SparkVisual" unique_id=752520042]
-position = Vector2(1.9073486e-06, -0.50000095)
-scale = Vector2(1.9062499, 1.953125)
+position = Vector2(-1.8963127, -0.6356077)
+scale = Vector2(0.3734321, 0.38467115)
 color = Color(0.79, 0.7107367, 0.110599995, 1)
 energy = 9.76
 texture = SubResource("GradientTexture2D_maf5t")
@@ -52,3 +61,9 @@ texture = SubResource("GradientTexture2D_maf5t")
 
 [node name="PointB" type="Marker2D" parent="." unique_id=1801364618]
 position = Vector2(42, 0)
+
+[node name="SparkAudio" type="AudioStreamPlayer2D" parent="." unique_id=512211425]
+stream = ExtResource("2_8jbdh")
+volume_db = -6.229
+max_distance = 750.0
+attenuation = 1.4640859

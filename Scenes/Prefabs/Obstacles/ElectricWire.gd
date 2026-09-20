@@ -14,10 +14,14 @@ extends Area2D
 @export var start_offset: float = 0.0   # seconds to fast-forward this wire's cycle at start (for desyncing wires)
 
 # --- SPARK SETTINGS ---
-@export var spark_speed: float = 300.0 # pixels/sec traveling along the wire
+@export var spark_speed: float = 300.0   # pixels/sec traveling along the wire
+@export var spark_spacing: float = 60.0  # distance in pixels between simultaneous sparks along the wire
+
+@onready var spark_audio: AudioStreamPlayer2D = get_node_or_null("SparkAudio")
 
 # --- STATE ---
 var is_active: bool = true
+var spark_followers: Array[PathFollow2D] = []
 
 # --- NODES ---
 # PointA / PointB: Marker2D children marking the two ends of the wire.
@@ -30,7 +34,8 @@ var is_active: bool = true
 @onready var cycle_timer: Timer = $CycleTimer
 
 # Optional - attach any visual (GPUParticles2D, PointLight2D, Sprite2D...) as a
-# child of SparkFollow named "SparkVisual" and it'll be shown/hidden automatically.
+# child of SparkFollow named "SparkVisual" and it'll be duplicated along with
+# the follower for each spark in the chain.
 @onready var spark_visual: Node = get_node_or_null("WirePath/SparkFollow/SparkVisual")
 
 
@@ -39,12 +44,14 @@ func _ready() -> void:
 
 	# Editor preview mode: build the shape so it's visible while placing points,
 	# but skip everything that only makes sense at runtime (signals, timers,
-	# death checks). _process() below keeps rebuilding live as you edit.
+	# death checks, sparks). _process() below keeps rebuilding live as you edit.
 	if Engine.is_editor_hint():
 		return
 
 	body_entered.connect(_on_body_entered)
 	cycle_timer.timeout.connect(_on_cycle_timer_timeout)
+
+	_setup_sparks()
 
 	is_active = start_active
 	cycle_timer.one_shot = true
@@ -73,9 +80,34 @@ func _process(delta: float) -> void:
 		return
 
 	if is_active:
-		spark_follow.progress += spark_speed * delta
-		if spark_follow.progress_ratio >= 1.0:
-			spark_follow.progress_ratio = 0.0
+		var advance: float = spark_speed * delta
+		for follower in spark_followers:
+			follower.progress += advance
+
+
+func _setup_sparks() -> void:
+	# Clean up any previously created followers (in case this ever gets called again).
+	for follower in spark_followers:
+		if follower != spark_follow and is_instance_valid(follower):
+			follower.queue_free()
+	spark_followers.clear()
+
+	var path_length: float = wire_path.curve.get_baked_length()
+	if path_length <= 0.0:
+		spark_followers.append(spark_follow)
+		return
+
+	var count: int = max(1, int(ceil(path_length / spark_spacing)))
+
+	for i in range(count):
+		var follower: PathFollow2D
+		if i == 0:
+			follower = spark_follow
+		else:
+			follower = spark_follow.duplicate()
+			wire_path.add_child(follower)
+		follower.progress = fmod(i * spark_spacing, path_length)
+		spark_followers.append(follower)
 
 
 func _build_wire_shape() -> void:
@@ -119,7 +151,7 @@ func _build_wire_shape() -> void:
 	var ribbon: PackedVector2Array = left_side + right_side
 	wire_collision.polygon = ribbon
 
-	# --- Path for the spark to travel along ---
+	# --- Path for the sparks to travel along ---
 	var curve := Curve2D.new()
 	for point in curve_points:
 		curve.add_point(point)
@@ -140,15 +172,24 @@ func _on_cycle_timer_timeout() -> void:
 
 func _update_active_state() -> void:
 	wire_collision.disabled = not is_active
-	spark_follow.visible = is_active
 
-	if spark_visual:
-		if spark_visual is GPUParticles2D or spark_visual is CPUParticles2D:
-			spark_visual.emitting = is_active
-		elif spark_visual.has_method("set_visible"):
-			spark_visual.visible = is_active
+	for follower in spark_followers:
+		follower.visible = is_active
+		var visual: Node = follower.get_node_or_null("SparkVisual")
+		if visual:
+			if visual is GPUParticles2D or visual is CPUParticles2D:
+				visual.emitting = is_active
+			elif visual.has_method("set_visible"):
+				visual.visible = is_active
 
 	wire_line.modulate = Color(1, 1, 1, 1) if is_active else Color(0.5, 0.5, 0.5, 0.6)
+
+	if spark_audio:
+		if is_active:
+			if not spark_audio.playing:
+				spark_audio.play()
+		else:
+			spark_audio.stop()
 
 
 func _on_body_entered(body: Node) -> void:
