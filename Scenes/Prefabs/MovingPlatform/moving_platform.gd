@@ -1,6 +1,13 @@
 @tool
 extends Node2D
 
+enum Mode {
+	AUTO_PINGPONG,   ## Current behavior: continuously ping-pongs back and forth.
+	WAIT_FOR_PLAYER, ## Sits at 0 until the player stands on it, then travels to the end; returns to 0 once they step off.
+}
+
+@export var mode: Mode = Mode.AUTO_PINGPONG
+
 @export var moving_platform_texture: CompressedTexture2D:
 	set(value):
 		moving_platform_texture = value
@@ -21,25 +28,72 @@ extends Node2D
 @export var moving_platform_collision_polygon: CollisionPolygon2D
 @export var moving_platform_path_follow: PathFollow2D
 
+## Only needed when Mode is Wait For Player. An Area2D placed on top of the
+## platform's surface, used to detect when the player is standing on it.
+@export var player_detector: Area2D:
+	set(value):
+		if player_detector and player_detector.body_entered.is_connected(_on_player_detector_body_entered):
+			player_detector.body_entered.disconnect(_on_player_detector_body_entered)
+			player_detector.body_exited.disconnect(_on_player_detector_body_exited)
+		player_detector = value
+		if player_detector and not Engine.is_editor_hint():
+			player_detector.body_entered.connect(_on_player_detector_body_entered)
+			player_detector.body_exited.connect(_on_player_detector_body_exited)
+
 @export var speed: float = 0.2 ## Controls how fast the platform moves along the path.
 
 var _time_passed: float = 0.0
+var _wait_progress: float = 0.0   # 0-1 linear progress used in WAIT_FOR_PLAYER mode
+var _players_on_platform: int = 0 # supports co-op / multiple overlapping bodies safely
+
 
 func _ready() -> void:
 	apply_platform_transforms()
 
+	if player_detector and not Engine.is_editor_hint():
+		if not player_detector.body_entered.is_connected(_on_player_detector_body_entered):
+			player_detector.body_entered.connect(_on_player_detector_body_entered)
+			player_detector.body_exited.connect(_on_player_detector_body_exited)
+
+
 func _process(delta: float) -> void:
 	if not moving_platform_path_follow:
 		return
-		
-	_time_passed += delta * speed
-	
-	var ping_pong_val = wrapf(_time_passed, 0.0, 2.0)
-	if ping_pong_val > 1.0:
-		ping_pong_val = 2.0 - ping_pong_val
-		
-	var eased_progress = smoothstep(0.0, 1.0, ping_pong_val)
-	moving_platform_path_follow.progress_ratio = eased_progress
+
+	match mode:
+		Mode.AUTO_PINGPONG:
+			_time_passed += delta * speed
+
+			var ping_pong_val = wrapf(_time_passed, 0.0, 2.0)
+			if ping_pong_val > 1.0:
+				ping_pong_val = 2.0 - ping_pong_val
+
+			var eased_progress = smoothstep(0.0, 1.0, ping_pong_val)
+			moving_platform_path_follow.progress_ratio = eased_progress
+
+		Mode.WAIT_FOR_PLAYER:
+			var target: float = 1.0 if _players_on_platform > 0 else 0.0
+			_wait_progress = move_toward(_wait_progress, target, delta * speed)
+
+			var eased_progress = smoothstep(0.0, 1.0, _wait_progress)
+			moving_platform_path_follow.progress_ratio = eased_progress
+
+
+func _on_player_detector_body_entered(body: Node2D) -> void:
+	if _is_player(body):
+		_players_on_platform += 1
+
+
+func _on_player_detector_body_exited(body: Node2D) -> void:
+	if _is_player(body):
+		_players_on_platform = max(0, _players_on_platform - 1)
+
+
+func _is_player(body: Node2D) -> bool:
+	# Adjust this check to whatever convention your project uses to mark the player
+	# (a group is usually simplest).
+	return body.is_in_group("player")
+
 
 func set_moving_platform_sprite():
 	# 1. Update the Sprite2D texture

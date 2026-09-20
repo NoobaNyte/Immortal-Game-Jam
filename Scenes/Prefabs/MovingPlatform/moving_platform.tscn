@@ -5,22 +5,28 @@
 
 [sub_resource type="Curve2D" id="Curve2D_s1fu5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, -71.94, 0, 0, 0, 0, 3, -415.94)
 }
-point_count = 2
+point_count = 3
 
-[node name="MovingPlatform" type="Path2D" unique_id=2021162858 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpoen"]
+size = Vector2(102.60281, 17)
+
+[node name="MovingPlatform" type="Path2D" unique_id=2021162858 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow", "player_detector")]
 curve = SubResource("Curve2D_s1fu5")
 script = ExtResource("1_bpoen")
+mode = null
 moving_platform_texture = ExtResource("2_bpoen")
 animatable_body = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody")
 moving_platform_sprite = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/MovingPlatformSprite")
 moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/CollisionPolygon2D")
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
+player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="." unique_id=2021665693]
-position = Vector2(197.01286, 0)
-progress = 196.95001
+position = Vector2(4.2673726, -197.95193)
+rotation = -1.5766102
+progress = 198.13045
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatformPathFollow2D" unique_id=1070380355 groups=["MovingObject"]]
 collision_layer = 7
@@ -32,3 +38,10 @@ texture = ExtResource("2_bpoen")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" unique_id=886111199]
 polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
+
+[node name="PlayerDetector" type="Area2D" parent="MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" unique_id=1045737840]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector" unique_id=676202713]
+position = Vector2(0, -16)
+scale = Vector2(0.6, 0.8)
+shape = SubResource("RectangleShape2D_bpoen")
