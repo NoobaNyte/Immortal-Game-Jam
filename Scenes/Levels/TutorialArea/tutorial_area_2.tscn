@@ -444,21 +444,18 @@ sources/0 = SubResource("TileSetAtlasSource_4mati")
 
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
 
-[node name="PlayerCharacter" parent="." index="3" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
+[node name="PlayerCharacter" parent="." index="4" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
 player_respawn_point = NodePath("../PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="4" unique_id=185332786]
+[node name="PlayerRespawnPoint" parent="." index="5" unique_id=185332786]
 position = Vector2(1540, 648)
 
 [node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
 script = ExtResource("33_epeqh")
 
-[node name="EnterLevelArea" parent="." index="5" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(316, 974)
-
-[node name="ExitLevelArea" parent="." index="6" unique_id=1960829182]
-position = Vector2(5233, 364)
 
 [node name="TileMap" type="Node2D" parent="." index="7" unique_id=2048739067]
 position = Vector2(675, 718)
@@ -473,9 +470,13 @@ tile_map_data = PackedByteArray("AABJABMAAAABAAIAAABIABEAAAAAAAAAAABIABIAAAAAAAE
 tile_set = SubResource("TileSet_epeqh")
 
 [node name="TomatoSpawners" type="Node2D" parent="." index="8" unique_id=991591883]
+visible = false
 
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("2_hnie4")]
 position = Vector2(2307, 36)
 
 [node name="TomatoSpawner2" parent="TomatoSpawners" index="1" unique_id=2143105848 instance=ExtResource("2_hnie4")]
 position = Vector2(774, 1020)
+
+[node name="ExitLevelArea" parent="." index="9" unique_id=1960829182]
+position = Vector2(5233, 364)

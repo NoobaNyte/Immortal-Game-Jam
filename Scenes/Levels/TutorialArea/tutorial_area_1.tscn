@@ -400,11 +400,11 @@ next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.t
 material = SubResource("ShaderMaterial_wfwci")
 
 [node name="ColorRect" parent="DarkBackground" parent_id_path=PackedInt32Array(871170875) index="0" unique_id=2025399543]
+offset_left = -5499040.0
+offset_top = -49999460.0
+offset_right = 5499040.0
+offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
-
-[node name="BackgroundSprite" parent="." index="2" unique_id=678310874]
-position = Vector2(1328.75, -54)
-scale = Vector2(43.00781, 40)
 
 [node name="PlayerCharacter" parent="." index="4" unique_id=2099930869]
 visible = false
@@ -416,10 +416,7 @@ position = Vector2(562, 972)
 [node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(-404, 965)
 
-[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
-position = Vector2(2304, -731)
-
-[node name="TileMap" type="Node2D" parent="." index="8" unique_id=1988256431]
+[node name="TileMap" type="Node2D" parent="." index="7" unique_id=1988256431]
 position = Vector2(288, 953)
 
 [node name="TileMapLayerMain" type="TileMapLayer" parent="TileMap" index="0" unique_id=1931621549]
@@ -429,7 +426,8 @@ tile_set = SubResource("TileSet_ub1st")
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" index="1" unique_id=1184689707]
 
-[node name="TomatoSpawners" type="Node2D" parent="." index="9" unique_id=1968917883]
+[node name="TomatoSpawners" type="Node2D" parent="." index="8" unique_id=1968917883]
+visible = false
 
 [node name="TomatoSpawner" parent="TomatoSpawners" index="0" unique_id=665116026 instance=ExtResource("26_gvmtn")]
 position = Vector2(190, 1028)
@@ -439,3 +437,6 @@ position = Vector2(1645, 1025)
 
 [node name="TomatoSpawner3" parent="TomatoSpawners" index="2" unique_id=916843930 instance=ExtResource("26_gvmtn")]
 position = Vector2(1387, 579)
+
+[node name="ExitLevelArea" parent="." index="9" unique_id=1960829182]
+position = Vector2(2304, -731)
