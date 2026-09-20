@@ -669,6 +669,9 @@ previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area
 music_for_this_level = ExtResource("2_621rf")
 music_volume_db = 15.0
 
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = true
+
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
 player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
@@ -715,9 +718,9 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.03
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(209, 280.95828)
+position = Vector2(209, 857.7268)
 rotation = 0.0022522486
-progress = 627.04224
+progress = 50.28232
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]

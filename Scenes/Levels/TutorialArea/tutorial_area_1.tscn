@@ -405,6 +405,9 @@ offset_right = 5499040.0
 offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
 
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = true
+
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(384, 968)
 player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")

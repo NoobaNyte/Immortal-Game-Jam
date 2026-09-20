@@ -627,8 +627,14 @@ previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLe
 music_for_this_level = ExtResource("2_exgjh")
 music_volume_db = -15.0
 
+[node name="PauseMenuTitleLabel" parent="LevelUI/UIContainer/PauseMenu" parent_id_path=PackedInt32Array(1290258178) index="0" unique_id=2038052782]
+visible = true
+
 [node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
 position = Vector2(-994, 2177)
+
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = true
 
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(-1491, -16)
