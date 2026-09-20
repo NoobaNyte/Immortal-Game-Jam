@@ -6,15 +6,16 @@ class_name LevelUI
 @onready var controls_menu: Control = $ControlsMenu
 @onready var settings_menu: Control = $SettingsMenu
 
-# Tracks our navigation history so "Go Back" always knows where to go
-var menu_stack: Array[Control] = []
+# New Audio Slider Exports
+@export var master_audio_slider: HSlider
+@export var music_audio_slider: HSlider
+@export var sfx_audio_slider: HSlider
 
-# Spam prevention flag
+var menu_stack: Array[Control] = []
 var is_transitioning: bool = false
 var fade_duration: float = 0.25
 
 func _ready() -> void:
-    # Ensure this script still runs while the rest of the game is paused
     process_mode = Node.PROCESS_MODE_ALWAYS
     
     # Instantly hide all menus and buttons to start
@@ -22,6 +23,45 @@ func _ready() -> void:
     fade_out(controls_menu, 0.0)
     fade_out(settings_menu, 0.0)
     fade_out(go_back_button, 0.0)
+    
+    # Initialize and connect the audio sliders
+    setup_audio_slider(master_audio_slider, "Master")
+    setup_audio_slider(music_audio_slider, "Music")
+    setup_audio_slider(sfx_audio_slider, "SFX")
+
+func setup_audio_slider(slider: HSlider, bus_name: String) -> void:
+    if not slider:
+        return
+        
+    var bus_index = AudioServer.get_bus_index(bus_name)
+    if bus_index == -1:
+        push_warning("Audio bus not found: ", bus_name)
+        return
+        
+    # Set initial slider position so current bus volume sits at 70% of the slider
+    var current_db = AudioServer.get_bus_volume_db(bus_index)
+    var current_linear = db_to_linear(current_db)
+    slider.value = current_linear * 0.7 * slider.max_value
+    
+    # Connect value changes
+    slider.value_changed.connect(func(value): _on_audio_slider_changed(value, bus_name, slider))
+
+func _on_audio_slider_changed(value: float, bus_name: String, slider: HSlider) -> void:
+    var bus_index = AudioServer.get_bus_index(bus_name)
+    if bus_index == -1:
+        return
+        
+    if value <= 0.0:
+        AudioServer.set_bus_mute(bus_index, true)
+    else:
+        AudioServer.set_bus_mute(bus_index, false)
+        
+        # 70% of the slider corresponds to 0 dB (linear 1.0)
+        var slider_ratio = value / slider.max_value
+        var linear_val = slider_ratio / 0.7
+        var db_val = linear_to_db(linear_val)
+        
+        AudioServer.set_bus_volume_db(bus_index, db_val)
 
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("pause"):
@@ -112,3 +152,6 @@ func _on_controls_info_button_pressed() -> void:
 
 func _on_exit_game_button_pressed() -> void:
     get_tree().quit()
+
+func _on_continue_button_pressed() -> void:
+    go_back()

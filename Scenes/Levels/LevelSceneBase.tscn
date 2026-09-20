@@ -13,6 +13,52 @@
 line_spacing = 20.0
 font_size = 65
 
+[sub_resource type="LabelSettings" id="LabelSettings_dnwf5"]
+font_size = 60
+
+[sub_resource type="DPITexture" id="DPITexture_dnwf5"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
+base_scale = 2.0
+
+[sub_resource type="DPITexture" id="DPITexture_j78uy"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnwf5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 4
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj8df"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 4
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j78uy"]
+bg_color = Color(0.69, 0.69, 0.69, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 4
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d74yr"]
 shader = ExtResource("1_0d02i")
 shader_parameter/blur_amount = 4.5
@@ -46,7 +92,7 @@ script = ExtResource("1_fr4t0")
 [node name="LevelUI" type="CanvasLayer" parent="." unique_id=1470160433]
 layer = 2
 
-[node name="UIContainer" type="Control" parent="LevelUI" unique_id=1286426135]
+[node name="UIContainer" type="Control" parent="LevelUI" unique_id=1286426135 node_paths=PackedStringArray("master_audio_slider", "music_audio_slider", "sfx_audio_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +101,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_2er1n")
 script = ExtResource("2_7h11b")
+master_audio_slider = NodePath("SettingsMenu/VBoxContainer/MasterAudioSliderContainer/MasterAudioSlider")
+music_audio_slider = NodePath("SettingsMenu/VBoxContainer/MusicAudioSliderContainer/MusicAudioSlider")
+sfx_audio_slider = NodePath("SettingsMenu/VBoxContainer/SFXAudioSliderContainer/SFXAudioSlider")
 
 [node name="PauseMenu" type="BoxContainer" parent="LevelUI/UIContainer" unique_id=1290258178]
 layout_mode = 1
@@ -77,6 +126,15 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/UIContainer/PauseMenu" unique_id=1418103389]
 layout_mode = 2
 theme_override_constants/separation = 27
+
+[node name="ContinueButton" type="Button" parent="LevelUI/UIContainer/PauseMenu/VBoxContainer" unique_id=257486128]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_mf2ji")
+theme_override_font_sizes/font_size = 82
+text = "CONTINUE"
 
 [node name="SettingsButton" type="Button" parent="LevelUI/UIContainer/PauseMenu/VBoxContainer" unique_id=1966338941]
 layout_mode = 2
@@ -153,6 +211,79 @@ text = "SETTINGS"
 label_settings = ExtResource("4_dnwf5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUI/UIContainer/SettingsMenu" unique_id=486367499]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="MasterAudioSliderContainer" type="VBoxContainer" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer" unique_id=2029069943]
+layout_mode = 2
+
+[node name="AudioSliderLabel" type="Label" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/MasterAudioSliderContainer" unique_id=1437487059]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MASTER VOLUME"
+label_settings = SubResource("LabelSettings_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterAudioSlider" type="HSlider" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/MasterAudioSliderContainer" unique_id=217628675]
+custom_minimum_size = Vector2(600, 37.85)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = SubResource("DPITexture_dnwf5")
+theme_override_icons/grabber_highlight = SubResource("DPITexture_j78uy")
+theme_override_styles/slider = SubResource("StyleBoxFlat_dnwf5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_uj8df")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_j78uy")
+value = 70.0
+
+[node name="MusicAudioSliderContainer" type="VBoxContainer" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer" unique_id=998025479]
+layout_mode = 2
+
+[node name="AudioSliderLabel" type="Label" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/MusicAudioSliderContainer" unique_id=719930753]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MUSIC VOLUME"
+label_settings = SubResource("LabelSettings_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicAudioSlider" type="HSlider" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/MusicAudioSliderContainer" unique_id=784057227]
+custom_minimum_size = Vector2(600, 37.85)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = SubResource("DPITexture_dnwf5")
+theme_override_icons/grabber_highlight = SubResource("DPITexture_j78uy")
+theme_override_styles/slider = SubResource("StyleBoxFlat_dnwf5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_uj8df")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_j78uy")
+value = 70.0
+
+[node name="SFXAudioSliderContainer" type="VBoxContainer" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer" unique_id=1715385943]
+layout_mode = 2
+
+[node name="AudioSliderLabel" type="Label" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/SFXAudioSliderContainer" unique_id=760638280]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SFX VOLUME"
+label_settings = SubResource("LabelSettings_dnwf5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXAudioSlider" type="HSlider" parent="LevelUI/UIContainer/SettingsMenu/VBoxContainer/SFXAudioSliderContainer" unique_id=1767622690]
+custom_minimum_size = Vector2(600, 37.85)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = SubResource("DPITexture_dnwf5")
+theme_override_icons/grabber_highlight = SubResource("DPITexture_j78uy")
+theme_override_styles/slider = SubResource("StyleBoxFlat_dnwf5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_uj8df")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_j78uy")
+value = 70.0
 
 [node name="GoBackButton" type="Button" parent="LevelUI/UIContainer" unique_id=1121019084]
 layout_mode = 1
@@ -277,6 +408,7 @@ script = ExtResource("3_2ax51")
 shape = SubResource("RectangleShape2D_2ax51")
 debug_color = Color(1, 0, 0, 0.41960785)
 
+[connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/ContinueButton" to="LevelUI/UIContainer" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/SettingsButton" to="LevelUI/UIContainer" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/ControlsInfoButton" to="LevelUI/UIContainer" method="_on_controls_info_button_pressed"]
 [connection signal="pressed" from="LevelUI/UIContainer/PauseMenu/VBoxContainer/ExitGameButton" to="LevelUI/UIContainer" method="_on_exit_game_button_pressed"]
