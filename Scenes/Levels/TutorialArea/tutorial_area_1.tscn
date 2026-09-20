@@ -405,8 +405,9 @@ offset_right = 5499040.0
 offset_bottom = 49999460.0
 color = Color(0.011764706, 0.015686275, 0.019607844, 1)
 
-[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(384, 968)
+player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
 
 [node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(-404, 965)
@@ -421,7 +422,7 @@ position = Vector2(605, 1025)
 position = Vector2(1756, -637)
 
 [node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
-position = Vector2(2304, -637)
+position = Vector2(2052, -637)
 
 [node name="TileMap" type="Node2D" parent="." index="9" unique_id=1988256431]
 position = Vector2(288, 953)

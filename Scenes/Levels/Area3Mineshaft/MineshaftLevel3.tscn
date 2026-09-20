@@ -561,20 +561,24 @@ music_volume_db = -15.0
 [node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
 position = Vector2(-1270, 2207)
 
-[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
-visible = false
-
-[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869]
+[node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(-1594, -14)
+player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
-position = Vector2(-964, -23)
-
-[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(-1967, -67)
 
-[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
+[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
 position = Vector2(4210, -5250)
+
+[node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
+position = Vector2(-1492, 59)
+
+[node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
+position = Vector2(-1642, 64)
+
+[node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
+position = Vector2(4523, -5116)
 
 [node name="TileMap" type="Node2D" parent="." index="9" unique_id=756145371]
 
@@ -931,10 +935,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.01
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(110.273766, 569.7123)
+position = Vector2(309.98532, -851.3019)
 rotation = 0.009500902
 scale = Vector2(8, 1)
-progress = 1040.7949
+progress = 5588.154
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]

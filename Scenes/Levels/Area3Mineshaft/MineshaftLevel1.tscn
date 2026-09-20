@@ -383,9 +383,6 @@ previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftTr
 music_for_this_level = ExtResource("2_fye7a")
 music_volume_db = -17.0
 
-[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
-visible = false
-
 [node name="PlayerCharacter" parent="." index="5" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(-1032, -4)
 throw_speed = 600.0
@@ -396,16 +393,22 @@ offset_run_left = Vector2(-8, 0)
 offset_jump_right = Vector2(8, 0)
 offset_jump_left = Vector2(-8, 0)
 footstep_interval = 0.3
-player_respawn_point = NodePath("../PlayerRespawnPoint")
+player_respawn_point = NodePath("../SpawnPoints/PlayerRespawnPoint")
 
-[node name="PlayerRespawnPoint" parent="." index="6" unique_id=185332786]
-position = Vector2(-817, 6)
-
-[node name="EnterLevelArea" parent="." index="7" unique_id=1882371121]
+[node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(-1260, -9)
 
-[node name="ExitLevelArea" parent="." index="8" unique_id=1960829182]
-position = Vector2(1459, -3147)
+[node name="ExitLevelArea" parent="." index="7" unique_id=1960829182]
+position = Vector2(1506, -3147)
+
+[node name="PlayerRespawnPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="0" unique_id=185332786]
+position = Vector2(-649, 69)
+
+[node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
+position = Vector2(-937, 74)
+
+[node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
+position = Vector2(1176, -3002)
 
 [node name="TileMap" type="Node2D" parent="." index="9" unique_id=756145371]
 position = Vector2(2, 8)
@@ -553,8 +556,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(354.39053, -689.99384)
-progress = 1215.2074
+position = Vector2(322.66925, -102.38232)
+progress = 78.34603
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
@@ -579,9 +582,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.9972, 188.8686)
+position = Vector2(79.77195, 17.449205)
 rotation = -0.002824851
-progress = 2.1368709
+progress = 173.5532
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970 groups=["MovingObject"]]
@@ -605,8 +608,8 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(93.04759, 0)
-progress = 93.049286
+position = Vector2(172.68579, 0)
+progress = 172.67592
 rotates = false
 
 [editable path="Wires/ElectricWire2"]
