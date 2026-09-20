@@ -839,6 +839,8 @@ sources/2 = SubResource("TileSetAtlasSource_k4i5y")
 sources/3 = SubResource("TileSetAtlasSource_u7hrf")
 
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_rd2ai")]
+next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel1.tscn"
+previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
 
 [node name="TileMap2" type="Node2D" parent="." index="4" unique_id=756145371]
 position = Vector2(-320, -35)
@@ -869,6 +871,9 @@ position = Vector2(243, 44)
 
 [node name="PlayerRespawnPoint" parent="." index="7" unique_id=185332786]
 position = Vector2(240, -24)
+
+[node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
+script = null
 
 [node name="EnterLevelArea" parent="." index="8" unique_id=1882371121]
 position = Vector2(-74, 5)

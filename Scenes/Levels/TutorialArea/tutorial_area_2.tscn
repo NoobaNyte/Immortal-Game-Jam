@@ -32,7 +32,6 @@
 [ext_resource type="Texture2D" uid="uid://cx7hiroeo21hj" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner4.png" id="30_3v8qa"]
 [ext_resource type="Texture2D" uid="uid://wgew4a7v08as" path="res://Assets/Sprites/Walls/Area1/Area1WallOuterCorner3.png" id="31_f8g3g"]
 [ext_resource type="Script" uid="uid://dcmb4idn33dp3" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.gd" id="32_epeqh"]
-[ext_resource type="Script" uid="uid://cwj51hw3iwund" path="res://Utility/hide_on_ready.gd" id="33_epeqh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fy4d6"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -450,6 +449,8 @@ _data = {
 point_count = 2
 
 [node name="TutorialArea2" unique_id=1656558072 instance=ExtResource("1_h0pwd")]
+next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_3.tscn"
+previous_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_1.tscn"
 
 [node name="PlayerCharacter" parent="." index="4" unique_id=2099930869 node_paths=PackedStringArray("player_respawn_point")]
 position = Vector2(622, 974)
@@ -457,9 +458,6 @@ player_respawn_point = NodePath("../PlayerRespawnPoint")
 
 [node name="PlayerRespawnPoint" parent="." index="5" unique_id=185332786]
 position = Vector2(1540, 648)
-
-[node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
-script = ExtResource("33_epeqh")
 
 [node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(316, 974)
@@ -488,10 +486,10 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.07
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="TileMap/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(1400.5762, 2.2091105)
-rotation = 0.0015772858
+position = Vector2(882.96857, 1.392695)
+rotation = 0.0015772857
 scale = Vector2(2, 1.5)
-progress = 1400.5746
+progress = 882.9688
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="TileMap/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
 collision_layer = 7

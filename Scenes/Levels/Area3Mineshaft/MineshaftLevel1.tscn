@@ -377,6 +377,8 @@ _data = {
 point_count = 2
 
 [node name="LevelSceneBase" unique_id=1656558072 instance=ExtResource("1_6r306")]
+next_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel2.tscn"
+previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftTransitionArea.tscn"
 
 [node name="TileMap" type="Node2D" parent="." index="3" unique_id=756145371]
 position = Vector2(2, 8)
@@ -525,6 +527,9 @@ player_respawn_point = NodePath("../PlayerRespawnPoint")
 [node name="PlayerRespawnPoint" parent="." index="8" unique_id=185332786]
 position = Vector2(-817, 6)
 
+[node name="PlayerRespawnPointLabel" parent="PlayerRespawnPoint" index="0" unique_id=1087625597]
+script = null
+
 [node name="EnterLevelArea" parent="." index="9" unique_id=1882371121]
 position = Vector2(-1260, -9)
 
@@ -542,8 +547,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(349.30887, -689.9424)
-progress = 1210.4468
+position = Vector2(73.23424, -106.784096)
+progress = 327.77716
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
@@ -568,9 +573,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.981865, 177.19096)
+position = Vector2(79.23906, -388.07883)
 rotation = -0.002824851
-progress = 13.69246
+progress = 579.07623
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970]
@@ -594,8 +599,8 @@ scale = Vector2(1, 1.0256097)
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=2021665693]
-position = Vector2(781.5192, 1.23268)
-progress = 781.5193
+position = Vector2(918.2004, 1.4482656)
+progress = 918.2005
 rotates = false
 
 [node name="ExitLevelArea" parent="." index="11" unique_id=1960829182]
