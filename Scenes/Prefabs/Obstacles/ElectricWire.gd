@@ -40,6 +40,12 @@ var spark_followers: Array[PathFollow2D] = []
 
 
 func _ready() -> void:
+	# Segments mode skips convex decomposition entirely. Since WireCollision
+	# lives on an Area2D used only for overlap detection (not solid physics
+	# response), we don't need convex solids - this makes the wire immune to
+	# "Convex decomposing failed" errors regardless of how gnarly the curve gets.
+	wire_collision.build_mode = CollisionPolygon2D.BUILD_SEGMENTS
+	
 	_build_wire_shape()
 
 	# Editor preview mode: build the shape so it's visible while placing points,
@@ -118,6 +124,15 @@ func _build_wire_shape() -> void:
 	var start_pos: Vector2 = point_a.position
 	var end_pos: Vector2 = point_b.position
 
+	# Guard against degenerate wires (endpoints on top of each other) which
+	# would otherwise produce a zero-length curve.
+	if start_pos.distance_to(end_pos) < 1.0 and sag == 0.0:
+		push_warning("Wire '%s': PointA and PointB are on top of each other with no sag - disabling collision to avoid a degenerate shape." % name)
+		wire_line.points = PackedVector2Array()
+		wire_collision.polygon = PackedVector2Array()
+		wire_collision.disabled = true
+		return
+
 	var curve_points: PackedVector2Array = PackedVector2Array()
 	for i in range(segments + 1):
 		var t := float(i) / float(segments)
@@ -129,27 +144,34 @@ func _build_wire_shape() -> void:
 	wire_line.points = curve_points
 	wire_line.width = wire_width
 
-	# --- Collision ribbon: offset each curve point left/right by half-width ---
+	# --- Collision ribbon ---
+	# Use Godot's built-in polyline offset (Clipper-based) instead of manually
+	# offsetting each point along its normal. The manual approach can produce
+	# a self-intersecting polygon wherever the curve bends sharper than
+	# half_width allows (e.g. a tight sag relative to wire length), which is
+	# exactly what breaks convex decomposition on level load. offset_polyline
+	# handles curvature correctly and always returns simple polygons.
 	var half_width := (wire_width * 0.5) + hitbox_padding
-	var left_side: PackedVector2Array = PackedVector2Array()
-	var right_side: PackedVector2Array = PackedVector2Array()
+	var offset_result: Array = Geometry2D.offset_polyline(
+		curve_points, half_width, Geometry2D.JOIN_ROUND, Geometry2D.END_SQUARE
+	)
 
-	for i in range(curve_points.size()):
-		var dir: Vector2
-		if i == 0:
-			dir = (curve_points[1] - curve_points[0]).normalized()
-		elif i == curve_points.size() - 1:
-			dir = (curve_points[i] - curve_points[i - 1]).normalized()
-		else:
-			dir = (curve_points[i + 1] - curve_points[i - 1]).normalized()
-
-		var normal := Vector2(-dir.y, dir.x)
-		left_side.append(curve_points[i] + normal * half_width)
-		right_side.append(curve_points[i] - normal * half_width)
-
-	right_side.reverse()
-	var ribbon: PackedVector2Array = left_side + right_side
-	wire_collision.polygon = ribbon
+	if offset_result.is_empty():
+		push_warning("Wire '%s': failed to generate a collision ribbon from its curve." % name)
+		wire_collision.polygon = PackedVector2Array()
+		wire_collision.disabled = true
+	else:
+		# Normally a single contour; if the curve's shape ever splits it into
+		# multiple pieces, use the largest one.
+		var best: PackedVector2Array = offset_result[0]
+		var best_area: float = _polygon_area(best)
+		for contour in offset_result:
+			var area: float = _polygon_area(contour)
+			if area > best_area:
+				best = contour
+				best_area = area
+		wire_collision.polygon = best
+		wire_collision.disabled = not is_active
 
 	# --- Path for the sparks to travel along ---
 	var curve := Curve2D.new()
@@ -157,6 +179,17 @@ func _build_wire_shape() -> void:
 		curve.add_point(point)
 	wire_path.curve = curve
 
+
+# Shoelace formula - used to pick the largest contour if offset_polyline
+# ever returns more than one piece.
+func _polygon_area(poly: PackedVector2Array) -> float:
+	var area: float = 0.0
+	var n := poly.size()
+	for i in range(n):
+		var p1 := poly[i]
+		var p2 := poly[(i + 1) % n]
+		area += p1.x * p2.y - p2.x * p1.y
+	return abs(area) * 0.5
 
 func _on_cycle_timer_timeout() -> void:
 	is_active = !is_active
