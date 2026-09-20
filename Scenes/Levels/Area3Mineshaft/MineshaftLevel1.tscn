@@ -554,8 +554,8 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 speed = 0.1
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(135.28418, -687.7732)
-progress = 996.34753
+position = Vector2(59.600456, -512.86786)
+progress = 745.92267
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
@@ -580,9 +580,9 @@ moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingP
 moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform2" index="0" unique_id=1534488146]
-position = Vector2(79.43672, -237.6453)
+position = Vector2(79.06253, -522.409)
 rotation = -0.002824851
-progress = 428.64517
+progress = 713.38556
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform2/MovingPlatformPathFollow2D" index="0" unique_id=2140368970 groups=["MovingObject"]]
@@ -614,9 +614,9 @@ player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableB
 speed = 0.15
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatforms/MovingPlatform3" index="0" unique_id=162197181]
-position = Vector2(48.95105, -4.04506)
+position = Vector2(48.89953, -25.743088)
 rotation = 0.015398542
-progress = 20.627844
+progress = 42.344894
 rotates = false
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatforms/MovingPlatform3/MovingPlatformPathFollow2D" index="0" unique_id=1859712914 groups=["MovingObject"]]
