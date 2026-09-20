@@ -98,6 +98,9 @@ func splat(surface_normal: Vector2, contact_point: Vector2, hit_collider: Object
 		# even if it was parented to a platform whose center is far away.
 		splat_instance.global_position = contact_point
 		
+		# FIX: Force the global scale back to 1x1 to ignore parent scaling
+		splat_instance.global_scale = Vector2.ONE
+		
 		# Fire the setup method and PASS the hit_collider so the splat knows what to stick to
 		if splat_instance.has_method("setup_splat"):
 			splat_instance.setup_splat(linear_velocity, tomato_splat_blob_color, surface_normal, contact_point, hit_collider)
