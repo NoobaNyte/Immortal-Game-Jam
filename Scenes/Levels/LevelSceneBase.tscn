@@ -51,7 +51,6 @@ color = Color(0.023529412, 0.043137256, 0.05882353, 1)
 metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1559591102]
-position = Vector2(-3, -195)
 color = Color(0, 0, 0, 1)
 
 [node name="PlayerCharacter" parent="." unique_id=2099930869 instance=ExtResource("1_d74yr")]

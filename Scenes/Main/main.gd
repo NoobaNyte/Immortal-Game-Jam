@@ -17,10 +17,22 @@ func _ready() -> void:
 	if level_container.get_child(0) != null:
 		current_level_node = level_container.get_child(0)
 
-func load_level(next_level_path: String, loading_screen_fade_in_time: float = 0.0, loading_screen_fade_out_time: float = 0.0) -> void:
+func load_level(next_level_path: String, loading_screen_fade_in_time: float = 0.0, loading_screen_fade_out_time: float = 0.0, hide_loading_screen_visuals: bool = false) -> void:
 	if is_loading:
 		return
 	is_loading = true
+
+	## hides everything in the loading screen if it isn't the background
+	## only if hide loading screen visuals is enabled
+	if hide_loading_screen_visuals:
+		for child in loading_screen.get_children():
+			if child is ColorRect:
+				child.show()
+			else:
+				child.hide()
+	else:
+		for child in loading_screen.get_children():
+			child.show()
 
 	await loading_screen.fade_in(loading_screen, loading_screen_fade_in_time)
 

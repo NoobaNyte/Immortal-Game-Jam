@@ -401,7 +401,7 @@ tile_proxies/coords_level = [[22, Vector2i(0, 0)], [23, Vector2i(0, 0)], [22, Ve
 [node name="TutorialArea1" unique_id=1656558072 instance=ExtResource("1_ollvm")]
 script = ExtResource("2_wfwci")
 music = ExtResource("3_5hai7")
-next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/TutorialArea2.tscn"
+next_level_scene_file_path = "res://Scenes/Levels/TutorialArea/tutorial_area_2.tscn"
 
 [node name="GlowArea" parent="Glow" parent_id_path=PackedInt32Array(1866471108) index="0" unique_id=377187023]
 material = SubResource("ShaderMaterial_wfwci")
@@ -434,10 +434,6 @@ position = Vector2(1645, 1002)
 
 [node name="TomatoSpawner3" parent="TomatoSpawners" index="2" unique_id=916843930 instance=ExtResource("26_gvmtn")]
 position = Vector2(1387, 555)
-
-[node name="CanvasModulate" parent="." index="5" unique_id=1559591102]
-visible = false
-position = Vector2(0, 0)
 
 [node name="PlayerCharacter" parent="." index="6" unique_id=2099930869]
 position = Vector2(1869, -715)
