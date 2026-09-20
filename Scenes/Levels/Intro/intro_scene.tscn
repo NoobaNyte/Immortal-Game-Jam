@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://drlr5015u5eu8" path="res://Assets/Sprites/Intro/Day 234,845.png" id="8_8gspe"]
 [ext_resource type="Texture2D" uid="uid://dnmrqx0jhm2k" path="res://Assets/Sprites/Intro/Day 1,000,000.png" id="9_ystwu"]
 [ext_resource type="Script" uid="uid://786d55wtt5iv" path="res://Utility/base_ui_element.gd" id="10_cunr0"]
+[ext_resource type="FontFile" uid="uid://dt77oi8iqgl40" path="res://Assets/Fonts/pixelta.regular.ttf" id="11_4mjv1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cunr0"]
 
@@ -32,7 +33,8 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cunr0"]
-font_size = 55
+font = ExtResource("11_4mjv1")
+font_size = 70
 
 [node name="IntroScene" type="Node2D" unique_id=1056356550 node_paths=PackedStringArray("intro_sprites_texture_rect", "sprites_transition_overlay", "skip_label", "camera_pulse_point")]
 script = ExtResource("1_j8ae3")
