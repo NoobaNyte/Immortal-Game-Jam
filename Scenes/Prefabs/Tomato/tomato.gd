@@ -18,7 +18,6 @@ extends RigidBody2D
 
 @export var splat_prefab: PackedScene
 
-
 @export var tomato_splat_blob_color: Color
 
 @export var tomato_splat_sfx_player: AudioStreamPlayer
@@ -27,6 +26,8 @@ extends RigidBody2D
 @onready var tomato_base_fill: Polygon2D = $Mesh/TomatoBaseFill
 @onready var tomato_stem_bottom_fill: Polygon2D = $Mesh/TomatoStemBottomFill
 @onready var tomato_stem_top_fill: Polygon2D = $Mesh/TomatoStemTopFill
+
+@onready var pick_tomato_sfx: AudioStreamPlayer = $PickTomatoSFX
 
 
 ## set to true by player_character.gd
@@ -53,7 +54,12 @@ func _update_colors() -> void:
 		tomato_stem_bottom_fill.color = stem_color
 	if tomato_stem_top_fill:
 		tomato_stem_top_fill.color = stem_color
-	
+
+func play_pick_up_tomato_sfx() -> void:
+	if pick_tomato_sfx:
+		pick_tomato_sfx.pitch_scale = randf_range(1.2, 1.5)
+		pick_tomato_sfx.play()
+		
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if being_thrown and state.get_contact_count() > 0:

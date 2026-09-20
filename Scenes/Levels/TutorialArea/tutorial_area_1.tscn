@@ -407,7 +407,10 @@ position = Vector2(1328.75, -54)
 scale = Vector2(43.00781, 40)
 
 [node name="PlayerCharacter" parent="." index="4" unique_id=2099930869]
-position = Vector2(1869, -715)
+position = Vector2(326, 971)
+
+[node name="PlayerRespawnPoint" parent="." index="5" unique_id=185332786]
+position = Vector2(562, 972)
 
 [node name="EnterLevelArea" parent="." index="6" unique_id=1882371121]
 position = Vector2(-404, 965)
