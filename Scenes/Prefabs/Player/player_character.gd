@@ -428,7 +428,8 @@ func toggle_bat_mode() -> void:
 	if is_bat_mode:
 		anim_sprite.play("BatIdle")
 		player_point_light.energy = 0.1
-		collision_shape.shape = bat_collision_shape
+		# Use set_deferred so it safely waits for physics to unlock
+		collision_shape.set_deferred("shape", bat_collision_shape)
 		velocity.y = bat_flap_velocity / 2.0
 		play_bat_flap_sfx()
 
@@ -437,7 +438,8 @@ func toggle_bat_mode() -> void:
 	else:
 		anim_sprite.play("PlayerIdle")
 		player_point_light.energy = original_player_point_light_energy
-		collision_shape.shape = player_collision_shape
+		# Use set_deferred here as well
+		collision_shape.set_deferred("shape", player_collision_shape)
 
 func try_pickup() -> void:
 	if is_bat_mode or not pickup_area or held_item or is_item_busy: return
