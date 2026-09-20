@@ -419,7 +419,7 @@ position = Vector2(2304, -731)
 position = Vector2(605, 1025)
 
 [node name="PlayerLevelEnterPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="1" unique_id=680316514]
-position = Vector2(1756, -637)
+position = Vector2(1836, -637)
 
 [node name="PlayerLevelExitPoint" parent="SpawnPoints" parent_id_path=PackedInt32Array(284521263) index="2" unique_id=145731349]
 position = Vector2(2052, -637)

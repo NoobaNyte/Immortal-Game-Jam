@@ -88,7 +88,11 @@ func splat(surface_normal: Vector2, contact_point: Vector2, hit_collider: Object
 		if hit_collider and hit_collider.is_in_group("MovingObject"):
 			hit_collider.add_child(splat_instance)
 		else:
-			get_tree().current_scene.get_node("LevelContainer").get_child(0).add_child(splat_instance)
+			var level_container_node = get_tree().current_scene.get_node("LevelContainer")
+			if level_container_node:
+				get_tree().current_scene.get_node("LevelContainer").get_child(0).add_child(splat_instance)
+			else:
+				get_tree().current_scene.add_child(splat_instance)
 		
 		# Set the global position IMMEDIATELY so the splat spawns exactly at the impact point,
 		# even if it was parented to a platform whose center is far away.
@@ -97,7 +101,5 @@ func splat(surface_normal: Vector2, contact_point: Vector2, hit_collider: Object
 		# Fire the setup method and PASS the hit_collider so the splat knows what to stick to
 		if splat_instance.has_method("setup_splat"):
 			splat_instance.setup_splat(linear_velocity, tomato_splat_blob_color, surface_normal, contact_point, hit_collider)
-			
-	queue_free()
 			
 	queue_free()
