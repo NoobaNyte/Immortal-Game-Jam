@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://d3glw13115soc" path="res://Scenes/Prefabs/Tomato/tomato_spawner.tscn" id="23_bu6tb"]
 [ext_resource type="PackedScene" uid="uid://calgy7o4jq8v4" path="res://Scenes/Prefabs/Obstacles/Minecart.tscn" id="24_h0fyq"]
 [ext_resource type="PackedScene" uid="uid://by1aso6g6mrqv" path="res://Scenes/Prefabs/Obstacles/ElectricWire.tscn" id="24_rnukb"]
-[ext_resource type="PackedScene" uid="uid://cxqsdn3fbk4ks" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.tscn" id="27_exgjh"]
+[ext_resource type="Script" uid="uid://dcmb4idn33dp3" path="res://Scenes/Prefabs/MovingPlatform/moving_platform.gd" id="26_3moi0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exgjh"]
 texture = ExtResource("18_bicw2")
@@ -612,6 +612,15 @@ gradient = SubResource("Gradient_48sa5")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve2D" id="Curve2D_s1fu5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, -71.94, 0, 0, 0, 0, -7.2591553, -374.95087, 0, 0, 0, 0, 283.09985, -725.72003, 0, 0, 0, 0, -437.92554, -1006.33496, 0, 0, 0, 0, 276.95508, -1138.87, 0, 0, 0, 0, -414.04492, -1372.87, 0, 0, 0, 0, 274.95508, -1730.87, 0, 0, 0, 0, -395.05383, -2183.3606, 0, 0, 0, 0, 271.40808, -2417.2073, 0, 0, 0, 0, -450.04492, -2605.87, 0, 0, 0, 0, 99.95508, -3011.87, 0, 0, 0, 0, -262.04492, -3200.87, 0, 0, 0, 0, -194.33557, -3403.26, 0, 0, 0, 0, -73.51514, -3473.4138, 0, 0, 0, 0, -3.0449219, -3800.87)
+}
+point_count = 16
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpoen"]
+size = Vector2(102.60281, 17)
+
 [node name="MineshaftLevel3" unique_id=1656558072 instance=ExtResource("1_wj8k7")]
 next_level_scene_file_path = "res://Scenes/Levels/GameEndArea/EndGameArea.tscn"
 previous_level_scene_file_path = "res://Scenes/Levels/Area3Mineshaft/MineshaftLevel2.tscn"
@@ -669,7 +678,7 @@ position = Vector2(1170, 7)
 position = Vector2(2114, -7)
 
 [node name="TomatoSpawner6" parent="TileMap" index="8" unique_id=2067677162 instance=ExtResource("23_bu6tb")]
-position = Vector2(2471, -3904)
+position = Vector2(2424, -4019)
 
 [node name="TomatoSpawner4" parent="TileMap" index="9" unique_id=1907035627 instance=ExtResource("23_bu6tb")]
 position = Vector2(-809, -5120)
@@ -1220,21 +1229,41 @@ position = Vector2(4599, -6003)
 position = Vector2(-0.5, -13)
 scale = Vector2(0.5, 0.5)
 
-[node name="MovingPlatform" parent="." index="17" unique_id=2021162858 instance=ExtResource("27_exgjh")]
+[node name="MovingPlatform" type="Path2D" parent="." index="17" unique_id=2021162858 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow", "player_detector")]
 position = Vector2(3037.045, -72.13)
+curve = SubResource("Curve2D_s1fu5")
+script = ExtResource("26_3moi0")
 mode = 1
+moving_platform_texture = ExtResource("9_gker0")
+animatable_body = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody")
+moving_platform_sprite = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/MovingPlatformSprite")
+moving_platform_collision_polygon = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/CollisionPolygon2D")
+moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
+player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector")
 
-[node name="MovingPlatformPathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
-position = Vector2(0, 0)
+[node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="MovingPlatform" index="0" unique_id=2021665693]
 rotation = 0.0002727162
-progress = 0.0
 rotates = false
 
-[node name="MovingPlatformAnimatableBody" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355]
+[node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatform/MovingPlatformPathFollow2D" index="0" unique_id=1070380355 groups=["MovingObject"]]
 scale = Vector2(10, 1)
+collision_layer = 7
+collision_mask = 7
+sync_to_physics = false
 
-[node name="CollisionPolygon2D" parent="MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" index="1" unique_id=886111199]
+[node name="MovingPlatformSprite" type="Sprite2D" parent="MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" index="0" unique_id=1326102084]
+texture = ExtResource("9_gker0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" index="1" unique_id=886111199]
 position = Vector2(1.6000273, 0.9956365)
+polygon = PackedVector2Array(-32, -3, -9, -3, -9, -2, 11, -2, 11, -3, 32, -3, 32, -18, -32, -18)
+
+[node name="PlayerDetector" type="Area2D" parent="MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody" index="2" unique_id=1045737840]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingPlatform/MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector" index="0" unique_id=676202713]
+position = Vector2(0, -16)
+scale = Vector2(0.6, 0.8)
+shape = SubResource("RectangleShape2D_bpoen")
 
 [editable path="Wires/ElectricWire"]
 [editable path="Wires/ElectricWire2"]
@@ -1262,4 +1291,3 @@ position = Vector2(1.6000273, 0.9956365)
 [editable path="Wires/cycleWires/ElectricWire9"]
 [editable path="Wires/ElectricWire11"]
 [editable path="Wires/ElectricWire12"]
-[editable path="MovingPlatform"]

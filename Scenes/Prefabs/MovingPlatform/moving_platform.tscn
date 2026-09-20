@@ -15,7 +15,6 @@ size = Vector2(102.60281, 17)
 [node name="MovingPlatform" type="Path2D" unique_id=2021162858 node_paths=PackedStringArray("animatable_body", "moving_platform_sprite", "moving_platform_collision_polygon", "moving_platform_path_follow", "player_detector")]
 curve = SubResource("Curve2D_s1fu5")
 script = ExtResource("1_bpoen")
-mode = null
 moving_platform_texture = ExtResource("2_bpoen")
 animatable_body = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody")
 moving_platform_sprite = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/MovingPlatformSprite")
@@ -24,9 +23,9 @@ moving_platform_path_follow = NodePath("MovingPlatformPathFollow2D")
 player_detector = NodePath("MovingPlatformPathFollow2D/MovingPlatformAnimatableBody/PlayerDetector")
 
 [node name="MovingPlatformPathFollow2D" type="PathFollow2D" parent="." unique_id=2021665693]
-position = Vector2(4.2673726, -197.95193)
-rotation = -1.5766102
-progress = 198.13045
+position = Vector2(1.8755064, -26.984789)
+rotation = -1.5014056
+progress = 27.057486
 
 [node name="MovingPlatformAnimatableBody" type="AnimatableBody2D" parent="MovingPlatformPathFollow2D" unique_id=1070380355 groups=["MovingObject"]]
 collision_layer = 7
