@@ -633,6 +633,9 @@ visible = true
 [node name="BackgroundSprite" parent="." index="3" unique_id=678310874]
 position = Vector2(-994, 2177)
 
+[node name="CanvasModulate" parent="." index="4" unique_id=1559591102]
+visible = true
+
 [node name="TileMap" type="Node2D" parent="." index="5" unique_id=756145371]
 
 [node name="TileMapLayerBackground" type="TileMapLayer" parent="TileMap" index="0" unique_id=915036263]
