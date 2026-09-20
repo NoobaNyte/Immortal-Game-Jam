@@ -319,9 +319,7 @@ func handle_camera_look(delta: float) -> void:
 	camera.position.y = lerp(camera.position.y, target_camera_y, camera_pan_speed * delta)
 
 func handle_hazard_collisions() -> void:
-	if not is_bat_mode:
-		return
-	
+	# Removed the bat_mode check so the human player can hit spikes too
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
@@ -354,6 +352,12 @@ func die(hit_normal: Vector2 = Vector2.UP) -> void:
 		return
 		
 	is_dying = true
+	
+	# Drop the tomato/item if holding one
+	if held_item:
+		# Force item busy to false in case they die exactly mid-pickup animation
+		is_item_busy = false
+		throw_item(true)
 	
 	if is_bat_mode:
 		play_bat_hurt_sfx()

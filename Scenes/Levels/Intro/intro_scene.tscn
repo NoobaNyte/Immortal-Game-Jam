@@ -31,13 +31,28 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 1)
 
-[node name="IntroScene" type="Node2D" unique_id=1056356550 node_paths=PackedStringArray("intro_sprites_texture_rect", "sprites_transition_overlay", "camera_pulse_point")]
+[sub_resource type="LabelSettings" id="LabelSettings_cunr0"]
+font_size = 55
+
+[node name="IntroScene" type="Node2D" unique_id=1056356550 node_paths=PackedStringArray("intro_sprites_texture_rect", "sprites_transition_overlay", "skip_label", "camera_pulse_point")]
 script = ExtResource("1_j8ae3")
 music_for_this_level = ExtResource("2_gtb3e")
+music_volume_db = -10.0
 intro_sprite_textures_in_order = Array[CompressedTexture2D]([ExtResource("3_gtb3e"), ExtResource("4_hm67n"), ExtResource("5_cunr0"), ExtResource("6_4mjv1"), ExtResource("7_q1eep"), ExtResource("8_8gspe"), ExtResource("9_ystwu")])
 intro_sprites_texture_rect = NodePath("Control/IntroSpritesTextureRect")
 sprites_transition_overlay = NodePath("Control/SpritesTransitionOverlay")
+skip_label = NodePath("SkipCanvasLayer/SkipLabel")
 camera_pulse_point = NodePath("CameraPulsePoint")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=161036792]
+position = Vector2(960, 540)
+
+[node name="CameraPulsePoint" type="Marker2D" parent="." unique_id=263620447]
+position = Vector2(1036, 702)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=616964360]
+position = Vector2(1036, 702)
+color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="." unique_id=633800641]
 layout_mode = 3
@@ -84,22 +99,26 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("10_cunr0")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=161036792]
-position = Vector2(960, 540)
-
-[node name="CameraPulsePoint" type="Marker2D" parent="." unique_id=263620447]
-position = Vector2(1036, 702)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=616964360]
-position = Vector2(1036, 702)
-color = Color(0, 0, 0, 1)
-
 [node name="PlayerPointLight2D" type="PointLight2D" parent="." unique_id=1721294483]
-position = Vector2(960, 540)
+position = Vector2(960, 539.99994)
 scale = Vector2(2.2, 1.311)
 energy = 1.4
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_cunr0")
-texture_scale = 23.21
+texture_scale = 19.02
+
+[node name="SkipCanvasLayer" type="CanvasLayer" parent="." unique_id=1341320532]
+
+[node name="SkipLabel" type="Label" parent="SkipCanvasLayer" unique_id=494664898]
+offset_left = 1370.0
+offset_top = 966.0
+offset_right = 1883.0
+offset_bottom = 1042.0
+size_flags_horizontal = 4
+text = "SPACE (CONTINUE)"
+label_settings = SubResource("LabelSettings_cunr0")
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("10_cunr0")
 
 [connection signal="pressed" from="Control/IntroSpritesTextureRect/ClickScreenButton" to="." method="_on_click_screen_button_pressed"]
