@@ -77,6 +77,7 @@ text = "PLAYER RESPAWN POINT"
 
 [node name="EnterLevelArea" type="Area2D" parent="." unique_id=1882371121]
 position = Vector2(-447, 0)
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="EnterLevelAreaLabel" type="Label" parent="EnterLevelArea" unique_id=642577362]
@@ -101,6 +102,7 @@ debug_color = Color(0.017857194, 1, 0, 0.41960785)
 
 [node name="ExitLevelArea" type="Area2D" parent="." unique_id=1960829182]
 position = Vector2(528, -1)
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="ExitLevelAreaLabel" type="Label" parent="ExitLevelArea" unique_id=1592446371]

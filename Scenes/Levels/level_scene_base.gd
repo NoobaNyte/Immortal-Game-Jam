@@ -18,11 +18,12 @@ func _on_enter_level_area_entered(body: Node2D):
 		if previous_level_scene_file_path:
 			Global.load_next_level.emit(previous_level_scene_file_path)
 		else:
-			push_warning("cannot transition levels! previous_level_scene_file_path not assigned in inspector")
+			push_warning("player cannot transition levels! previous_level_scene_file_path not assigned in inspector")
 
 func _on_exit_level_area_entered(body: Node2D):
+	print("something exited")
 	if body.name == "PlayerCharacter":
 		if next_level_scene_file_path:
 			Global.load_next_level.emit(next_level_scene_file_path)
 		else:
-			push_warning("cannot transition levels! next_level_scene_file_path not assigned in inspector")
+			push_warning("player cannot transition levels! next_level_scene_file_path not assigned in inspector")
